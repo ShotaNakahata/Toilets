@@ -13,46 +13,361 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
+/* 基本スタイル  ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿*/
 body {
+  font-family: Arial, sans-serif;
   margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
+}
+
+a {
+  text-decoration: none;
+}
+
+.clear {
+  clear: both;
+}
+
+.container {
+  max-width: 1170px;
+  width: 100%;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+/* ヘッダー  ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿*/
+header {
+  height: 65px;
+  width: 100%;
+  background-color: rgba(34, 49, 52, 0.9);
+  position: fixed;
+  top: 0;
+  z-index: 10;
+}
+
+.header-left, .header-right {
+  float: left; 
+}
+
+.logo {
+  height: 65px;
+}
+
+.header-right {
+  float: right;
+  margin-right: -25px;
+}
+
+.header-link, .header-right a {
+  display: inline-block;
+  text-align: center;
+  margin-right: 10px;
+  line-height: 65px;
+  padding: 0 10px;
+  color: white;
+  transition: all 0.5s;
+}
+
+.header-right a:hover, .header-link:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.menu-icon {
+  display: none;
+  float: right;
+  font-size: 25px;
+  padding: 21px 0;
+  color: white;
+}
+
+/* トップラッパー ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿*/
+.top-wrapper {
+  padding: 120px 0 70px;
+  background-image: url(/images/BackGround.jpg);
+  background-size: cover;
+  color: white;
+  text-align: center;
+}
+
+.top-wrapper h1 {
+  opacity: 1;
+  font-size: 45px;
+  letter-spacing: 5px;
+}
+
+.top-wrapper p {
+  opacity: 0.7;
+  color: #ffffff;
+}
+
+/* ボタンスタイル  ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿*/
+.btn-wrapper {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.btn {
+  padding: 8px 14px;
+  color: white;
+  display: inline-block;
+  opacity: 0.8;
+  border-radius: 4px;
+  background-color: #1a7940;
+}
+
+.btn img {
+  width: 40px;
+  height: auto;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+.btn:hover {
+  opacity: 1;
+}
+
+/* サービス紹介 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿*/
+.service-wrapper {
+  text-align: center;
+  padding: 20px 0;
+  background-color: #f0f0f0; /* 背景色を指定 */
+}
+
+.container h2 {
+
+  margin-bottom: 40px;
+}
+
+.Servicecontents {
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  justify-content: space-around;
+  flex-wrap: wrap; /* 画面が狭い場合は要素を折り返し */
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.ServiceContentSearch,
+.ServiceContentFound,
+.ServiceContentRate,
+.ServiceContentBookMark {
+  width: calc(20% - 10px); /* 4つの要素を横並びにする。余白を考慮して計算 */
+  margin: 5px; /* 余白 */
+  box-shadow: 0px 0px 5px #aaa; /* 影を付ける */
+  padding: 10px;
+  background-color: #fff; /* 背景色 */
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+.ServiceContentImg {
+  width: 100%; /* コンテナの幅に合わせて画像を伸縮 */
+  height: auto; /* 画像の高さを自動調整 */
+  margin-bottom: 10px; /* 画像の下の余白 */
 }
-button:hover {
-  border-color: #646cff;
+
+.ServiceName {
+  font-size: 18px; /* サービス名のフォントサイズ */
+  margin-bottom: 5px; /* サービス名の下の余白 */
 }
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+
+.ServiceDetail {
+  font-size: 14px; /* サービス詳細のフォントサイズ */
+  color: #666; /* サービス詳細のテキストカラー */
 }
+
+
+.service-wrapper h3{
+  padding: 10px 0 8px;
+}
+/* Map ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿*/
+
+.Map-wrapper{
+  background-color:darkgray;
+  padding: 20px 0 40px 0;
+  text-align:center;
+}
+
+#map {
+  background-image: url('/images/alt_map.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 400px;
+}
+
+
+
+/* And Moreセクション＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿*/
+
+.AndMore-wrapper {
+  background-color: #f0f0f0;
+  padding: 2px 5%;
+  text-align: center;
+}
+.image-container {
+  background-color: rgb(119, 138, 137);
+  display: flex;
+  justify-content: center; /* 画像を中央に寄せる */
+  align-items: flex-start; /* 画像とテキストをコンテナの上端に揃える */
+  flex-wrap: wrap; /* 必要に応じて折り返し */
+}
+
+.AndMore-wrapper .heading h2{
+  margin-bottom: 10px;
+}
+.AndMore1, .AndMore2 {
+  flex: 1; /* 各コンテナにフレキシブルな幅を設定 */
+  margin: 10px; /* 余白 */
+  min-height: 300px; /* 最小の高さを設定 */
+  display: flex; /* Flexboxを適用 */
+  flex-direction: column; /* 子要素を縦に並べる */
+  justify-content: flex-start; /* 子要素を上端に揃える */
+}
+.AndMore1 img, .AndMore2 img {
+  width: auto; /* 幅を自動調整 */
+  max-width: 100%; /* 最大幅をコンテナの幅に合わせる */
+  height: auto; /* 高さを自動調整 */
+  align-self: center; /* 画像を自身の軸中心に配置 */
+}
+.text-content-theme, .text-content-detail {
+  color: rgb(4, 4, 4); /* テキストの色 */
+  padding: 10px 0; /* 上下のパディングを追加 */
+  min-height: 50px; /* 最小の高さを指定 */
+}
+
+/* 各テキストブロックのスタイル */
+.AndMore-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center; /* テキストを中央揃えに */
+  min-height: 100px; /* 2つのテキストブロックを含むコンテナの最小の高さ */
+  margin: 10px 0; /* ブロック間のマージン */
+}
+
+/* 各テキストブロックのスタイル */
+.AndMore-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center; /* テキストを中央揃えに */
+  min-height: 5100px; /* 2つのテキストブロックを含むコンテナの最小の高さ */
+  margin: 10px 0; /* ブロック間のマージン */
+}
+
+
+
+.image-container {
+  display: flex;
+  justify-content: center; /* 画像を中央に寄せる */
+  align-items: flex-start; /* 画像とテキストをコンテナの上端に揃える */
+  flex-wrap: wrap; /* 必要に応じて折り返し */
+}
+
+
+
+.AndMore1, .AndMore2 {
+  flex: 1; /* 各コンテナにフレキシブルな幅を設定 */
+  margin: 10px; /* 余白 */
+  min-height: 150px; /* 最小の高さを設定 */
+  display: flex; /* Flexboxを適用 */
+  flex-direction: column; /* 子要素を縦に並べる */
+  justify-content: flex-start; /* 子要素を上端に揃える */
+}
+
+.AndMore1 img, .AndMore2 img {
+  width: auto; /* 幅を自動調整 */
+  max-width: 100%; /* 最大幅をコンテナの幅に合わせる */
+  height: auto; /* 高さを自動調整 */
+  align-self: center; /* 画像を自身の軸中心に配置 */
+}
+/* 各AndMore項目のスタイルを微調整 */
+.AndMore {
+  margin-bottom: 10px; /* AndMore間のマージンを追加 */
+}
+
+.image-container {
+  display: flex; /* Flexboxを適用して子要素を横並びに */
+  justify-content: center; /* 画像を中央に寄せる */
+  align-items: center; /* 画像を垂直方向の中央に寄せる */
+}
+
+.image-container div {
+  margin: 0 30px; /* 画像間の間隔 */
+}
+
+.image-container img {
+  max-width: 50%; /* コンテナの幅に合わせて最大幅を設定 */
+  height: auto; /* 高さを自動調整してアスペクト比を保持 */
+}
+
+.image-container {
+  display: flex; /* Flexboxを適用して子要素を横並びに */
+  justify-content: center; /* 画像を中央に寄せる */
+  align-items: center; /* 画像を垂直方向の中央に寄せる */
+}
+
+.image-container div {
+  margin: 0 30px; /* 画像間の間隔 */
+}
+
+.image-container img {
+  max-width: 50%; /* コンテナの幅に合わせて最大幅を設定 */
+  height: auto; /* 高さを自動調整してアスペクト比を保持 */
+}
+.text-content-theme {
+  font-size: 25px; /* 文字サイズを適切に設定 */
+  font-weight: bold;
+  line-height: 1.2; /* 行の高さを調整 */
+  height: 40px; /* 固定高さを設定 */
+  overflow: hidden; /* オーバーフローするテキストを非表示に */
+  padding: 5px 0; /* 上下のパディングを設定 */
+  margin: 5px 0; /* 上下のマージンを設定 */
+}
+
+.text-content-detail {
+  font-size: 16px; /* 文字サイズを適切に設定 */
+  line-height: 1.2; /* 行の高さを調整 */
+  height: 60px; /* 固定高さを設定 */
+  overflow: hidden; /* オーバーフローするテキストを非表示に */
+  padding: 5px 0; /* 上下のパディングを設定 */
+  margin: 5px 0; /* 上下のマージンを設定 */
+
+}
+
+
+/* メッセージラッパー ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿*/
+.message-wrapper {
+  padding-bottom: 10px;
+  text-align: center;
+  border-bottom: 1px solid #000000;
+  background-color: darkgray;
+}
+.message-wrapper-header{
+  padding:15px 0 0 0;
+  margin: bottom 0px; ;
+}
+
+.message {
+  background-color: #5dca88;
+  padding: 15px 40px;
+  box-shadow: 0 7px #1a7940;
+}
+
+/* フッター  ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿*/
+footer {
+  padding: 10px 0 5px;
+  text-align: center;
+  background-color: #000000;
+}
+
+footer img {
+  width: 50px;
+}
+
+footer p {
+  margin: 0%;
+  font-size: 12px;
+  color: #ffffff;
+}
+
+
 
 @media (prefers-color-scheme: light) {
   :root {
