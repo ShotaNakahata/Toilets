@@ -10,16 +10,16 @@ class Top extends React.Component {
                     <p>cleanliness and convenience ratings of the toilets.</p>
                     <div className="btn-wrapper">
                         <a href="#" className="btn Search">
-                            <img src="/images/Search.png" alt="SearchImg" />
+                            <img src="/images/IconSearch.jpg" alt="SearchImg" />
                             Search Toilet
                         </a>
                         <p>or</p>
                         <a href="#" className="btn NewPost">
-                            <img src="/assets/images/Found.png" alt="NewPostImg" />
+                            <img src="/images/IconFound.jpg" alt="NewPostImg" />
                             I Found a Toilet
                         </a>
                         <a href="#" className="btn Rate">
-                            <img src="/assets/images/Rate.png" alt="RateImg" />
+                            <img src="/images/IconRate.jpg" alt="RateImg" />
                             Rate the Toilet
                         </a>
                     </div>

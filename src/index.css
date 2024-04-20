@@ -201,7 +201,7 @@ header {
   text-align: center;
 }
 .image-container {
-  background-color: rgb(119, 138, 137);
+  
   display: flex;
   justify-content: center; /* 画像を中央に寄せる */
   align-items: flex-start; /* 画像とテキストをコンテナの上端に揃える */
@@ -213,13 +213,18 @@ header {
 }
 .AndMore1, .AndMore2 {
   flex: 1; /* 各コンテナにフレキシブルな幅を設定 */
+  padding:20px 0 10px 0;
   margin: 10px; /* 余白 */
   min-height: 300px; /* 最小の高さを設定 */
   display: flex; /* Flexboxを適用 */
   flex-direction: column; /* 子要素を縦に並べる */
   justify-content: flex-start; /* 子要素を上端に揃える */
+  background-color: blanchedalmond;
 }
+
+
 .AndMore1 img, .AndMore2 img {
+
   width: auto; /* 幅を自動調整 */
   max-width: 100%; /* 最大幅をコンテナの幅に合わせる */
   height: auto; /* 高さを自動調整 */
@@ -340,7 +345,7 @@ header {
   background-color: darkgray;
 }
 .message-wrapper-header{
-  padding:15px 0 0 0;
+  padding:10px 0 0 0;
   margin: bottom 0px; ;
 }
 

@@ -8,7 +8,6 @@ class AndMore extends React.Component {
                     <div className="heading">
                         <h2>And More</h2>
                     </div>
-                    <div className="AndMores">
                         <div className="AndMore">
                             <div className="image-container">
                                 <div className="AndMore1">
@@ -23,7 +22,7 @@ class AndMore extends React.Component {
                                 </div>
                             </div>
                         </div>
-                    </div>
+
                 </div>
             </div>
         );

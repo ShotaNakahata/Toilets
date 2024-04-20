@@ -5,7 +5,7 @@ class Footer extends React.Component {
         return (
             <footer>
                 <div className="container">
-                    <img src="/assets/images/logo.png" alt="Logo" />
+                    <img src="/images/logo.jpg" alt="Logo" />
                     <p>A good life starts with a good toilet.</p>
                 </div>
             </footer>
