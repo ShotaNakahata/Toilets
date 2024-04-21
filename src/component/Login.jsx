@@ -15,7 +15,7 @@ class Login extends React.Component {
                             <button type="submit">Login</button>
                         </form>
                         <div className='loginPage-another'>
-                            <Link to="/CreateAccount" className="/CreateAccount-button">New create account</Link>
+                            <Link to="CreateAccount" className="/CreateAccount-button">New create account</Link>
                             <Link to="/Forget" className="/Forget-button">Forget password</Link>
                             <Link to="/" className="home-button">Return to Home</Link>
                         </div>
