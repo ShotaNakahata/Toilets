@@ -7,7 +7,8 @@ import Map from './Map';
 import AndMore from './AndMore';
 import Message from './Message';
 import Footer from './Footer';
-import Login from './Login'; // Login コンポーネントをインポート
+import Login from './Login'; 
+import CreateAccount from './CreateAccount'; 
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Routes>
           <Route path="/" element={<><Top /><Service /><Map /><AndMore /><Message /><Footer /></>} />
           <Route path="/login" element={<Login />} /> 
+          <Route path="/CreateAccount" element={<CreateAccount />} /> 
         </Routes>
       </div>
     </Router>
