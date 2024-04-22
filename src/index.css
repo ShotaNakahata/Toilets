@@ -178,17 +178,18 @@ header {
 }
 /* Map ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿*/
 
-.Map-wrapper{
-  background-color:darkgray;
+
+.Map-wrapper {
+  background-color: darkgray;
   padding: 20px 0 40px 0;
-  text-align:center;
+  text-align: center;
 }
 
-#map {
-  background-image: url('/images/alt_map.jpg');
-  background-size: cover;
-  background-position: center;
-  height: 400px;
+.map-contents {
+  width: 100%; /* container の幅に合わせる */
+  height: 320px; /* 画面の高さの80%を使用 */
+  margin: 0 auto; /* 中央揃え */
+  position: relative; /* 子要素の位置指定の基準点に */
 }
 
 

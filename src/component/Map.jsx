@@ -1,5 +1,5 @@
 import React from 'react';
-import MapAPI from './MapAPI'; // MapAPI コンポーネントをインポート
+import MapComponent from './MapComponent'; // MapComponent をインポート
 
 class Map extends React.Component {
     render() {
@@ -7,7 +7,10 @@ class Map extends React.Component {
             <div className="Map-wrapper">
                 <div className="container">
                     <h2>Map</h2>
-                    <MapAPI /> {/* MapAPI コンポーネントをレンダリング */}
+                    <div className="map-contents">
+                        {/* MapComponent コンポーネントをレンダリング */}
+                        <MapComponent />
+                    </div>
                 </div>
             </div>
         );
