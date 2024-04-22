@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types'; // PropTypes をインポート
 import { useLoadScript, Marker } from '@react-google-maps/api';
 
-const UserLocation = ({ map }) => {
+const UserLocation = ({ map, onLocationFound }) => {
     useEffect(() => {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
@@ -12,28 +12,31 @@ const UserLocation = ({ map }) => {
                         lng: position.coords.longitude,
                     };
 
+                    onLocationFound(userLocation);
                     new window.google.maps.Marker({
                         position: userLocation,
                         map: map,
                         title: 'Your Location',
                     });
                 },
-                (error) => { // エラーコールバック関数
+                (error) => {
                     console.error("Error: ", error);
-                    alert("位置情報の取得に失敗しました。ブラウザの設定を確認してください。");
+                    // エラーメッセージの管理方法を検討してください
                 }
             );
         } else {
-            alert("このブラウザでは位置情報サービスがサポートされていません。");
+            console.log("このブラウザでは位置情報サービスがサポートされていません。");
+            // ユーザーへの通知方法を検討してください
         }
-    }, [map]);
+    }, [map, onLocationFound]);
 
     return null; 
 };
 
-
 UserLocation.propTypes = {
-    map: PropTypes.object // map はオブジェクト型であることを宣言
+    map: PropTypes.object.isRequired, // map は必須のオブジェクト型であることを宣言
+    onLocationFound: PropTypes.func.isRequired, // onLocationFound も必須の関数型であることを宣言
 };
 
 export default UserLocation;
+
