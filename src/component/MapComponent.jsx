@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import  { useEffect, useState } from 'react';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 import toiletsData from '../data/toiletsData';
 import UserLocation from './UserLocation';
@@ -57,4 +57,3 @@ const MapComponent = () => {
 };
 
 export default MapComponent;
-
