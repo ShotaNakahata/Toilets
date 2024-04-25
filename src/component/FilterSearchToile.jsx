@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import { Link } from 'react-router-dom';
 import toiletsData from '../data/toiletsData';
 
 function FilterSearchToile() {
@@ -57,6 +58,8 @@ function FilterSearchToile() {
             <div className="SearchToile-wrapper">
                 <h1>SearchToile</h1>
                 <h2>Filter Search Mode</h2>
+                <Link to="/MapSearchToile" className="ChangeSearchMode-button">Map Search Mode</Link>
+                <Link to="/" className="home-button">Return to Home</Link>
                 <button onClick={toggleModal}>Filter Options</button>
                 {showModal && (
                     <div className="modal">
