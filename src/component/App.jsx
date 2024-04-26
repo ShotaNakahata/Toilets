@@ -9,6 +9,8 @@ import Message from './Message';
 import Footer from './Footer';
 import Login from './Login'; 
 import CreateAccount from './CreateAccount'; 
+import FilterSearchToile from './FilterSearchToile'; 
+import MapSearchToile from './MapSearchToile';
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
           <Route path="/" element={<><Top /><Service /><Map /><AndMore /><Message /><Footer /></>} />
           <Route path="/login" element={<Login />} /> 
           <Route path="/CreateAccount" element={<CreateAccount />} /> 
+          <Route path="/MapSearchToile" element={<MapSearchToile />} /> 
+          <Route path="/FilterSearchToile" element={<FilterSearchToile />} /> 
         </Routes>
       </div>
     </Router>
