@@ -10,7 +10,7 @@ class Header extends React.Component {
                         <img className="logo" src='/images/logo.jpg' />
                     </div>
                     <div className="header-right">
-                        <Link className="header-link" to="#">BookmMark</Link>
+                        <Link className="header-link" to="#">BookMark</Link>
                         <Link className="header-link" to="#">Contact</Link>
                         <Link className="header-link" to="#">About_Me</Link>
                         <Link className="header-link login" to="/login">Login</Link> 

@@ -131,51 +131,67 @@ header {
 .service-wrapper {
   text-align: center;
   padding: 20px 0;
-  background-color: #f0f0f0; /* 背景色を指定 */
+  background-color: #f0f0f0;
 }
 
 .container h2 {
-
   margin-bottom: 40px;
 }
 
 .Servicecontents {
   display: flex;
   justify-content: space-around;
-  flex-wrap: wrap; /* 画面が狭い場合は要素を折り返し */
+  flex-wrap: wrap;
 }
 
 .ServiceContentSearch,
 .ServiceContentFound,
 .ServiceContentRate,
 .ServiceContentBookMark {
-  width: calc(20% - 10px); /* 4つの要素を横並びにする。余白を考慮して計算 */
-  margin: 5px; /* 余白 */
-  box-shadow: 0px 0px 5px #aaa; /* 影を付ける */
+  width: calc(20% - 10px);
+  margin: 5px;
+  box-shadow: 0px 0px 5px #aaa;
   padding: 10px;
-  background-color: #fff; /* 背景色 */
+  background-color: #fff;
 }
 
 .ServiceContentImg {
-  width: 100%; /* コンテナの幅に合わせて画像を伸縮 */
-  height: auto; /* 画像の高さを自動調整 */
-  margin-bottom: 10px; /* 画像の下の余白 */
+  width: 100%;
+  height: auto;
+  margin-bottom: 10px;
 }
 
 .ServiceName {
-  font-size: 18px; /* サービス名のフォントサイズ */
-  margin-bottom: 5px; /* サービス名の下の余白 */
+  font-size: 18px;
+  margin-bottom: 5px;
 }
 
 .ServiceDetail {
-  font-size: 14px; /* サービス詳細のフォントサイズ */
-  color: #666; /* サービス詳細のテキストカラー */
+  font-size: 14px;
+  color: #666;
 }
-
 
 .service-wrapper h3{
-  padding: 10px 0 8px;
+  padding: 3px 0 3px;
 }
+.View-Details-button {
+  background: none;
+  border: none;
+  color: rgb(63, 63, 249);
+  cursor: pointer;
+  padding: 0;
+  font-size: 10px;
+  text-decoration: underline;
+}
+
+.View-Details-button:hover {
+  text-decoration: none;
+  color: red;  /* ホバー時のテキストの色を赤に変更 */
+  font-weight: bold;  /* テキストを太字にする */
+}
+
+
+
 /* Map ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿*/
 
 

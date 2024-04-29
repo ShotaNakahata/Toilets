@@ -104,6 +104,8 @@ const MapComponent = () => {
             alert('Geolocation is not supported by this browser.');
         }
     };
+
+    
     
 
     useEffect(() => {
