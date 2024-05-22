@@ -1,58 +1,55 @@
-import React from 'react';
-import AccordionItem from './AccordionItem'; // AccordionItem コンポーネントをインポート
+import axios from 'axios';
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
-// Service コンポーネントの定義
-const Service = () => {
-    // サービスのデータを配列で定義
-    const services = [
-        {
-            title: "Search", // タイトル
-            content: "You can use your current location to find the nearest available toilet on the map. This way, you're always prepared in case of an emergency!", // コンテンツ
-            imageSrc: "/images/IntroSearch.jpg", // 画像のパス
-            altText: "Search" // 画像の代替テキスト
-        },
-        {
-            title: "Share", // タイトル
-            content: "Register the available toilet you have found on the site! By registering, you help not only yourself for future visits but also others in search of a toilet. The toilet you find could be a lifesaver for someone else", // コンテンツ
-            imageSrc: "/images/IntroShare.jpg", // 画像のパス
-            altText: "Share" // 画像の代替テキスト
-        },
-        {
-            title: "Rateh", // タイトル
-            content: "Want to use a clean and well-equipped toilet? Then check the ratings! And don't forget to rate the toilets yourself. Where's the best toilet? Let's find out", // コンテンツ
-            imageSrc: "/images/IntroRate.jpg", // 画像のパス
-            altText: "Rate" // 画像の代替テキスト
-        },
-        {
-            title: "BookMark", // タイトル
-            content: "Don not lose track of your favorite toilets. Always ensure the utmost comfort by using your most liked restrooms. Don't forget to bookmark them!", // コンテンツ
-            imageSrc: "/images/IntroBookMark.jpg", // 画像のパス
-            altText: "BookMark" // 画像の代替テキスト
-        },
+function CreateAccount() {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
 
-        // 他のサービスデータを追加可能
-    ];
+    const navigate = useNavigate();
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (!email || !password || !confirmPassword) {
+            setErrorMessage('Please fill in all fields.');
+        } else if (password !== confirmPassword) {
+            setErrorMessage('Password mismatch');
+        } else {
+            setErrorMessage('');
+            try {
+                // ここでAPIにPOSTリクエストを送る
+                const response = await axios.post('http://localhost:4000/api/create-account', { email, password });
+                console.log(response.data); // レスポンスの確認
+                navigate('/login'); // ログインページへのナビゲーション
+            } catch (error) {
+                setErrorMessage('Failed to create an account');
+                console.error(error);
+            }
+        }
+    };
 
     return (
-        <div className="service-wrapper">
-            <div className="container">
-                <h2>Service</h2> {/* ヘッダー */}
-                <div className="Servicecontents">
-                    {/* services 配列の各要素に対して AccordionItem コンポーネントをマップ */}
-                    {services.map((service, index) => (
-                        <AccordionItem
-                            key={index} // ユニークな key, Reactのリストレンダリングで必要
-                            title={service.title}
-                            content={service.content}
-                            imageSrc={service.imageSrc}
-                            altText={service.altText}
-                        />
-                    ))}
+        <div className="container-log">
+            <div className="loginPage-wrapper">
+                <div className="loginPage-contents">
+                    <h2>New create account</h2>
+                    <form className="login-form" onSubmit={handleSubmit}>
+                        <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                        <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                        <input type="password" placeholder="Confirm Password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
+                        <button type="submit">Create Account</button>
+                    </form>
+                    {errorMessage && <p>{errorMessage}</p>}
+                    <div className='loginPage-another'>
+                        <Link to="/login" className="login">Return to login</Link>
+                        <Link to="/" className="home-button">Return to Home</Link>
+                    </div>
                 </div>
-                <h3>These features will enhance your toilet experience when you're out and about.</h3>
             </div>
         </div>
     );
-};
+}
 
-export default Service;  // Service コンポーネントをエクスポート
+export default CreateAccount;

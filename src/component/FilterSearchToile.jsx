@@ -3,54 +3,48 @@ import { Link } from 'react-router-dom';
 import toiletsData from '../data/toiletsData';
 
 function FilterSearchToile() {
-    const [toiletList, setToiletList] = useState(toiletsData); // トイレのリストを状態として保持
-    const [showModal, setShowModal] = useState(false); // モーダル表示の状態
-    const [isTopRated, setIsTopRated] = useState(false); // トップ評価されたトイレのみを表示するフィルタの状態
-    const [showAccessible, setShowAccessible] = useState(false); // アクセシブルなトイレのみを表示するフィルタの状態
-    const ref = useRef(null); // 検索バーへの参照
+    const [toiletList, setToiletList] = useState(toiletsData);
+    const [showModal, setShowModal] = useState(false);
+    const [isTopRated, setIsTopRated] = useState(false);
+    const [showUniversal, setShowUniversal] = useState(false);
+    const ref = useRef(null);
 
-    // 検索機能：ユーザーが入力した値に基づいてフィルタリングを実行
     const handleSearch = () => {
         const searchValue = ref.current.value.toLowerCase();
-        applyFilters(searchValue, isTopRated, showAccessible);
+        applyFilters(searchValue, isTopRated, showUniversal);
     };
 
-    // モーダルウィンドウの表示を切り替える関数
     const toggleModal = () => {
         setShowModal(!showModal);
     };
 
-    // 指定された条件に基づきトイレのリストをフィルタリングする関数
-    const applyFilters = (searchTerm, topRated, accessibleOnly) => {
+    const applyFilters = (searchTerm, topRated, universalOnly) => {
         let filtered = toiletsData.filter(toilet =>
             toilet.name.toLowerCase().includes(searchTerm) ||
             toilet.address.toLowerCase().includes(searchTerm)
         );
 
-        // トップ評価のフィルタが有効な場合、評価が高い順にソートし、上位5件を選択
         if (topRated) {
             filtered = filtered.sort((a, b) => b.rating - a.rating).slice(0, 5);
         }
 
-        // アクセシブルフィルタが有効な場合、アクセシブルなトイレのみを選択
-        if (accessibleOnly) {
-            filtered = filtered.filter(toilet => toilet.accessible);
+        if (universalOnly) {
+            filtered = filtered.filter(toilet => toilet.universal);
         }
 
-        setToiletList(filtered); // フィルタリング結果を状態にセット
+        setToiletList(filtered);
     };
 
-    // チェックボックスの状態変更でフィルタリングをトリガー
     const toggleRatingFilter = () => {
         const newTopRated = !isTopRated;
         setIsTopRated(newTopRated);
-        applyFilters(ref.current.value, newTopRated, showAccessible);
+        applyFilters(ref.current.value, newTopRated, showUniversal);
     };
 
-    const toggleAccessibleFilter = () => {
-        const newShowAccessible = !showAccessible;
-        setShowAccessible(newShowAccessible);
-        applyFilters(ref.current.value, isTopRated, newShowAccessible);
+    const toggleUniversalFilter = () => {
+        const newShowUniversal = !showUniversal;
+        setShowUniversal(newShowUniversal);
+        applyFilters(ref.current.value, isTopRated, newShowUniversal);
     };
 
     return (
@@ -76,10 +70,10 @@ function FilterSearchToile() {
                             <label>
                                 <input
                                     type="checkbox"
-                                    checked={showAccessible}
-                                    onChange={toggleAccessibleFilter}
+                                    checked={showUniversal}
+                                    onChange={toggleUniversalFilter}
                                 />
-                                Only Accessible
+                                Only Universal
                             </label>
                             <button onClick={toggleModal}>Close</button>
                         </div>
@@ -93,7 +87,7 @@ function FilterSearchToile() {
                             <p>{toilet.address}</p>
                             <p>Rating: {toilet.rating}</p>
                             <p>{toilet.comment}</p>
-                            <p>Accessible: {toilet.accessible ? "Yes" : "No"}</p>
+                            <p>Universal: {toilet.universal ? "Yes" : "No"}</p>
                         </div>
                     ))}
                 </div>

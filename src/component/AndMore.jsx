@@ -12,8 +12,8 @@ class AndMore extends React.Component {
                             <div className="image-container">
                                 <div className="AndMore1">
                                     <img src="/images/AccessibleToilet.jpg" alt="Accessible Toilet" />
-                                    <p className="text-content-theme">The best accessible restroom</p>
-                                    <p className="text-content-detail">You can view a list of highly rated accessible restrooms here.</p>
+                                    <p className="text-content-theme">The best universal restroom</p>
+                                    <p className="text-content-detail">You can view a list of highly rated universal restrooms here.</p>
                                 </div>
                                 <div className="AndMore2">
                                     <img src="/images/FavoAccessibleToilet..jpg" alt="Favorite Accessible Toilet" />
