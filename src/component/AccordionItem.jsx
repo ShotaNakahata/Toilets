@@ -1,8 +1,4 @@
 
-
-
-import React from 'react';
-
 const AccordionItem = ({ title, content, imageSrc, altText, isOpen, toggle }) => {
     return (
         <div className="ServiceContentSearch">

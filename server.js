@@ -29,4 +29,3 @@ app.use('/api', userRoutes); // APIルートを '/api' に設定
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
-

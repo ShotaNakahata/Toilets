@@ -1,3 +1,4 @@
+//vite-project/src/component/UserLocation.jsx
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types'; // PropTypes をインポート
 import { useLoadScript, Marker } from '@react-google-maps/api';

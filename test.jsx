@@ -136,3 +136,49 @@ MapComponent.propTypes = {
 };
 
 export default MapComponent;
+
+
+//-------------------------------------
+
+
+import React, { useEffect, useState } from 'react';
+
+const fetchData = async () => {
+    const response = await fetch('https://api.example.com/data');
+    return response.json();
+};
+
+const useCachedData = (cacheKey) => {
+    const [data, setData] = useState(null);
+
+    useEffect(() => {
+        const cachedData = sessionStorage.getItem(cacheKey);
+        if (cachedData) {
+            setData(JSON.parse(cachedData));
+        } else {
+            fetchData().then(fetchedData => {
+                setData(fetchedData);
+                sessionStorage.setItem(cacheKey, JSON.stringify(fetchedData));
+            });
+        }
+    }, [cacheKey]);
+
+    return data;
+};
+
+const DataComponent = () => {
+    const data = useCachedData('myDataCacheKey');
+
+    if (!data) {
+        return <div>Loading...</div>;
+    }
+
+    return (
+        <div>
+            <h1>Data</h1>
+            <pre>{JSON.stringify(data, null, 2)}</pre>
+        </div>
+    );
+};
+
+export default DataComponent;

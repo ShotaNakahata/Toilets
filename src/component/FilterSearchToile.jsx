@@ -1,13 +1,26 @@
-import React, { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import toiletsData from '../data/toiletsData';
 
 function FilterSearchToile() {
-    const [toiletList, setToiletList] = useState(toiletsData);
+    const [toiletList, setToiletList] = useState([]); // トイレのリストを管理する変数
     const [showModal, setShowModal] = useState(false);
     const [isTopRated, setIsTopRated] = useState(false);
     const [showUniversal, setShowUniversal] = useState(false);
+    const [loading, setLoading] = useState(true); // ローディング中かどうかを管理する変数
     const ref = useRef(null);
+
+    // ページが表示されたときにデータを読み込む
+    useEffect(() => {
+        // ローディング中の表示を開始
+        setLoading(true); 
+
+        // データを設定（ここではデータがすぐに取得できることを想定）
+        setToiletList(toiletsData);
+
+        // ローディング中の表示を終了
+        setLoading(false); 
+    }, []);
 
     const handleSearch = () => {
         const searchValue = ref.current.value.toLowerCase();
@@ -80,20 +93,25 @@ function FilterSearchToile() {
                     </div>
                 )}
                 <input type="text" ref={ref} onChange={handleSearch} />
-                <div className='SearchToile-shows'>
-                    {toiletList.map((toilet) => (
-                        <div className="box" key={toilet.id}>
-                            <h3>{toilet.name}</h3>
-                            <p>{toilet.address}</p>
-                            <p>Rating: {toilet.rating}</p>
-                            <p>{toilet.comment}</p>
-                            <p>Universal: {toilet.universal ? "Yes" : "No"}</p>
-                        </div>
-                    ))}
-                </div>
+                {loading ? (
+                    <p>Loading...</p> // ローディング中に表示する
+                ) : (
+                    <div className='SearchToile-shows'>
+                        {toiletList.map((toilet) => (
+                            <div className="box" key={toilet.id}>
+                                <h3>{toilet.name}</h3>
+                                <p>{toilet.address}</p>
+                                <p>Rating: {toilet.rating}</p>
+                                <p>{toilet.comment}</p>
+                                <p>Universal: {toilet.universal ? "Yes" : "No"}</p>
+                            </div>
+                        ))}
+                    </div>
+                )}
             </div>
         </div>
     );
 }
 
 export default FilterSearchToile;
+

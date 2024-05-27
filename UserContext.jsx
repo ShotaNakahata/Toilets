@@ -25,7 +25,6 @@ export const UserProvider = ({ children }) => {
         fetchUser();
     }, []);
 
-    // valueにuserとsetUserの両方を含める
     return (
         <UserContext.Provider value={{ user, setUser }}>
             {children}
@@ -33,11 +32,8 @@ export const UserProvider = ({ children }) => {
     );
 };
 
-// prop-types を使って children の型を指定
 UserProvider.propTypes = {
     children: PropTypes.node.isRequired
 };
 
 export const useUser = () => useContext(UserContext);
-
-
