@@ -1,17 +1,19 @@
+// src/component/RegistrationRestroom.jsx
 import { useState } from 'react';
 import axios from 'axios';
 import StarRating from './StarRating';
 import { Link, useNavigate } from 'react-router-dom';
 import SnackbarActionText from './SnackbarActionText';
+import PropTypes from 'prop-types';
 
-const RegistrationRestroom = () => {
+const RegistrationRestroom = ({ onNewToilet }) => {
     const [name, setName] = useState('');
     const [address, setAddress] = useState('');
     const [rating, setRating] = useState(1);
     const [universal, setUniversal] = useState(false);
-    const [comments, setComments] = useState('');
+    const [initialComment, setInitialComment] = useState(''); // initialCommentを追加
     const [message, setMessage] = useState('');
-    const [openSnackbar, setOpenSnackbar] = useState(false);
+    const [openSnackbar, setOpenSnackbar] = useState(false); // スナックバーの状態を管理
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
@@ -22,16 +24,17 @@ const RegistrationRestroom = () => {
                 address,
                 rating,
                 universal,
-                comments
+                initialComment 
             });
-            setMessage(response.data.message); // サーバーからのメッセージを取得してセット
-            setOpenSnackbar(true); // スナックバーを表示
+            const newToilet = response.data;
+            setMessage(newToilet.message);
+            onNewToilet(newToilet); // 親コンポーネントに新しいトイレ情報を渡す
+            setOpenSnackbar(true); // 成功時にスナックバーを表示
             setTimeout(() => {
                 navigate('/');
             }, 2000); // 2秒後にリダイレクト
         } catch (error) {
-            setMessage('Failed to register toilet'); // エラーメッセージをセット
-            setOpenSnackbar(true); // スナックバーを表示
+            setMessage('Failed to register toilet');
             console.error(error);
         }
     };
@@ -63,16 +66,21 @@ const RegistrationRestroom = () => {
                     </label>
                 </div>
                 <div>
-                    <label>Comments:</label>
-                    <textarea value={comments} onChange={(e) => setComments(e.target.value)} />
+                    <label>Initial Comment:</label> {/* initialCommentフィールド */}
+                    <textarea value={initialComment} onChange={(e) => setInitialComment(e.target.value)} />
                 </div>
                 <button type="submit">Register Toilet</button>
                 <Link to="/" className="home-button">Return to Home</Link>
             </form>
             {message && <p>{message}</p>}
-            <SnackbarActionText open={openSnackbar} handleClose={handleCloseSnackbar} message={message} />
+            <SnackbarActionText open={openSnackbar} handleClose={handleCloseSnackbar} />
         </div>
     );
+};
+
+
+RegistrationRestroom.propTypes = {
+    onNewToilet: PropTypes.func.isRequired
 };
 
 export default RegistrationRestroom;

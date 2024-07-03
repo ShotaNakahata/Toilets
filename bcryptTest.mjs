@@ -14,7 +14,3 @@ async function testHashAndCompare() {
 }
 
 testHashAndCompare();
-
-
-
-

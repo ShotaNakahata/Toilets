@@ -1,22 +1,33 @@
+// src/components/MapComponent.jsx
+
 import { useEffect, useState, useRef } from 'react'; 
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api'; 
 import PropTypes from 'prop-types';
-import toiletsData from '../data/toiletsData'; 
 import UserLocation from './UserLocation';
+import axios from 'axios';
 
-const apiKey = 'AIzaSyC7RC-zjoKH6t747hf6PKsgt779F5LpXlY'; 
+const apiKey = 'AIzaSyC7RC-zjoKH6t747hf6PKsgt779F5LpXlY'; // ここに有効なAPIキーを設定
 const defaultCenter = { lat: 34.705493, lng: 135.490685 }; 
+const libraries = ['places']; // librariesをコンポーネント外で定義
 
 const MapComponent = ({ onLoad, newToilets = [] }) => {
     const [map, setMap] = useState(null); 
     const [center, setCenter] = useState(defaultCenter); 
     const [markers, setMarkers] = useState([]); 
     const searchRef = useRef(null); 
-    const libraries = ['places'];
 
     useEffect(() => {
+        const fetchToilets = async () => {
+            try {
+                const response = await axios.get('http://localhost:4000/api/toilets');
+                updateMarkers(response.data);
+            } catch (error) {
+                console.error('Error fetching toilets:', error);
+            }
+        };
+
         if (map) {
-            updateMarkers(toiletsData);
+            fetchToilets();
         }
     }, [map]);
 
@@ -58,20 +69,6 @@ const MapComponent = ({ onLoad, newToilets = [] }) => {
                     lng: result.geometry.location.lng(),
                     title: result.name
                 }));
-
-                const radius = 5000;
-                const filteredData = toiletsData.filter(toilet => {
-                    const toiletPos = new window.google.maps.LatLng(toilet.lat, toilet.lng);
-                    return window.google.maps.geometry.spherical.computeDistanceBetween(searchCenter, toiletPos) <= radius;
-                });
-
-                filteredData.forEach(toilet => {
-                    newMarkers.push({
-                        lat: toilet.lat,
-                        lng: toilet.lng,
-                        title: toilet.name
-                    });
-                });
 
                 setMarkers(newMarkers);
             }
@@ -130,7 +127,6 @@ MapComponent.propTypes = {
         PropTypes.shape({
             address: PropTypes.string.isRequired,
             name: PropTypes.string.isRequired,
-            // 他のプロパティも必要に応じて追加してください
         })
     )
 };

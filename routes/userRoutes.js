@@ -35,14 +35,9 @@ router.post('/login', async (req, res) => {
 
     try {
         const user = await UserModel.findOne({ email });
-        console.log('User found:', user);
 
         if (user) {
-            console.log('Input password:', password);
-            console.log('Stored hashed password:', user.password);
-
             const passwordMatch = await bcrypt.compare(password, user.password);
-            console.log('Password match:', passwordMatch);
 
             if (passwordMatch) {
                 req.session.userId = user._id;
