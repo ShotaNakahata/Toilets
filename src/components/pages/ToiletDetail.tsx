@@ -1,0 +1,95 @@
+import React, { useState } from 'react';
+import { useParams, Link } from 'react-router-dom';
+import SnackbarActionText from '../common/SnackbarActionText';
+import CommentsList from '../common/CommentsList';
+import RatingForm from '../common/RatingForm';
+import useFetchToiletDetails from '../../hooks/useFetchToiletDetails';
+import axios from 'axios';
+
+interface Comment {
+    user: string;
+    comment: string;
+    rating: number;
+    toiletId: string;
+}
+
+interface Toilet {
+    name: string;
+    rating: number;
+    averageRating: number;
+    universal: boolean;
+    address: string;
+    totalRatingsCount: number;
+    totalRatingScore: number;
+}
+
+const ToiletDetail: React.FC = () => {
+    const { id } = useParams<{ id: string }>();
+    const { toilet, comments, loading, setComments, setToilet } = useFetchToiletDetails(id!);
+    const [openSnackbar, setOpenSnackbar] = useState<boolean>(false);
+    const [message, setMessage] = useState<string>('');
+
+    const handleCommentSubmit = async ({ comment, rating }: { comment: string; rating: number }) => {
+        try {
+            const response = await axios.post<Comment>('http://localhost:4000/api/comments/add', {
+                user: 'Anonymous',
+                comment,
+                rating,
+                toiletId: id
+            });
+
+            setComments(prevComments => [...prevComments, response.data]);
+
+            // 平均評価を更新
+            setToilet(prevToilet => prevToilet && ({
+                ...prevToilet,
+                totalRatingsCount: prevToilet.totalRatingsCount + 1,
+                totalRatingScore: prevToilet.totalRatingScore + rating,
+                averageRating: (prevToilet.totalRatingScore + rating) / (prevToilet.totalRatingsCount + 1)
+            }));
+
+            setMessage('Comment added successfully');
+            setOpenSnackbar(true);
+        } catch (error) {
+            setMessage('Failed to add comment');
+            setOpenSnackbar(true);
+            console.error('Error adding comment:', error);
+        }
+    };
+
+    const handleCloseSnackbar = () => {
+        setOpenSnackbar(false);
+    };
+
+    if (loading) {
+        return <p>Loading...</p>;
+    }
+
+    if (!toilet) {
+        return <p>Toilet not found.</p>;
+    }
+
+    return (
+        <div>
+            <h1>{toilet.name}</h1>
+            <button>お気に入り</button> {/* お気に入りボタン */}
+            <Link to={`/FilterSearchToile`}>Go back</Link>
+            <p>Rating: {toilet.rating}</p>
+            <p>Average Rating: {toilet.averageRating.toFixed(1)}</p> {/* 平均評価を表示 */}
+            <p>Universal: {toilet.universal ? "Yes" : "No"}</p>
+            <p>Address: {toilet.address}</p>
+            <div id="map" style={{ width: '100%', height: '400px' }}></div> {/* 地図 */}
+            <h2>追加評価</h2>
+            <RatingForm onSubmit={handleCommentSubmit} />
+            <h2>これまでのコメント</h2>
+            <CommentsList comments={comments} />
+            <SnackbarActionText
+                open={openSnackbar}
+                handleClose={handleCloseSnackbar}
+                message={message}
+            />
+        </div>
+    );
+}
+
+export default ToiletDetail;
