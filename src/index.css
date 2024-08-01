@@ -47,7 +47,7 @@ header {
 }
 
 .header-left, .header-right {
-  float: left; 
+  float: left;
 }
 
 .logo {
@@ -59,14 +59,18 @@ header {
   margin-right: -25px;
 }
 
-.header-link, .header-right a {
+.header-link {
   display: inline-block;
   text-align: center;
   margin-right: 10px;
   line-height: 65px;
   padding: 0 10px;
   color: white;
+  background-color: transparent; /* Ensure background is consistent */
+  border: none; /* Remove button border */
   transition: all 0.5s;
+  cursor: pointer; /* Ensure cursor is a pointer for both links and buttons */
+  font-size: 16px; /* Add this line to unify font size */
 }
 
 .header-right a:hover, .header-link:hover {
@@ -80,6 +84,7 @@ header {
   padding: 21px 0;
   color: white;
 }
+
 
 /* トップラッパー ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿*/
 .top-wrapper {

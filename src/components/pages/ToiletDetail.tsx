@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import SnackbarActionText from '../common/SnackbarActionText';
 import CommentsList from '../common/CommentsList';
 import RatingForm from '../common/RatingForm';
 import useFetchToiletDetails from '../../hooks/useFetchToiletDetails';
 import axios from 'axios';
+import FavoriteButton from '../common/FavoriteButton';
+import LoginModal from '../common/LoginModal'; 
+import useAuth from '../../hooks/useAuth';
+import { useUser } from '../../context/UserContext';
 
 interface Comment {
     user: string;
@@ -25,14 +29,22 @@ interface Toilet {
 
 const ToiletDetail: React.FC = () => {
     const { id } = useParams<{ id: string }>();
+    const navigate = useNavigate();
     const { toilet, comments, loading, setComments, setToilet } = useFetchToiletDetails(id!);
     const [openSnackbar, setOpenSnackbar] = useState<boolean>(false);
     const [message, setMessage] = useState<string>('');
+    const { user } = useUser(); // useUserフックを使用してユーザー情報を取得
+    const { showLoginModal, setShowLoginModal, handleLogin, handleCreateAccount } = useAuth(); // useAuthフックを使用
 
     const handleCommentSubmit = async ({ comment, rating }: { comment: string; rating: number }) => {
+        if (!user) {
+            setShowLoginModal(true); // ユーザーがログインしていない場合、ログインモーダルを表示
+            return;
+        }
+
         try {
-            const response = await axios.post<Comment>('http://localhost:4000/api/comments/add', {
-                user: 'Anonymous',
+            const response = await axios.post<Comment>('/api/comments/add', {
+                user: user.username, // ログインユーザーの名前を使用
                 comment,
                 rating,
                 toiletId: id
@@ -72,8 +84,9 @@ const ToiletDetail: React.FC = () => {
     return (
         <div>
             <h1>{toilet.name}</h1>
-            <button>お気に入り</button> {/* お気に入りボタン */}
-            <Link to={`/FilterSearchToile`}>Go back</Link>
+            <FavoriteButton toiletId={id!} />{/* お気に入りボタン */}
+            <button onClick={() => navigate(-1)}>Go Back</button>
+
             <p>Rating: {toilet.rating}</p>
             <p>Average Rating: {toilet.averageRating.toFixed(1)}</p> {/* 平均評価を表示 */}
             <p>Universal: {toilet.universal ? "Yes" : "No"}</p>
@@ -87,6 +100,12 @@ const ToiletDetail: React.FC = () => {
                 open={openSnackbar}
                 handleClose={handleCloseSnackbar}
                 message={message}
+            />
+            <LoginModal
+                open={showLoginModal}
+                onClose={() => setShowLoginModal(false)}
+                onLogin={handleLogin}
+                onCreateAccount={handleCreateAccount}
             />
         </div>
     );

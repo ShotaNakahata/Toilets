@@ -8,7 +8,8 @@ const Login: React.FC = () => {
     const [password, setPassword] = useState<string>('');
     const [errorMessage, setErrorMessage] = useState<string>('');
     const [loading, setLoading] = useState<boolean>(false);
-    const { setUser } = useUser();
+    const { user, setUser } = useUser(); // useUserフックはここで一度だけ呼び出す
+
     const navigate = useNavigate();
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -16,11 +17,23 @@ const Login: React.FC = () => {
         setLoading(true);
         try {
             console.log('Submitting login:', { email, password });
-            const response = await axios.post('http://localhost:4000/api/login', { email, password });
+            const response = await axios.post('http://localhost:4000/api/login', { email, password }, { withCredentials: true });
             console.log('Login response:', response);
 
             if (response.data && response.status === 200) {
-                setUser({ username: response.data.username });
+                console.log('Before setUser:', user); // ここで現在のuser状態を確認
+                setUser({
+                    _id: response.data._id,
+                    username: response.data.username,
+                    email: response.data.email,
+                    favorites: response.data.favorites
+                });
+                console.log('After setUser:', {
+                    _id: response.data._id,
+                    username: response.data.username,
+                    email: response.data.email,
+                    favorites: response.data.favorites
+                }); // ここで新しいuser状態を確認
                 navigate('/');
             }
         } catch (error: any) {
@@ -65,3 +78,4 @@ const Login: React.FC = () => {
 }
 
 export default Login;
+

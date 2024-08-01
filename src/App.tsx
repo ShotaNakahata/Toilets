@@ -16,6 +16,8 @@ import MapComponent from './features/map/MapComponent';
 import { UserProvider } from './context/UserContext';
 import ToiletDetail from './components/pages/ToiletDetail';
 import { Toilet } from './interfaces/Toilet_Interfaces'; 
+import MyFavoritesComponent from './components/common/MyFavoritesComponent';
+import MyPage from './components/pages/MyPage';
 
 const App: React.FC = () => {
   const [newToilets, setNewToilets] = useState<Toilet[]>([]);
@@ -37,6 +39,7 @@ const App: React.FC = () => {
             <Route path="/FilterSearchToile" element={<FilterSearchToile />} />
             <Route path="/RegistrationRestroom" element={<RegistrationRestroom onNewToilet={handleNewToilet} />} /> 
             <Route path="/toilet/:id" element={<ToiletDetail />} />
+            <Route path="/MyPage" element={<MyPage />} />
           </Routes>
           <MapComponent newToilets={newToilets} />
         </div>

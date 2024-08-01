@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import FavoriteButton from "../common/FavoriteButton";
 
 interface Toilet {
     _id: string;
@@ -80,7 +81,6 @@ const FilterSearchToile: React.FC = () => {
             <div className="SearchToile-wrapper">
                 <h1>SearchToile</h1>
                 <h2>Filter Search Mode</h2>
-                <Link to="/MapSearchToile" className="ChangeSearchMode-button">Map Search Mode</Link>
                 <Link to="/" className="home-button">Return to Home</Link>
                 <button onClick={toggleModal}>Filter Options</button>
                 {showModal && (
@@ -115,6 +115,7 @@ const FilterSearchToile: React.FC = () => {
                         {toiletList.map((toilet) => (
                             <div className="box" key={toilet._id}>
                                 <h3>{toilet.name}</h3>
+                                <FavoriteButton toiletId={toilet._id}/>
                                 <p>{toilet.address}</p>
                                 <p>Rating: {toilet.rating}</p>
                                 <p>{toilet.comment}</p>
@@ -130,3 +131,4 @@ const FilterSearchToile: React.FC = () => {
 }
 
 export default FilterSearchToile;
+

@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useUser } from '../../context/UserContext';
 
+
 const CreateAccount: React.FC = () => {
     const [username, setUsername] = useState<string>('');
     const [email, setEmail] = useState<string>('');
@@ -28,7 +29,12 @@ const CreateAccount: React.FC = () => {
                 const response = await axios.post('http://localhost:4000/api/create-account', { username, email, password });
                 if (response.data && response.status === 201) {
                     console.log(response.data);
-                    setUser({ username: response.data.username });
+                    setUser({
+                        _id: response.data._id,
+                        username: response.data.username,
+                        email: response.data.email,
+                        favorites:response.data.favorites
+                    });
                     navigate('/');
                 }
             } catch (error: any) {
@@ -46,29 +52,29 @@ const CreateAccount: React.FC = () => {
                 <div className="loginPage-contents">
                     <h2>New create account</h2>
                     <form className="login-form" onSubmit={handleSubmit}>
-                        <input 
-                            type="text" 
-                            placeholder="Username" 
-                            value={username} 
-                            onChange={(e) => setUsername(e.target.value)} 
+                        <input
+                            type="text"
+                            placeholder="Username"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
                         />
-                        <input 
-                            type="email" 
-                            placeholder="Email" 
-                            value={email} 
-                            onChange={(e) => setEmail(e.target.value)} 
+                        <input
+                            type="email"
+                            placeholder="Email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
                         />
-                        <input 
-                            type="password" 
-                            placeholder="Password" 
-                            value={password} 
-                            onChange={(e) => setPassword(e.target.value)} 
+                        <input
+                            type="password"
+                            placeholder="Password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
                         />
-                        <input 
-                            type="password" 
-                            placeholder="Confirm Password" 
-                            value={confirmPassword} 
-                            onChange={(e) => setConfirmPassword(e.target.value)} 
+                        <input
+                            type="password"
+                            placeholder="Confirm Password"
+                            value={confirmPassword}
+                            onChange={(e) => setConfirmPassword(e.target.value)}
                         />
                         <button type="submit" disabled={loading}>Create Account</button>
                     </form>
