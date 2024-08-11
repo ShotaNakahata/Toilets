@@ -8,7 +8,7 @@ import nodeGeocoder from 'node-geocoder';
 // Google Maps Geocoding APIの設定
 const options = {
     provider: 'google' as const,
-    apiKey: 'AIzaSyC7RC-zjoKH6t747hf6PKsgt779F5LpXlY', // ここにGoogle APIキーを記述
+    apiKey: 'AIzaSyCJYCyY49yx71ktTJXSx8H0JucZeuY-WRc', // ここにGoogle APIキーを記述
 };
 
 const geocoder = nodeGeocoder(options);
