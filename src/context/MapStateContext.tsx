@@ -10,8 +10,8 @@ interface LatLngLiteral {
 }
 
 interface MapStateContextType {
-    newToilets: Toilet[];
-    setNewToilets: React.Dispatch<React.SetStateAction<Toilet[]>>;
+    toilets: Toilet[];
+    setToilets: React.Dispatch<React.SetStateAction<Toilet[]>>;
     center: LatLngLiteral;
     setCenter: React.Dispatch<React.SetStateAction<LatLngLiteral>>;
     isScriptLoaded: boolean; // Google Maps スクリプトが読み込まれたかのフラグ
@@ -35,14 +35,14 @@ interface MapStateProviderProps {
 }
 
 export const MapStateProvider: React.FC<MapStateProviderProps> = ({ children }) => {
-    const [newToilets, setNewToilets] = useState<Toilet[]>([]);
+    const [toilets, setToilets] = useState<Toilet[]>([]);
     const [center, setCenter] = useState<LatLngLiteral>({ lat: 34.705493, lng: 135.490685 });
     const [isScriptLoaded, setIsScriptLoaded] = useState<boolean>(false); // Google Maps スクリプトの読み込み状態
     const [markers, setMarkers] = useState<MarkerData[]>([]); // マーカー情報の状態
 
     return (
         <MapStateContext.Provider value={{ 
-            newToilets, setNewToilets, 
+            toilets, setToilets, 
             center, setCenter, 
             isScriptLoaded, setIsScriptLoaded, 
             markers, setMarkers }}>
@@ -51,3 +51,49 @@ export const MapStateProvider: React.FC<MapStateProviderProps> = ({ children }) 
         </MapStateContext.Provider>
     );
 }
+
+// src/context/MapStateContext.tsx
+
+// // src/context/MapStateContext.tsx
+// import React, { createContext, useContext, useState, ReactNode } from 'react';
+// import { Toilet } from '../interfaces/Toilet_Interfaces';
+
+// interface LatLngLiteral {
+//     lat: number;
+//     lng: number;
+// }
+
+// interface MapStateContextType {
+//     center: LatLngLiteral;
+//     setCenter: React.Dispatch<React.SetStateAction<LatLngLiteral>>;
+//     isScriptLoaded: boolean;
+//     setIsScriptLoaded: React.Dispatch<React.SetStateAction<boolean>>;
+//     toilets: Toilet[];
+//     setToilets: React.Dispatch<React.SetStateAction<Toilet[]>>;
+// }
+
+// const MapStateContext = createContext<MapStateContextType | undefined>(undefined);
+
+// export const useMapState = () => {
+//     const context = useContext(MapStateContext);
+//     if (!context) {
+//         throw new Error('useMapState must be used within a MapStateProvider');
+//     }
+//     return context;
+// };
+
+// interface MapStateProviderProps {
+//     children: ReactNode;
+// }
+
+// export const MapStateProvider: React.FC<MapStateProviderProps> = ({ children }) => {
+//     const [center, setCenter] = useState<LatLngLiteral>({ lat: 34.705493, lng: 135.490685 });
+//     const [isScriptLoaded, setIsScriptLoaded] = useState<boolean>(false);
+//     const [toilets, setToilets] = useState<Toilet[]>([]);
+
+//     return (
+//         <MapStateContext.Provider value={{ center, setCenter, isScriptLoaded, setIsScriptLoaded, toilets, setToilets }}>
+//             {children}
+//         </MapStateContext.Provider>
+//     );
+// };

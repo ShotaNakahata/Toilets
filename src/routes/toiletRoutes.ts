@@ -1,9 +1,17 @@
 // src/routes/toiletRoutes.ts
-import { error } from 'console';
 import express, { Request, Response } from 'express';
 import Toilet from '../models/Toilet';
 import Comment from '../models/Comment';
 import UserModel from '../models/user';
+import nodeGeocoder from 'node-geocoder';
+
+// Google Maps Geocoding APIの設定
+const options = {
+    provider: 'google' as const,
+    apiKey: 'AIzaSyC7RC-zjoKH6t747hf6PKsgt779F5LpXlY', // ここにGoogle APIキーを記述
+};
+
+const geocoder = nodeGeocoder(options);
 
 const router = express.Router();
 
@@ -13,7 +21,7 @@ const isAuthenticated = (req: Request, res: Response, next: Function) => {
     } else {
         return res.status(401).send({ message: 'Unauthorized' });
     }
-}
+};
 
 // トイレの登録ルート
 router.post('/register', isAuthenticated, async (req: Request, res: Response) => {
@@ -24,12 +32,27 @@ router.post('/register', isAuthenticated, async (req: Request, res: Response) =>
         if (!user) {
             return res.status(404).send({ message: 'User not found' });
         }
+
+        // 住所から緯度と軽度を取得
+        const geoData = await geocoder.geocode(address);
+        console.log("Geocode response:", geoData); // 取得したジオデータをログ出力
+
+        if (!geoData || geoData.length === 0) {
+            return res.status(400).send({ message: 'Invalid address' });
+        }
+
+        // 緯度と経度を取得
+        const { latitude, longitude } = geoData[0];
+        console.log("Latitude:", latitude, "Longitude:", longitude); // 緯度と経度のログ出力
+
         // 新しいトイレ情報を作成し、作成者のIDを保存
         const newToilet = new Toilet({
             name,
             address,
             rating,
             universal,
+            lat: latitude,  // 緯度を保存
+            lng: longitude,  // 経度を保存
             totalRatingsCount: initialComment ? 1 : 0,
             totalRatingScore: initialComment ? rating : 0,
             averageRating: initialComment ? rating : 0,
@@ -51,6 +74,7 @@ router.post('/register', isAuthenticated, async (req: Request, res: Response) =>
 
         res.status(201).send({ message: 'Toilet registered successfully', newToilet });
     } catch (error) {
+        console.error("Error occurred during toilet registration:", error); // エラーログ
         res.status(500).send({ message: 'Failed to register toilet', error });
     }
 });

@@ -9,6 +9,8 @@ export interface IToilet extends Document {
     totalRatingsCount: number;
     totalRatingScore: number;
     createdBy: mongoose.Types.ObjectId;
+    lat:number;
+    lng:number;
 }
 
 const toiletSchema: Schema<IToilet> = new Schema({
@@ -20,6 +22,8 @@ const toiletSchema: Schema<IToilet> = new Schema({
     totalRatingsCount: { type: Number, default: 0 }, // 全ての評価の数を保存するフィールド
     totalRatingScore: { type: Number, default: 0 }, // 全ての評価の合計点を保存するフィールド
     createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+    lat:{type:Number,required:true},
+    lng:{type:Number,required:true},
 });
 
 const Toilet = mongoose.model<IToilet>('Toilet', toiletSchema);
