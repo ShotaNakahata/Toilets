@@ -1,3 +1,4 @@
+// src/App.tsx
 import React, { useState } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';

@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "outDir": "./dist", // コンパイル後のファイルが保存されるディレクトリ
+        "target": "ES2020", // 出力されるJavaScriptのバージョン
+        "module": "commonjs", // モジュールシステムの形式（Node.jsで標準的なCommonJS）
+        "strict": true, // TypeScriptの厳格モードを有効にする
+        "esModuleInterop": true, // ESモジュールのインポートと互換性を持たせる
+        "skipLibCheck": true, // ライブラリの型チェックをスキップ
+        "forceConsistentCasingInFileNames": true // ファイル名の大文字小文字を厳密にチェック
+    },
+    "include": [
+        "src/server.ts"
+    ], // コンパイル対象のファイル
+    "exclude": [
+        "node_modules"
+    ] // コンパイル対象から除外するディレクトリ
+}
