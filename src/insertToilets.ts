@@ -1,121 +1,67 @@
-import mongoose from 'mongoose';
-import * as dotenv from 'dotenv';
-import Toilet from './models/Toilet';
-import User from './models/user';
+// src/insertToilets.ts
+import mongoose, { ConnectOptions } from 'mongoose';
+import dotenv from 'dotenv';
+import Toilet from './models/Toilet'; 
+import toiletsData from './data/toiletsData';
+import nodeGeocoder from 'node-geocoder';
 
 dotenv.config();
 
-mongoose.connect(process.env.MONGODB_URI as string)
-    .then(() => {
-        console.log('MongoDBに接続されました');
-        insertToilets();
-    })
-    .catch((err: unknown) => {
-        console.error('MongoDB接続エラー:', err);
-    });
+// Geocoding APIの設定
+const options = {
+    provider: 'google' as const,
+    apiKey: 'AIzaSyCJYCyY49yx71ktTJXSx8H0JucZeuY-WRc', // ここにGoogle APIキーを記述
+};
+const geocoder = nodeGeocoder(options);
 
-const insertToilets = async () => {
-    const user = await User.findOne(); // 既存のユーザーを取得
+// データベース接続
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/dev.db';
 
-    if (!user) {
-        console.error('ユーザーが見つかりません');
-        mongoose.connection.close();
-        return;
-    }
+mongoose.connect(MONGODB_URI, {
+} as ConnectOptions).then(async () => {
+    console.log('データベースに接続しました');
+    await seedToilets();
+    mongoose.connection.close();
+}).catch((err) => {
+    console.error('データベース接続に失敗しました:', err);
+});
 
-    const toiletsData = [
-        {
-            id: 1,
-            name: "梅田スカイビルトイレ",
-            address: "大阪府大阪市北区大深町1-1",
-            rating: 5,
-            comment: "最上階にある絶景を眺めながら利用できる。",
-            universal: false,
-        },
-        {
-            id: 2,
-            name: "グランフロント大阪トイレ",
-            address: "大阪府大阪市北区大深町3-1",
-            rating: 4,
-            comment: "清潔で広々としており、デザインも洗練されている。",
-            universal: true,
-        },
-        {
-            id: 3,
-            name: "大阪駅中央トイレ",
-            address: "大阪府大阪市北区梅田3-1-1",
-            rating: 4,
-            comment: "アクセスが良く、利用しやすい。混雑時は少し待つことも。",
-            universal: false,
-        },
-        {
-            id: 4,
-            name: "ヨドバシ梅田トイレ",
-            address: "大阪府大阪市北区大深町1-1 ヨドバシ梅田タワー",
-            rating: 3,
-            comment: "買い物客で賑わっているが、掃除が行き届いている。",
-            universal: true
-        },
-        {
-            id: 5,
-            name: "梅田地下街トイレ",
-            address: "大阪府大阪市北区梅田地下",
-            rating: 3,
-            comment: "便利だが、ピークタイムは混雑することも。",
-            universal: true,
-        },
-        {
-            id: 6,
-            name: "阪急梅田駅トイレ",
-            address: "大阪府大阪市北区角田町8-47",
-            rating: 4,
-            comment: "駅内にあり、清潔感がある。",
-            universal: false,
-        },
-        {
-            id: 7,
-            name: "梅田芸術劇場トイレ",
-            address: "大阪府大阪市北区茶屋町19-1",
-            rating: 5,
-            comment: "文化施設内にあるため、非常に綺麗。",
-            universal: true,
-        },
-        {
-            id: 8,
-            name: "NU茶屋町トイレ",
-            address: "大阪府大阪市北区茶屋町10-12",
-            rating: 4,
-            comment: "ショッピングモール内にあるため、快適に利用可能。",
-            universal: false,
-        },
-        {
-            id: 9,
-            name: "大阪梅田ツインタワーズ・サウストイレ",
-            address: "大阪府大阪市北区中崎西2-1-2",
-            rating: 4,
-            comment: "ビジネス街に位置しており、清潔で静か。",
-            universal: true,
-        },
-        {
-            id: 10,
-            name: "梅田ロフトトイレ",
-            address: "大阪府大阪市北区茶屋町16-7",
-            rating: 3,
-            comment: "ショッピング中に便利な場所にあるが、土日は混む。",
-            universal: false,
-        },
-    ];
-
+const seedToilets = async () => {
     try {
-        await Toilet.insertMany(toiletsData);
-        console.log('トイレデータが正常に挿入されました');
-    } catch (err: unknown) {
-        if (err instanceof Error) {
-            console.error('トイレデータの挿入エラー:', err.message);
-        } else {
-            console.error('未知のエラーが発生しました');
+        // ShotaさんのユーザーIDを使用
+        const userId = '669ea87970432cd351826be8';
+
+        for (const toiletData of toiletsData) {
+            // 住所から緯度、経度、国を取得
+            const geoData = await geocoder.geocode(toiletData.address);
+            if (geoData.length === 0) {
+                console.error(`住所 ${toiletData.address} の緯度経度を取得できませんでした`);
+                continue;
+            }
+
+            const { latitude, longitude, country } = geoData[0];
+
+            // 初期評価の計算
+            const initialTotalRatingsCount = toiletData.rating ? 1 : 0; // 初期評価があれば評価数を1とする
+            const initialTotalRatingScore = toiletData.rating || 0; // 初期評価があればそれをスコアとする
+            const initialAverageRating = toiletData.rating || 0; // 初期評価があればそれを平均評価とする
+
+            const newToilet = new Toilet({
+                ...toiletData,
+                lat: latitude,
+                lng: longitude,
+                country, // 取得した国情報を保存
+                createdBy: userId, // ShotaさんのIDを設定
+                totalRatingsCount: initialTotalRatingsCount,
+                totalRatingScore: initialTotalRatingScore,
+                averageRating: initialAverageRating,
+            });
+
+            await newToilet.save();
+            console.log(`${toiletData.name}をデータベースに登録しました`);
         }
-    } finally {
-        mongoose.connection.close();
+        console.log('全てのトイレデータをデータベースに登録しました');
+    } catch (error) {
+        console.error('トイレデータの登録中にエラーが発生しました:', error);
     }
 };

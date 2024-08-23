@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { IToilet } from '../models/Toilet';
 import axios from 'axios';
 
 interface Comment {
@@ -7,25 +8,18 @@ interface Comment {
     rating: number;
 }
 
-interface Toilet {
-    name: string;
-    rating: number;
-    averageRating: number;
-    universal: boolean;
-    address: string;
-    totalRatingsCount: number;
-    totalRatingScore: number;
-}
-
 const useFetchToiletDetails = (id: string) => {
-    const [toilet, setToilet] = useState<Toilet | null>(null);
+    const [toilet, setToilet] = useState<IToilet | null>(null);
     const [comments, setComments] = useState<Comment[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
+
+    // 環境変数からAPIのURLを取得
+    const apiUrl = import.meta.env.VITE_API_URL;
 
     useEffect(() => {
         const fetchToiletDetails = async () => {
             try {
-                const response = await axios.get(`http://localhost:4000/api/toilets/${id}`);
+                const response = await axios.get(`${apiUrl}/toilets/${id}`);
                 setToilet(response.data.toilet);
                 setComments(response.data.comments);
                 setLoading(false);
@@ -36,9 +30,10 @@ const useFetchToiletDetails = (id: string) => {
         };
 
         fetchToiletDetails();
-    }, [id]);
+    }, [id, apiUrl]);
 
     return { toilet, comments, loading, setComments, setToilet };
 }
 
 export default useFetchToiletDetails;
+

@@ -1,3 +1,4 @@
+// src/models/Toilet.ts
 import mongoose, { Document, Schema } from 'mongoose';
 
 export interface IToilet extends Document {
@@ -11,6 +12,7 @@ export interface IToilet extends Document {
     createdBy: mongoose.Types.ObjectId;
     lat:number;
     lng:number;
+    country:string;
 }
 
 const toiletSchema: Schema<IToilet> = new Schema({
@@ -24,6 +26,7 @@ const toiletSchema: Schema<IToilet> = new Schema({
     createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
     lat:{type:Number,required:true},
     lng:{type:Number,required:true},
+    country:{type:String,required:true},
 });
 
 const Toilet = mongoose.model<IToilet>('Toilet', toiletSchema);

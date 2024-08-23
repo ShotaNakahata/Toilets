@@ -5,9 +5,34 @@ import { useMapState } from "../../context/MapStateContext";
 const MapComponent = React.forwardRef<google.maps.Map | null>((props, ref) => {
     const { center, setCenter } = useMapState();
     const mapRef = useRef<google.maps.Map | null>(null);
+    const inputRef = useRef<HTMLInputElement | null>(null);
 
     const handleMapLoad = (map: google.maps.Map) => {
         mapRef.current = map;
+
+        // Places APIを利用してオートコンプリート機能を追加
+        const autocomplete = new window.google.maps.places.Autocomplete(inputRef.current as HTMLInputElement);
+        autocomplete.bindTo("bounds", map);
+
+        autocomplete.addListener("place_changed", () => {
+            const place = autocomplete.getPlace();
+            if (!place.geometry || !place.geometry.location) {
+                console.log("No details available for input: '" + place.name + "'");
+                return;
+            }
+
+            // 地図の中心を検索結果の場所に移動
+            const location = place.geometry.location;
+            setCenter({
+                lat: location.lat(),
+                lng: location.lng(),
+            });
+
+            if (mapRef.current) {
+                mapRef.current.setCenter(location);
+                mapRef.current.setZoom(15);
+            }
+        });
     };
 
     useImperativeHandle(ref, () => mapRef.current || new google.maps.Map(document.createElement('div')), [mapRef.current]);
@@ -44,88 +69,28 @@ const MapComponent = React.forwardRef<google.maps.Map | null>((props, ref) => {
     }, [setCenter]);
 
     return (
-        <GoogleMap
-            mapContainerStyle={{ width: "100%", height: "100%" }}
-            center={center}
-            zoom={15}
-            onLoad={handleMapLoad}
-        />
+        <div className="relative bg-background rounded-lg shadow-white overflow-hidden h-[500px] w-full">
+            <input
+                ref={inputRef}
+                type="text"
+                placeholder="Search places..."
+                className="absolute top-4 left-1/2 transform -translate-x-1/2 z-10 sm:p-3 rounded-lg bg-background shadow-md focus:outline-none focus:ring-2 focus:ring-blue-600 w-[60%] sm:w-[80%] max-w-[600px] text-base"
+            />
+
+            <GoogleMap
+                mapContainerClassName="w-full h-full"
+                center={center}
+                zoom={15}
+                onLoad={handleMapLoad}
+                options={{
+                    mapTypeControl: false, // ここで航空写真や地形ボタンを無効化
+                    fullscreenControl: true, // 必要に応じて全画面ボタンも無効化
+                    streetViewControl: false,
+                }}
+            />
+        </div>
+
     );
 });
 
 export default MapComponent;
-// // src/features/map/MapComponent.tsx
-// import React, { useEffect, useState, useImperativeHandle, forwardRef } from 'react';
-// import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
-// import UserLocation from './UserLocation';
-// import axios from 'axios';
-// import { Toilet } from '../../interfaces/Toilet_Interfaces'; 
-// import { MarkerData } from '../../interfaces/MarkerData_Interfaces';
-
-// const apiKey = 'AIzaSyC7RC-zjoKH6t747hf6PKsgt779F5LpXlY';
-// const defaultCenter = { lat: 34.705493, lng: 135.490685 };
-// const libraries: ('places' | 'drawing' | 'geometry' | 'visualization')[] = ['places'];
-
-// interface MapComponentProps {
-//     onLoad?: () => void;
-//     newToilets?: Toilet[];
-// }
-
-// const MapComponent = forwardRef<google.maps.Map | null, MapComponentProps>(({ onLoad, newToilets = [] }, ref) => {
-//     const [map, setMap] = useState<google.maps.Map | null>(null);
-//     const [center, setCenter] = useState<google.maps.LatLngLiteral>(defaultCenter);
-//     const [markers, setMarkers] = useState<MarkerData[]>([]);
-
-//     useImperativeHandle(ref, () => map, [map]);
-
-//     useEffect(() => {
-//         const fetchToilets = async () => {
-//             try {
-//                 const response = await axios.get('http://localhost:4000/api/toilets');
-//                 updateMarkers(response.data);
-//             } catch (error) {
-//                 console.error('Error fetching toilets:', error);
-//             }
-//         };
-
-//         if (map) {
-//             fetchToilets();
-//         }
-//     }, [map]);
-
-//     useEffect(() => {
-//         if (newToilets.length > 0) {
-//             updateMarkers(newToilets);
-//         }
-//     }, [newToilets]);
-
-//     const updateMarkers = (data: Toilet[]) => {
-//         const newMarkers = data.map(toilet => ({
-//             lat: toilet.lat,
-//             lng: toilet.lng,
-//             title: toilet.name,
-//         }));
-//         setMarkers(newMarkers);
-//     };
-
-//     return (
-//         <LoadScript googleMapsApiKey={apiKey} libraries={libraries}>
-//             <GoogleMap
-//                 mapContainerStyle={{ width: '100%', height: '100%' }}
-//                 center={center}
-//                 zoom={15}
-//                 onLoad={(map) => {
-//                     setMap(map);
-//                     if (onLoad) onLoad();
-//                 }}
-//             >
-//                 {markers.map((marker, index) => (
-//                     <Marker key={index} position={{ lat: marker.lat, lng: marker.lng }} title={marker.title} />
-//                 ))}
-//                 <UserLocation map={map} onLocationFound={setCenter} />
-//             </GoogleMap>
-//         </LoadScript>
-//     );
-// });
-
-// export default MapComponent;

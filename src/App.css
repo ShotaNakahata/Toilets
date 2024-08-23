@@ -1,4 +1,4 @@
-
+/* 
 
 
 .logo:hover {
@@ -9,4 +9,30 @@
 }
 
 
+ */
+/* フォントのインポート */
+@font-face {
+  font-family: 'Libre Baskerville';
+  src: url('/src/assets/fonts/Libre_Baskerville/LibreBaskerville-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 
+@font-face {
+  font-family: 'Libre Baskerville';
+  src: url('/src/assets/fonts/Libre_Baskerville/LibreBaskerville-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Libre Baskerville';
+  src: url('/src/assets/fonts/Libre_Baskerville/LibreBaskerville-Italic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+}
+
+/* グローバルにフォントを適用 */
+body {
+  font-family: 'Libre Baskerville', serif;
+}

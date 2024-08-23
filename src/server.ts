@@ -1,3 +1,4 @@
+// src/server.ts
 import express, { Application } from 'express';
 import session from 'express-session';
 import mongoose, { ConnectOptions } from 'mongoose';
@@ -10,6 +11,8 @@ import sessionRoutes from './routes/sessionRoutes';
 import cors from 'cors';
 import MongoStore from 'connect-mongo';
 import favoritesRoutes from "./routes/favoritesRoutes"
+import contactRoutes from "./routes/contactRoutes"
+import dashboardRouter from "./routes//DashboardRouter"
 
 dotenv.config();
 
@@ -19,7 +22,7 @@ const isDevelopment = process.env.NODE_ENV !== 'production';
 
 // CORS設定
 const corsOptions = {
-    origin: 'http://localhost:5173', // フロントエンドのURL
+    origin: process.env.FRONTEND_URL ||'http://localhost:5173', 
     credentials: true // クッキーを有効にする
 };
 
@@ -35,7 +38,7 @@ app.use(session({
         collectionName: 'sessions'
     }),
     cookie: { 
-        secure: false, // HTTPでもクッキーを送信する
+        secure: !isDevelopment,
         httpOnly: true, // JavaScriptからクッキーにアクセスできないようにする
         maxAge: 1000 * 60 * 60 * 24 // クッキーの有効期限を1日に設定
     }
@@ -59,6 +62,8 @@ app.use('/api/toilets', toiletRoutes);
 app.use('/api/comments', commentRoutes);
 app.use('/admin', sessionRoutes);
 app.use("/api/favorites", favoritesRoutes);
+app.use("/api/contact",contactRoutes);
+app.use("/api/dashboard",dashboardRouter);
 
 if (!isDevelopment) {
     // 静的ファイルの提供

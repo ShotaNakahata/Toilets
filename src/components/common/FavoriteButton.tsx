@@ -3,65 +3,57 @@ import axios from "axios";
 import { useUser } from "../../context/UserContext";
 import LoginModal from "./LoginModal";
 import useAuth from "../../hooks/useAuth";
+import { Toaster } from "@/components/ui/toaster";
+import { useToast } from "@/components/ui/use-toast"; 
 
 interface FavoriteButtonProps {
     toiletId: string;
+    className?: string;  // className プロパティを追加
 }
 
-const FavoriteButton: React.FC<FavoriteButtonProps> = ({ toiletId }) => {
+const FavoriteButton: React.FC<FavoriteButtonProps> = ({ toiletId, className }) => {
     const [isFavorite, setIsFavorite] = useState<boolean>(false);
     const { user, setUser } = useUser();
     const { showLoginModal, setShowLoginModal, handleLogin, handleCreateAccount } = useAuth();
+    const { toast } = useToast();
 
     useEffect(() => {
         if (user && user.favorites) {
             const isFavorited = user.favorites.includes(toiletId);
             setIsFavorite(isFavorited);
-            console.log('User favorites:', user.favorites);
-            console.log('Toilet ID:', toiletId);
-            console.log("isFavorite: ", isFavorite);
         } else {
-            console.log('No user or no favorites available');
             setIsFavorite(false); 
         }
     }, [user, user?.favorites, toiletId]);
-    
-    
 
     const handleFavoriteToggle = async () => {
         if (user && user.favorites) {
             try {
                 if (isFavorite) {
-                    console.log('/api/favorites/removeを送信中');
                     await axios.post('http://localhost:4000/api/favorites/remove', { toiletId }, { withCredentials: true });
                     setIsFavorite(false);
-                    alert("Removed from favorites");
+                    toast({ title: "Removed from favorites" });
 
-                    // User情報を更新**
                     setUser(prevUser => {
                         if (prevUser) {
                             const updatedUser = {
                                 ...prevUser,
                                 favorites: prevUser.favorites.filter(id => id !== toiletId)
                             };
-                            console.log('Updated user after removing favorite:', updatedUser); // デバッグ用ログ
                             return updatedUser;
                         }
                         return prevUser;
                     });
 
                 } else {
-                    console.log('/api/favorites/addを送信中');
                     await axios.post('http://localhost:4000/api/favorites/add', { toiletId }, { withCredentials: true });
                     setIsFavorite(true);
-                    alert("Added to favorites");
+                    toast({ title: "Added to favorites" });
 
-                    // User情報を更新**
                     setUser(prevUser => {
                         if (prevUser) {
                             const updatedFavorites = [...prevUser.favorites, toiletId];
                             const updatedUser = { ...prevUser, favorites: updatedFavorites };
-                            console.log('Updated user after adding favorite:', updatedUser); // デバッグ用ログ
                             return updatedUser;
                         }
                         return prevUser;
@@ -70,7 +62,7 @@ const FavoriteButton: React.FC<FavoriteButtonProps> = ({ toiletId }) => {
                 }
             } catch (error) {
                 console.error('Error toggling favorite status', error);
-                alert('Failed to toggle favorite status');
+                toast({ title: 'Failed to toggle favorite status', variant: 'destructive' });
             }
         } else {
             setShowLoginModal(true);
@@ -79,7 +71,10 @@ const FavoriteButton: React.FC<FavoriteButtonProps> = ({ toiletId }) => {
 
     return (
         <>
-            <button onClick={handleFavoriteToggle}>
+            <button 
+                onClick={handleFavoriteToggle}
+                className={`px-4 py-2 bg-background text-white rounded-full hover:bg-white hover:text-gray-800 transition-colors duration-300 ${className}`}
+            >
                 {isFavorite ? "Remove from Favorite" : "Add to Favorites"}
             </button>
             <LoginModal
@@ -88,9 +83,9 @@ const FavoriteButton: React.FC<FavoriteButtonProps> = ({ toiletId }) => {
                 onLogin={handleLogin}
                 onCreateAccount={handleCreateAccount}
             />
+            <Toaster />
         </>
     );
 };
 
 export default FavoriteButton;
-

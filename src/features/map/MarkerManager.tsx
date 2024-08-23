@@ -1,24 +1,51 @@
-// src/features/map/MarkerManager.tsx
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useMapState } from '../../context/MapStateContext';
-import { Toilet } from '../../interfaces/Toilet_Interfaces';  // ここから正しくインポート
+import { IToilet } from '../../models/Toilet';
+import ToiletInfoModal from '../../components/common/Modals/ToiletInfoModal';
 
 const MarkerManager: React.FC<{ map: google.maps.Map | null }> = ({ map }) => {
     const { toilets } = useMapState();
+    const [selectedToilet, setSelectedToilet] = useState<IToilet | null>(null);
 
     useEffect(() => {
         if (map) {
-            toilets.forEach((toilet: Toilet) => {  // 型を明示的に指定
+            (toilets as IToilet[]).forEach((toilet: IToilet) => { // 型キャストを適用
                 const marker = new google.maps.Marker({
                     map,
                     position: { lat: toilet.lat, lng: toilet.lng },
                     title: toilet.name,
                 });
+
+                marker.addListener('click', () => {
+                    setSelectedToilet(toilet);
+                });
             });
         }
-    },[map, toilets]);
+    }, [map, toilets]);
 
-    return null;
+    const handleCloseModal = () => {
+        setSelectedToilet(null);
+    };
+
+    return (
+        <>
+            {selectedToilet && (
+                <ToiletInfoModal
+                    toilet={{
+                        id: selectedToilet._id!.toString(),
+                        name: selectedToilet.name,
+                        address: selectedToilet.address,
+                        averageRating: selectedToilet.averageRating,
+                        universal: selectedToilet.universal,
+                    }}
+                    onClose={handleCloseModal}
+                />
+            )}
+        </>
+    );
 };
 
 export default MarkerManager;
+
+
+

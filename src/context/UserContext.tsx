@@ -19,6 +19,8 @@ export const UserProvider: React.FC<{ children: ReactNode; value?: UserContextPr
     const [user, setUser] = useState<User | null>(value?.user || null);
     const isMounted = useRef(true); // フラグの追加
 
+    const apiUrl = import.meta.env.VITE_API_URL;
+
     useEffect(() => {
         return () => {
             isMounted.current = false; // アンマウント時にフラグをfalseにする
@@ -29,7 +31,7 @@ export const UserProvider: React.FC<{ children: ReactNode; value?: UserContextPr
         if (!value) {
             const fetchUser = async () => {
                 try {
-                    const response = await axios.get('/api/current-user', { withCredentials: true });
+                    const response = await axios.get(`${apiUrl}/current-user`, { withCredentials: true });
                     console.log('Fetched user data:', response.data); // デバッグ用ログ
                     
                     // レスポンスがHTMLかJSONか確認する
@@ -60,7 +62,7 @@ export const UserProvider: React.FC<{ children: ReactNode; value?: UserContextPr
             };
             fetchUser();
         }
-    }, [value]);
+    }, [value, apiUrl]);
 
     useEffect(() => {
         console.log('UserContext after login/update:', user);
@@ -80,3 +82,4 @@ export const useUser = () => {
     }
     return context;
 };
+

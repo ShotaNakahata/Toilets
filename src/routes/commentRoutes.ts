@@ -9,23 +9,35 @@ router.post('/add', async (req: Request, res: Response) => {
     const { user, comment, rating, toiletId } = req.body;
 
     try {
-        const newComment = new Comment({ user, comment, rating, toilet: toiletId });
+        // 新しいコメントを作成
+        const newComment = new Comment({
+            user,
+            comment,
+            rating,
+            toilet: toiletId
+        });
         await newComment.save();
 
-        // トイレの平均評価を更新
+        // トイレ情報を取得して評価を更新
         const toilet = await Toilet.findById(toiletId);
         if (toilet) {
+            // 評価数、総評価スコア、平均評価を更新
             toilet.totalRatingsCount += 1;
             toilet.totalRatingScore += rating;
             toilet.averageRating = toilet.totalRatingScore / toilet.totalRatingsCount;
-            await toilet.save();
+
+            await toilet.save(); // 変更を保存
+        } else {
+            return res.status(404).send({ message: 'Toilet not found' });
         }
 
         res.status(201).send(newComment);
     } catch (error) {
+        console.error("Error occurred while adding comment:", error);
         res.status(500).send({ message: 'Failed to add comment', error });
     }
 });
+
 
 // 特定のトイレのコメントを取得
 router.get('/toilet/:toiletId', async (req: Request, res: Response) => {

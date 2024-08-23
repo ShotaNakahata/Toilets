@@ -12,7 +12,7 @@ const ConfirmLogout: React.FC = () => {
             await handleLogout();
     };
     return (
-        <button className='header-link' onClick={handleLogoutClick}>Logout</button>
+        <button className='hover:text-highlight underline decoration-white active:scale-95 transition-transform duration-150 mb-2' onClick={handleLogoutClick}>Logout</button>
 
     )
 };

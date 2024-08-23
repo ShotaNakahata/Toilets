@@ -5,9 +5,9 @@
     "jsx": "react",
 
     /* Modules */
-    "module": "commonjs",
+    "module": "ESNext",  // ここを変更
+    "moduleResolution": "node",  // ここを追加
     "rootDir": "./src",
-  
     
     /* Emit */
     "outDir": "./dist",
@@ -18,8 +18,14 @@
 
     /* Type Checking */
     "strict": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+
+    /* Paths */
+    "baseUrl": "./src",  // ここを変更
+    "paths": {
+      "@/*": ["./*"]  // ここを変更
+    }
   },
-  "include": ["src", "src/types/**/*.d.ts"],
+  "include": ["src", "src/types/**/*.d.ts", "src/components/ui"],
   "exclude": ["node_modules", "dist"]
 }

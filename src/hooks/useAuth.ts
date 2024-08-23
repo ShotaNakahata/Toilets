@@ -8,10 +8,12 @@ const useAuth = () => {
     const [showLoginModal, setShowLoginModal] = useState(false);
     const navigate = useNavigate();
 
+    // 環境変数からAPIのURLを取得
+    const apiUrl = import.meta.env.VITE_API_URL;
+
     const handleLogin = async (email: string, password: string) => {
         try {
-            const response = await axios.post('http://localhost:4000/api/login'
-                , { email, password }, { withCredentials: true });
+            const response = await axios.post(`${apiUrl}/login`, { email, password }, { withCredentials: true });
 
             if (response.data && response.status === 200) {
                 setUser({
@@ -39,8 +41,7 @@ const useAuth = () => {
             return;
         }
         try {
-            const response = await axios.post('http://localhost:4000/api/create-account'
-                , { username, email, password });
+            const response = await axios.post(`${apiUrl}/create-account`, { username, email, password });
             if (response.data && response.status === 201) {
                 setUser({
                     _id: response.data._id,
@@ -58,17 +59,15 @@ const useAuth = () => {
 
     const handleLogout = async () => {
         try {
-            const logoutPromise = axios.post('http://localhost:4000/api/logout',
-                {},
-                { withCredentials: true });
+            const logoutPromise = axios.post(`${apiUrl}/logout`, {}, { withCredentials: true });
             
-            const timeoutPromise = new Promise((resolve)=>setTimeout(resolve,4000));
+            const timeoutPromise = new Promise((resolve) => setTimeout(resolve, 4000));
 
-            await Promise.race([logoutPromise,timeoutPromise]);
+            await Promise.race([logoutPromise, timeoutPromise]);
             setUser(null);
             navigate('/');
             console.log('Logout successful'); // デバッグ用ログ
-        } catch(error){
+        } catch (error) {
             console.log('Logout failed:', error);
         }
     }
