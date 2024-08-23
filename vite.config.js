@@ -9,6 +9,11 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  build: {
+    rollupOptions: {
+      external: ['mongoose'], // mongooseを外部モジュールとして扱う
+    },
+  },
   server: {
     proxy: {
       '/api': 'http://localhost:4000',
@@ -18,15 +23,5 @@ export default defineConfig({
     globals: true,
     setupFiles: './tests/setup/vitest-setup.js',
     environment: 'jsdom',
-  },
-  build: {
-    ssr: 'src/server.ts',
-    outDir: 'dist',      
-    rollupOptions: {
-      input: 'src/server.ts',
-      output: {
-        entryFileNames: 'server.js',
-      },
-    },
   },
 });
