@@ -2,6 +2,10 @@
   "name": "vite-project",
   "private": true,
   "version": "0.0.0",
+  "engines": {
+    "node": "20.x", 
+    "npm": "10.x" 
+  },
   "scripts": {
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
@@ -17,7 +21,7 @@
     "start:server": "ts-node src/server.ts",
     "build:server": "tsc && node dist/server.js",
     "dev:server": "ts-node-dev --respawn --transpile-only src/server.ts",
-    "heroku-postbuild": "npm install && npm run build" 
+    "heroku-postbuild": "npm install && npm run build"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.8.2",
