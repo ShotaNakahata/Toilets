@@ -5,7 +5,10 @@ const useUser = (): string => {
     const [username, setUsername] = useState<string>("Guest");
 
     // 環境変数からAPIのURLを取得
-    const apiUrl = import.meta.env.VITE_API_URL;
+    const apiUrl = (typeof process !== 'undefined' && process.env && process.env.VITE_API_URL)
+    ? process.env.VITE_API_URL
+    : (typeof import.meta !== 'undefined' ? import.meta.env.VITE_API_URL : '');
+
 
     useEffect(() => {
         async function fetchUser() {
