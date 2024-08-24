@@ -1,12 +1,12 @@
 {
   "compilerOptions": {
     /* Language and Environment */
-    "target": "ES6",
+    "target": "ES2020",  // サーバーサイドでは最新のESバージョンを使うのが一般的です
     "jsx": "react",
 
     /* Modules */
-    "module": "ESNext",  // ここを変更
-    "moduleResolution": "node",  // ここを追加
+    "module": "commonjs",  // サーバーサイドではcommonjsが一般的
+    "moduleResolution": "node",
     "rootDir": "./src",
     
     /* Emit */
@@ -21,11 +21,18 @@
     "skipLibCheck": true,
 
     /* Paths */
-    "baseUrl": "./src",  // ここを変更
+    "baseUrl": "./src",
     "paths": {
-      "@/*": ["./*"]  // ここを変更
+      "@/*": ["./*"]
     }
   },
-  "include": ["src", "src/types/**/*.d.ts", "src/components/ui"],
-  "exclude": ["node_modules", "dist"]
+  "include": [
+    "src",
+    "types/**/*.d.ts",  
+    "src/components/ui"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
 }
