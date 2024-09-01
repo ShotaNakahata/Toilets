@@ -1,7 +1,7 @@
 // src/routes/DashboardRouter.ts
 import express,{Request,Response} from "express"
-import UserModel from "../../src/models/user"
-import Toilet from "../../src/models/Toilet"
+import UserModel from "../models/user"
+import Toilet from "../models//Toilet"
 
 
 const router = express.Router();

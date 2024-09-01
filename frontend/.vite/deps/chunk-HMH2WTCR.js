@@ -1,12 +1,19 @@
 import {
+  DialogContext_default
+} from "./chunk-MOPZKHCL.js";
+import {
+  getDialogTitleUtilityClass
+} from "./chunk-O3MVKBQA.js";
+import {
+  Typography_default
+} from "./chunk-SIJ2DI3X.js";
+import {
   styled_default,
   useDefaultProps
-} from "./chunk-T74OHSDF.js";
+} from "./chunk-I4HWA2U3.js";
 import {
-  composeClasses,
-  generateUtilityClass,
-  generateUtilityClasses
-} from "./chunk-TDVMSAXG.js";
+  composeClasses
+} from "./chunk-GTJD6U6S.js";
 import {
   _extends,
   _objectWithoutPropertiesLoose,
@@ -26,73 +33,53 @@ import {
   __toESM
 } from "./chunk-V4OQ3NZ2.js";
 
-// node_modules/@mui/material/DialogActions/DialogActions.js
+// node_modules/@mui/material/DialogTitle/DialogTitle.js
 init_extends();
 var React = __toESM(require_react());
 var import_prop_types = __toESM(require_prop_types());
-
-// node_modules/@mui/material/DialogActions/dialogActionsClasses.js
-function getDialogActionsUtilityClass(slot) {
-  return generateUtilityClass("MuiDialogActions", slot);
-}
-var dialogActionsClasses = generateUtilityClasses("MuiDialogActions", ["root", "spacing"]);
-var dialogActionsClasses_default = dialogActionsClasses;
-
-// node_modules/@mui/material/DialogActions/DialogActions.js
 var import_jsx_runtime = __toESM(require_jsx_runtime());
-var _excluded = ["className", "disableSpacing"];
+var _excluded = ["className", "id"];
 var useUtilityClasses = (ownerState) => {
   const {
-    classes,
-    disableSpacing
+    classes
   } = ownerState;
   const slots = {
-    root: ["root", !disableSpacing && "spacing"]
+    root: ["root"]
   };
-  return composeClasses(slots, getDialogActionsUtilityClass, classes);
+  return composeClasses(slots, getDialogTitleUtilityClass, classes);
 };
-var DialogActionsRoot = styled_default("div", {
-  name: "MuiDialogActions",
+var DialogTitleRoot = styled_default(Typography_default, {
+  name: "MuiDialogTitle",
   slot: "Root",
-  overridesResolver: (props, styles) => {
-    const {
-      ownerState
-    } = props;
-    return [styles.root, !ownerState.disableSpacing && styles.spacing];
-  }
-})(({
-  ownerState
-}) => _extends({
-  display: "flex",
-  alignItems: "center",
-  padding: 8,
-  justifyContent: "flex-end",
+  overridesResolver: (props, styles) => styles.root
+})({
+  padding: "16px 24px",
   flex: "0 0 auto"
-}, !ownerState.disableSpacing && {
-  "& > :not(style) ~ :not(style)": {
-    marginLeft: 8
-  }
-}));
-var DialogActions = React.forwardRef(function DialogActions2(inProps, ref) {
+});
+var DialogTitle = React.forwardRef(function DialogTitle2(inProps, ref) {
   const props = useDefaultProps({
     props: inProps,
-    name: "MuiDialogActions"
+    name: "MuiDialogTitle"
   });
   const {
     className,
-    disableSpacing = false
+    id: idProp
   } = props, other = _objectWithoutPropertiesLoose(props, _excluded);
-  const ownerState = _extends({}, props, {
-    disableSpacing
-  });
+  const ownerState = props;
   const classes = useUtilityClasses(ownerState);
-  return (0, import_jsx_runtime.jsx)(DialogActionsRoot, _extends({
+  const {
+    titleId = idProp
+  } = React.useContext(DialogContext_default);
+  return (0, import_jsx_runtime.jsx)(DialogTitleRoot, _extends({
+    component: "h2",
     className: clsx_default(classes.root, className),
     ownerState,
-    ref
+    ref,
+    variant: "h6",
+    id: idProp != null ? idProp : titleId
   }, other));
 });
-true ? DialogActions.propTypes = {
+true ? DialogTitle.propTypes = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐
   // │ These PropTypes are generated from the TypeScript type definitions. │
   // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
@@ -110,20 +97,17 @@ true ? DialogActions.propTypes = {
    */
   className: import_prop_types.default.string,
   /**
-   * If `true`, the actions do not have additional margin.
-   * @default false
+   * @ignore
    */
-  disableSpacing: import_prop_types.default.bool,
+  id: import_prop_types.default.string,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: import_prop_types.default.oneOfType([import_prop_types.default.arrayOf(import_prop_types.default.oneOfType([import_prop_types.default.func, import_prop_types.default.object, import_prop_types.default.bool])), import_prop_types.default.func, import_prop_types.default.object])
 } : void 0;
-var DialogActions_default = DialogActions;
+var DialogTitle_default = DialogTitle;
 
 export {
-  getDialogActionsUtilityClass,
-  dialogActionsClasses_default,
-  DialogActions_default
+  DialogTitle_default
 };
-//# sourceMappingURL=chunk-GQAJ7NY7.js.map
+//# sourceMappingURL=chunk-HMH2WTCR.js.map
