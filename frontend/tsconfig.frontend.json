@@ -1,0 +1,41 @@
+{
+    "compilerOptions": {
+        "jsx": "react-jsx",
+        "module": "es2020",
+        "moduleResolution": "node",
+        "target": "es2020",
+        "outDir": "../dist/frontend",
+        "rootDir": "./src",
+        "baseUrl": "./",
+        "typeRoots": [
+            "./node_modules/@types",
+            "./types"
+        ],
+        "allowSyntheticDefaultImports": true,
+        "paths": {
+            "@config/*": [
+                "src/config/*"
+            ],
+            "@frontend/*": [
+                "src/*"
+            ]
+        }
+    },
+    "include": [
+        "src/**/*",
+        "env.d.ts",
+        "src/config/motionConfig.ts",
+        "src/lib/**/*.ts",
+        "src/utils/**/*.ts",
+        "src/types/**/*.d.ts",
+        "src/types/markerclusterer-override.d.ts"
+    ],
+    "exclude": [
+        "node_modules",
+        "dist",
+        "**/__tests__/**",
+        "src/routes/__tests__",
+        "node_modules/@react-google-maps/api",
+        "node_modules/@googlemaps/markerclusterer"
+    ]
+}

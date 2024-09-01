@@ -1,0 +1,181 @@
+.
+├── Procfile
+├── README.md
+├── backend
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── src
+│   │   ├── __mocks__
+│   │   │   └── mockUserDB.ts
+│   │   ├── interfaces
+│   │   │   ├── MarkerData_Interfaces.ts
+│   │   │   ├── Toilet_Interfaces.ts
+│   │   │   └── User_Interfaces.ts
+│   │   ├── models
+│   │   │   ├── Comment.ts
+│   │   │   ├── Toilet.ts
+│   │   │   └── user.ts
+│   │   ├── routes
+│   │   │   ├── DashboardRouter.ts
+│   │   │   ├── __tests__
+│   │   │   │   ├── data
+│   │   │   │   │   ├── toiletsData.js
+│   │   │   │   │   └── toiletsData.ts
+│   │   │   │   ├── favoritesRoutes.test.ts
+│   │   │   │   ├── session.test.ts
+│   │   │   │   └── userRoutes.test.ts
+│   │   │   ├── commentRoutes.ts
+│   │   │   ├── contactRoutes.ts
+│   │   │   ├── favoritesRoutes.ts
+│   │   │   ├── sessionRoutes.ts
+│   │   │   ├── toiletRoutes.ts
+│   │   │   └── userRoutes.ts
+│   │   ├── scripts
+│   │   │   └── insertToilets.ts
+│   │   ├── server.ts
+│   │   ├── types
+│   │   │   └── express-session.d.ts
+│   │   └── util
+│   │       └── mailer.ts
+│   └── tsconfig.server.json
+├── bcryptTest.mjs
+├── directory_structure.txt
+├── frontend
+│   ├── components.json
+│   ├── directory_structure.txt
+│   ├── env.d.ts
+│   ├── index.html
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── postcss.config.js
+│   ├── public
+│   │   ├── images
+│   │   │   ├── AccessibleToilet.jpg
+│   │   │   ├── BackGround.jpg
+│   │   │   ├── Count.jpg
+│   │   │   ├── Favorite.jpg
+│   │   │   ├── IconFound.jpg
+│   │   │   ├── IconRate.jpg
+│   │   │   ├── IconSearch.jpg
+│   │   │   ├── Map.jpg
+│   │   │   ├── UserMapIcon.jpg
+│   │   │   ├── alt_map.jpg
+│   │   │   ├── dashboard.jpg
+│   │   │   ├── logo.jpg
+│   │   │   ├── rate.jpg
+│   │   │   ├── search.jpg
+│   │   │   └── share.jpg
+│   │   └── vite.svg
+│   ├── src
+│   │   ├── App.tsx
+│   │   ├── assets
+│   │   │   ├── fonts
+│   │   │   │   ├── LibreBaskerville-Bold.ttf
+│   │   │   │   ├── LibreBaskerville-Italic.ttf
+│   │   │   │   └── LibreBaskerville-Regular.ttf
+│   │   │   └── react.svg
+│   │   ├── components
+│   │   │   ├── common
+│   │   │   │   ├── AccordionItem.tsx
+│   │   │   │   ├── CommentsList.tsx
+│   │   │   │   ├── ConfirmDialog.tsx
+│   │   │   │   ├── ConfirmLogout.tsx
+│   │   │   │   ├── CountryToiletChart.tsx
+│   │   │   │   ├── FavoriteButton.tsx
+│   │   │   │   ├── LoginModal.tsx
+│   │   │   │   ├── Modals
+│   │   │   │   │   ├── NotificationModal.tsx
+│   │   │   │   │   └── ToiletInfoModal.tsx
+│   │   │   │   ├── MyFavoritesComponent.tsx
+│   │   │   │   ├── RatingForm.tsx
+│   │   │   │   ├── RegistrationRestroom.tsx
+│   │   │   │   ├── ResponsiveDialog.tsx
+│   │   │   │   ├── SnackbarActionText.tsx
+│   │   │   │   ├── StarRating.css
+│   │   │   │   ├── StarRating.tsx
+│   │   │   │   ├── UserInformation.tsx
+│   │   │   │   ├── __tests__
+│   │   │   │   │   └── FavoriteButton.test.tsx
+│   │   │   │   └── button
+│   │   │   │       └── DeleteButton.tsx
+│   │   │   ├── layout
+│   │   │   │   ├── Footer.tsx
+│   │   │   │   └── Header.tsx
+│   │   │   ├── pages
+│   │   │   │   ├── AndMore.tsx
+│   │   │   │   ├── ContactPage.tsx
+│   │   │   │   ├── CreateAccount.tsx
+│   │   │   │   ├── DashboardPage.tsx
+│   │   │   │   ├── FilterSearchToile.tsx
+│   │   │   │   ├── Home.tsx
+│   │   │   │   ├── LoginPage.tsx
+│   │   │   │   ├── Map.tsx
+│   │   │   │   ├── Message.tsx
+│   │   │   │   ├── MyPage.tsx
+│   │   │   │   ├── RegistrationRestroomPage.tsx
+│   │   │   │   ├── Service.tsx
+│   │   │   │   ├── ToiletDetail.tsx
+│   │   │   │   └── Top.tsx
+│   │   │   └── ui
+│   │   │       ├── button.tsx
+│   │   │       ├── card.tsx
+│   │   │       ├── chart.tsx
+│   │   │       ├── dialog.tsx
+│   │   │       ├── drawer.tsx
+│   │   │       ├── input.tsx
+│   │   │       ├── table.tsx
+│   │   │       ├── tabs.tsx
+│   │   │       ├── textarea.tsx
+│   │   │       ├── toast.tsx
+│   │   │       ├── toaster.tsx
+│   │   │       └── use-toast.ts
+│   │   ├── config
+│   │   │   └── motionConfig.ts
+│   │   ├── context
+│   │   │   ├── MapStateContext.tsx
+│   │   │   └── UserContext.tsx
+│   │   ├── features
+│   │   │   ├── Chart
+│   │   │   │   ├── CountryRatingPieChart.tsx
+│   │   │   │   ├── Dashboard.tsx
+│   │   │   │   └── RatingPieChart.tsx
+│   │   │   ├── Login
+│   │   │   │   └── Login.tsx
+│   │   │   ├── contact
+│   │   │   │   └── ContactForm.tsx
+│   │   │   └── map
+│   │   │       ├── GoogleMapsLoader.tsx
+│   │   │       ├── MapComponent.tsx
+│   │   │       ├── MarkerManager.tsx
+│   │   │       └── UserLocation.tsx
+│   │   ├── hooks
+│   │   │   ├── useAuth.ts
+│   │   │   ├── useFetchToiletDetails.tsx
+│   │   │   ├── useOnScreen.ts
+│   │   │   └── useUser.tsx
+│   │   ├── index.tsx
+│   │   ├── lib
+│   │   │   └── utils.ts
+│   │   ├── styles
+│   │   │   ├── App.css
+│   │   │   ├── global.css
+│   │   │   └── index.css
+│   │   ├── types
+│   │   │   └── vitest.d.ts
+│   │   └── utils
+│   │       └── apiClient.ts
+│   ├── tailwind.config.ts
+│   ├── tsconfig.frontend.json
+│   └── vite.config.js
+├── interfaces
+│   ├── MarkerData_Interfaces.ts
+│   ├── Toilet_Interfaces.ts
+│   └── User_Interfaces.ts
+├── package-lock.json
+├── package.json
+├── tests
+│   └── setup
+│       └── vitest-setup.js
+└── webpack.config.js
+
+41 directories, 138 files
