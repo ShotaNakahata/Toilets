@@ -54,7 +54,7 @@ const Service: React.FC = () => {
                     variants={FadeInUpAnimation}
                 >
                     <div className="w-1/3 sm:w-full md:w-1/4 h-full mr-0">
-                        <img src="/images/search.jpg" alt="Search" className="w-full h-auto object-cover rounded-md" />
+                        <img src="/images/search.png" alt="Search" className="w-full h-auto object-cover rounded-md" />
                     </div>
                     <div className="flex-1 ml-0 md:ml-16 mt-0 sm:mt-8 md:mt-20 pl-9 sm:pl-0">
                         <p className="text-white text-1xl md:text-4xl">
@@ -93,7 +93,7 @@ const Service: React.FC = () => {
                     variants={FadeInUpAnimation}
                 >
                     <div className="w-1/3 sm:w-full md:w-1/4 h-full ml-0 md:ml-8">
-                        <img src="/images/share.jpg" alt="Share" className="w-full h-auto object-cover rounded-md" />
+                        <img src="/images/share.png" alt="Share" className="w-full h-auto object-cover rounded-md" />
                     </div>
                     <div className="flex-1 mr-0 md:mr-16 mt-0 sm:mt-8 md:mt-20 pl-9 sm:pl-0">
                         <p className="text-white text-1xl md:text-4xl text-right">
@@ -123,7 +123,7 @@ const Service: React.FC = () => {
                     variants={FadeInUpAnimation}
                 >
                     <div className="w-1/3 sm:w-full md:w-1/4 h-full mr-0">
-                        <img src="/images/rate.jpg" alt="Rate" className="w-full h-auto object-cover rounded-md" />
+                        <img src="/images/rate.png" alt="Rate" className="w-full h-auto object-cover rounded-md" />
                     </div>
                     <div className="flex-1 ml-0 md:ml-16 mt-0 sm:mt-8 md:mt-20 pl-9 sm:pl-0">
                         <p className="text-white text-1xl md:text-4xl">
@@ -162,7 +162,7 @@ const Service: React.FC = () => {
                     variants={FadeInUpAnimation}
                 >
                     <div className="w-1/3 sm:w-full md:w-1/4 h-full ml-0 md:ml-8">
-                        <img src="/images/Favorite.jpg" alt="Bookmark" className="w-full h-auto object-cover rounded-md" />
+                        <img src="/images/Favorite.png" alt="Bookmark" className="w-full h-auto object-cover rounded-md" />
                     </div>
                     <div className="flex-1 mr-0 md:mr-16 mt-0 sm:mt-8 md:mt-20 pl-9 sm:pl-0">
                         <p className="text-white text-1xl md:text-4xl text-right">

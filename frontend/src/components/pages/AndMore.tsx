@@ -38,7 +38,7 @@ const AndMore: React.FC = () => {
                     animate={controls}
                 >
                     <img
-                        src="/images/AccessibleToilet.jpg"
+                        src="/images/AccessibleToilet.png"
                         alt="Accessible Toilet"
                         className="w-full h-auto object-cover rounded-md mb-5"
                     />
@@ -59,7 +59,7 @@ const AndMore: React.FC = () => {
                     animate={controls}
                 >
                     <img
-                        src="/images/Count.jpg"
+                        src="/images/Count.png"
                         alt="Favorite Accessible Toilet"
                         className="w-full h-auto object-cover rounded-md mb-5"
                     />

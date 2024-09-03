@@ -6,7 +6,7 @@ const Footer: React.FC = () => {
             <div className="container mx-auto flex flex-col sm:flex-row justify-between items-center">
                 {/* ロゴ */}
                 <div className="mb-2 sm:mb-0">
-                    <img src="/images/logo.jpg" alt="Logo" className="h-10 sm:h-16 w-auto" /> {/* smでは少し小さめに */}
+                    <img src="/images/logo.png" alt="Logo" className="h-10 sm:h-16 w-auto" /> {/* smでは少し小さめに */}
                 </div>
                 {/* スローガン */}
                 <div className="text-center sm:text-right mt-4 sm:mt-0">

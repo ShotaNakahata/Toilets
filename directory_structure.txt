@@ -154,6 +154,10 @@
 │   │   │   ├── useOnScreen.ts
 │   │   │   └── useUser.tsx
 │   │   ├── index.tsx
+│   │   ├── interfaces
+│   │   │   ├── MarkerData_Interfaces.ts
+│   │   │   ├── Toilet_Interfaces.ts
+│   │   │   └── User_Interfaces.ts
 │   │   ├── lib
 │   │   │   └── utils.ts
 │   │   ├── styles
@@ -161,16 +165,15 @@
 │   │   │   ├── global.css
 │   │   │   └── index.css
 │   │   ├── types
+│   │   │   ├── index.d.ts
+│   │   │   ├── markerclusterer-override.d.ts
 │   │   │   └── vitest.d.ts
 │   │   └── utils
 │   │       └── apiClient.ts
 │   ├── tailwind.config.ts
 │   ├── tsconfig.frontend.json
 │   └── vite.config.js
-├── interfaces
-│   ├── MarkerData_Interfaces.ts
-│   ├── Toilet_Interfaces.ts
-│   └── User_Interfaces.ts
+├── global.d.ts
 ├── package-lock.json
 ├── package.json
 ├── tests
@@ -178,4 +181,4 @@
 │       └── vitest-setup.js
 └── webpack.config.js
 
-41 directories, 138 files
+41 directories, 141 files

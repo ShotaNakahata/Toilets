@@ -30,19 +30,19 @@ const Top: React.FC = () => {
                 <div className="absolute top-72  sm:top-1/2  sm:right-6  transform -translate-y-1/2 text-highlight">  
                     <div className="text-lg  sm:text-xl md:text-2xl lg:text-3xl flex flex-col justify-start items-start space-y-4">
                         <Link to="/FilterSearchToile" className="btn Search flex items-center text-left hover:text-foreground">
-                            <img src="/images/IconSearch.jpg" alt="SearchImg" className="h-10 sm:h-18 md:h-15 w-auto  mr-2" />
+                            <img src="/images/IconSearch.png" alt="SearchImg" className="h-10 sm:h-18 md:h-15 w-auto  mr-2" />
                             View All Toilet List
                         </Link>
                         <Link to="/Map" className="btn NewPost flex items-center text-left hover:text-foreground">
-                            <img src="/images/IconFound.jpg" alt="NewPostImg" className="h-10 sm:h-18 md:h-15 w-auto  mr-2" />
+                            <img src="/images/IconFound.png" alt="NewPostImg" className="h-10 sm:h-18 md:h-15 w-auto  mr-2" />
                             View toilets using the map
                         </Link>
                         <Link to="/RegistrationRestroom" className="btn NewPost flex items-center text-left hover:text-foreground">
-                            <img src="/images/IconFound.jpg" alt="NewPostImg" className="h-10 sm:h-18 md:h-15 w-auto  mr-2" />
+                            <img src="/images/IconFound.png" alt="NewPostImg" className="h-10 sm:h-18 md:h-15 w-auto  mr-2" />
                             Register a New Toilet
                         </Link>
                         <a href="#dashboard" className="btn Rate flex items-center text-left hover:text-foreground">
-                            <img src="/images/IconRate.jpg" alt="RateImg" className="h-10 sm:h-18 md:h-15 w-auto  mr-2" />
+                            <img src="/images/IconRate.png" alt="RateImg" className="h-10 sm:h-18 md:h-15 w-auto  mr-2" />
                             Check the Dashboard
                         </a>
                         
