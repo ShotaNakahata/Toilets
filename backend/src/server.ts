@@ -27,14 +27,18 @@ const PORT = process.env.PORT || 4000;
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
 // CORS設定
+// NODE_ENVに基づいて適切な環境変数を使用
 const allowedOrigins = process.env.NODE_ENV === 'production'
-    ? ['https://where-is-my-restroom-25944bc22780.herokuapp.com']
-    : ['http://localhost:5173'];
+    ? process.env.ALLOWED_ORIGINS_PRODUCTION
+    : process.env.ALLOWED_ORIGINS_DEVELOPMENT;
 
 const corsOptions = {
-    origin: allowedOrigins,
-    credentials: true // クッキーを有効にする
+    origin: allowedOrigins ? allowedOrigins.split(',') : [], // 複数のオリジンをカンマ区切りで指定可能
+    credentials: true 
 };
+
+app.use(cors(corsOptions));
+
 
 app.use(cors(corsOptions));
 app.use(express.json());
