@@ -6,7 +6,7 @@ import { titlecolorAnimation } from '../../config/motionConfig';
 
 const Top: React.FC = () => {
     return (
-        <div className="bg-white text-white min-h-screen pt-20 font-baskerville relative">
+        <div className="bg-background text-white min-h-screen pt-20 font-baskerville relative">
             {/* メインタイトル */}
             <motion.h1 
             className="pt-7 text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl tracking-wide sm:tracking-widest font-bold mb-4 left-4 sm:left-6 bottom-1 leading-snug sm:leading-normal absolute"
