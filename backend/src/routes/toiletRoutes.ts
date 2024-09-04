@@ -6,6 +6,7 @@ import UserModel from '../models/user';
 import nodeGeocoder from 'node-geocoder';
 import { count } from 'console';
 
+
 // Google Maps Geocoding APIの設定
 const options = {
     provider: 'google' as const,
