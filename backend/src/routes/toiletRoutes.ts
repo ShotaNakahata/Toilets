@@ -18,6 +18,7 @@ const geocoder = nodeGeocoder(options);
 const router = express.Router();
 
 const isAuthenticated = (req: Request, res: Response, next: Function) => {
+    console.log('Session:', req.session);
     if (req.session && req.session.userId) {
         return next();
     } else {
@@ -248,27 +249,27 @@ router.delete("/:id", isAuthenticated, async (req: Request, response: Response) 
 // //：dev環境only------------------------------
 
 //全てのトイレ情報を消去
-router.delete('/deleteAll', async (req: Request, res: Response) => {
-    try {
-        // 消去するidを取得
-        const toiletIds = await Toilet.find({}).select('_id').exec();
-        const idsToDelete = toiletIds.map(Toilet => Toilet._id);
+// router.delete('/deleteAll', async (req: Request, res: Response) => {
+//     try {
+//         // 消去するidを取得
+//         const toiletIds = await Toilet.find({}).select('_id').exec();
+//         const idsToDelete = toiletIds.map(Toilet => Toilet._id);
 
-        // 全てのトイレ情報を消去
-        const result = await Toilet.deleteMany({ _id: { $in: idsToDelete } });
-        // 全ての関連コメントを消去
-        await Comment.deleteMany({ toilet: { $in: idsToDelete } });
+//         // 全てのトイレ情報を消去
+//         const result = await Toilet.deleteMany({ _id: { $in: idsToDelete } });
+//         // 全ての関連コメントを消去
+//         await Comment.deleteMany({ toilet: { $in: idsToDelete } });
 
-        // ユーザーのお気に入りからも削除されたトイレのIDを削除
-        await UserModel.updateMany(
-            {},
-            { $pull: { favorites: { $in: idsToDelete } } }
-        );
-        res.status(200).send({ message: `${result.deletedCount} toilets deleted successfully` })
-    } catch (error) {
-        res.status(500).send({ message: 'Failed to delete all toilets', error });
-    }
-});
+//         // ユーザーのお気に入りからも削除されたトイレのIDを削除
+//         await UserModel.updateMany(
+//             {},
+//             { $pull: { favorites: { $in: idsToDelete } } }
+//         );
+//         res.status(200).send({ message: `${result.deletedCount} toilets deleted successfully` })
+//     } catch (error) {
+//         res.status(500).send({ message: 'Failed to delete all toilets', error });
+//     }
+// });
 
 
 export default router;

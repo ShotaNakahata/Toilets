@@ -6,9 +6,9 @@ import {
   ToastProvider,
   ToastTitle,
   ToastViewport,
-} from "@frontend/components/ui/toast" 
+} from "../ui/toast" 
 import React from "react"
-import { useToast } from "@frontend/components/ui/use-toast"
+import { useToast } from "../ui/use-toast"
 
 export function Toaster() {
   const { toasts } = useToast()

@@ -7,7 +7,7 @@
         "tsc-build": "tsc",
         "clean": "rimraf ../dist",
         "build:server": "cross-env NODE_ENV=production npm run clean && tsc -p tsconfig.server.json",
-        "dev:server": "ts-node-dev --respawn --transpile-only --project ./tsconfig.server.json src/server.ts"
+        "dev:server": "cross-env NODE_ENV=development ts-node-dev --respawn --transpile-only --project ./tsconfig.server.json src/server.ts"
     },
     "dependencies": {
         "bcrypt": "^5.1.1",
