@@ -67,6 +67,7 @@ mongoose.connect(MONGODB_URI || '', {
     app.use('/api', userRoutes);
     app.use('/api/toilets', toiletRoutes);
     app.use('/api/comments', commentRoutes);
+    
     app.use('/admin', sessionRoutes);
     app.use('/api/favorites', favoritesRoutes);
     app.use('/api/contact', contactRoutes);
