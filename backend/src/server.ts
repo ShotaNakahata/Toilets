@@ -50,7 +50,8 @@ app.use(session({
         collectionName: 'sessions'
     }),
     cookie: {
-        secure: !isDevelopment,
+        // secure: !isDevelopment,
+        secure: false,
         httpOnly: true,
         maxAge: 1000 * 60 * 60 * 24 // クッキーの有効期限を1日に設定
     }
