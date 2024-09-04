@@ -21,11 +21,13 @@ const MyFavoritesComponent: React.FC<MyFavoritesComponentProps> = ({ favorites: 
     const [favorites, setFavorites] = useState<Toilet[]>(initialFavorites || []);
     const [error, setError] = useState<string | null>(null);
 
+    const apiUrl = import.meta.env.VITE_API_URL;
+
     useEffect(() => {
         const fetchFavoritesDetails = async () => {
             if (user && user.favorites && user.favorites.length > 0) {
                 try {
-                    const response = await axios.post("http://localhost:4000/api/toilets/details", { ids: user.favorites }, { withCredentials: true });
+                    const response = await axios.post(`${apiUrl}/toilets/details`, { ids: user.favorites }, { withCredentials: true });
                     setFavorites(response.data);
                 } catch (error) {
                     console.error('Error fetching favorite details:', error);
@@ -36,7 +38,7 @@ const MyFavoritesComponent: React.FC<MyFavoritesComponentProps> = ({ favorites: 
             }
         };
         fetchFavoritesDetails();
-    }, [user]);
+    }, [user, apiUrl]);
 
     return (
         <div className="bg-background min-h-screen pt-4">
@@ -69,4 +71,5 @@ const MyFavoritesComponent: React.FC<MyFavoritesComponentProps> = ({ favorites: 
 };
 
 export default MyFavoritesComponent;
+
 

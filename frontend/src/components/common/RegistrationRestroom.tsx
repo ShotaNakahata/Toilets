@@ -27,6 +27,8 @@ const RegistrationRestroom: React.FC<RegistrationRestroomProps> = ({ onNewToilet
     const [modalMessage, setModalMessage] = useState<string>("");
     const [modalTitle, setModalTitle] = useState<string>("");
 
+    const apiUrl = import.meta.env.VITE_API_URL;
+
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (!user) {
@@ -34,7 +36,7 @@ const RegistrationRestroom: React.FC<RegistrationRestroomProps> = ({ onNewToilet
             return;
         }
         try {
-            const response = await axios.post('http://localhost:4000/api/toilets/register', {
+            const response = await axios.post(`${apiUrl}/toilets/register`, {
                 name,
                 address,
                 rating,
@@ -80,7 +82,7 @@ const RegistrationRestroom: React.FC<RegistrationRestroomProps> = ({ onNewToilet
 
     const handleLogin = async (email: string, password: string) => {
         try {
-            const response = await axios.post('http://localhost:4000/api/login', { email, password }, { withCredentials: true });
+            const response = await axios.post(`${apiUrl}/login`, { email, password }, { withCredentials: true });
             if (response.data && response.status === 200) {
                 setUser({
                     _id: response.data._id,
@@ -100,7 +102,7 @@ const RegistrationRestroom: React.FC<RegistrationRestroomProps> = ({ onNewToilet
             return;
         }
         try {
-            const response = await axios.post('http://localhost:4000/api/create-account', { username, email, password });
+            const response = await axios.post(`${apiUrl}/create-account`, { username, email, password });
             if (response.data && response.status === 201) {
                 setUser({
                     _id: response.data._id,
@@ -183,5 +185,6 @@ const RegistrationRestroom: React.FC<RegistrationRestroomProps> = ({ onNewToilet
 };
 
 export default RegistrationRestroom;
+
 
 
