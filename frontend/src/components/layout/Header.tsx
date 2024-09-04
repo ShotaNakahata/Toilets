@@ -18,7 +18,7 @@ const Header: React.FC = () => {
             <div className=" mx-auto flex justify-between items-center">
                 <div className="header-left flex-shrink-0">
                     <Link to="/">
-                        <img className="h-10 w-auto sm:h-16 sm:w-auto" src='/images/logo.jpg' alt="Logo" />
+                        <img className="h-10 w-auto sm:h-16 sm:w-auto" src='/images/logo.png' alt="Logo" />
                     </Link>
                 </div>
                 <div className="header-right hidden sm:flex items-center space-x-8 text-xl">

@@ -21,14 +21,14 @@ const Top: React.FC = () => {
                 {/* 説明文 */}
                 <div className='text-lg sm:text-2xl md:text-4xl text-right relative text-white sm:left-[-40px] ml-40 mt-2 sm:mt-20'>
                     <p className="mb-2">This website allows you to easily find nearby toilets and detailed information.</p>
-                    <p className="mb-8">Accessible options are also available,making it convenient for those who need special facilities. </p>
+                    <p className="mb-8">Accessible options are also available, making it convenient <br />for those who need special facilities. </p>
                     
                 </div>
-            <div className="container mx-auto text-right px-4 sm:px-6">
+            <div className="text-right px-4 sm:px-6">
 
                 {/* リンクボタン */}
-                <div className="absolute top-72  sm:top-1/2  sm:right-6  transform -translate-y-1/2 text-highlight">  
-                    <div className="text-lg  sm:text-xl md:text-2xl lg:text-3xl flex flex-col justify-start items-start space-y-4">
+                <div className="absolute bottom-1/4 flex right-0 mb-4  text-highlight">  
+                    <div className="text-lg  sm:text-xl md:text-2xl lg:text-3xl flex flex-col justify-start items-start space-y-10">
                         <Link to="/FilterSearchToile" className="btn Search flex items-center text-left hover:text-foreground">
                             <img src="/images/IconSearch.png" alt="SearchImg" className="h-10 sm:h-18 md:h-15 w-auto  mr-2" />
                             View All Toilet List

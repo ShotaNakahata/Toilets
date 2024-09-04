@@ -33,7 +33,7 @@ const DashboardPage: React.FC = () => {
 
     return (
         <div id="dashboard" className="flex flex-col min-h-screen max-h-screen relative">
-            <div className='container text-white mt-10 '>
+            <div className='container text-white mt-10  '>
                 <h1 className="text-6xl font-bold mb-6 text-center">Dashboard</h1>
 
                 {/* 上段: 全体の統計情報カード */}
