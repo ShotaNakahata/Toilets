@@ -35,7 +35,7 @@ const CustomLabel = ({ x = 0, y = 0, _id = 0, count = 0, showLabel = false }: {
 
     return createPortal(
         <div style={labelStyles}>
-            {`${_id} Stars: ${count}`}
+            {`Rating:${_id} Count: ${count}`}
         </div>,
         document.body
     );

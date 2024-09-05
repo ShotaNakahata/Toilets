@@ -14,7 +14,6 @@ const Login: React.FC = () => {
 
     // 環境変数からAPIのURLを取得
     const apiUrl = import.meta.env.VITE_API_URL;
-    // const apiUrl = 'http://localhost:4000/api';
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -39,47 +38,49 @@ const Login: React.FC = () => {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-background">
-            <div className="w-full max-w-md p-8 space-y-6 border-2 border-highlight shadow-lg rounded-lg">
-                <h2 className="text-3xl font-bold text-center text-white">Login</h2>
-                <form className="space-y-4" onSubmit={handleSubmit}>
+        <div className="bg-background relative min-h-screen flex flex-col justify-center items-center p-4">
+            <div className="w-full max-w-md bg-white p-6 rounded-lg shadow-md">
+                <h2 className="text-3xl font-bold text-center text-background mb-6">Login</h2>
+                <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
-                        <label htmlFor="email" className="block text-sm font-medium text-white">Email</label>
+                        <label htmlFor="email" className="block text-lg font-medium text-background">Email</label>
                         <input
                             id="email"
                             type="email"
                             placeholder="Email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            className="mt-1 block w-full px-3 py-2 bg-gray-50 border border-highlight rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                            className="mt-1 block w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-background"
+                            required
                         />
                     </div>
                     <div>
-                        <label htmlFor="password" className="block text-sm font-medium text-white">Password</label>
+                        <label htmlFor="password" className="block text-lg font-medium text-background">Password</label>
                         <input
                             id="password"
                             type="password"
                             placeholder="Password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                            className="mt-1 block w-full px-3 py-2 bg-gray-50 border border-highlight rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                            className="mt-1 block w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-background"
+                            required
                         />
                     </div>
                     <button
                         type="submit"
+                        className="w-full py-3 bg-background text-white font-semibold rounded-lg hover:bg-white hover:text-background transition-colors"
                         disabled={loading}
-                        className="w-full flex justify-center py-2 px-4 border border-highlight rounded-md shadow-sm text-sm font-medium text-highlight bg-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                     >
                         {loading ? 'Loading...' : 'Login'}
                     </button>
                 </form>
-                {errorMessage && <p className="text-red-500 text-center mt-2">{errorMessage}</p>}
-                <div className="flex justify-between mt-4 text-sm">
-                    <Link to="/CreateAccount" className="text-highlight hover:underline">New create account</Link>
-                    <Link to="/Forget" className="text-highlight hover:underline">Forget password</Link>
+                {errorMessage && <p className="text-red-500 text-center mt-4">{errorMessage}</p>}
+                <div className="flex justify-between mt-4 text-sm text-background">
+                    <Link to="/CreateAccount" className="hover:underline">Create Account</Link>
+                    <Link to="/Forget" className="hover:underline">Forget Password</Link>
                 </div>
-                <div className="text-center mt-4">
-                    <Link to="/" className="text-highlight hover:underline">Return to Home</Link>
+                <div className="text-center mt-6">
+                    <Link to="/" className="text-background hover:underline">Return to Home</Link>
                 </div>
             </div>
         </div>
@@ -87,4 +88,5 @@ const Login: React.FC = () => {
 }
 
 export default Login;
+
 

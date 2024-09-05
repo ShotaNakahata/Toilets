@@ -34,7 +34,7 @@ const Top: React.FC = () => {
                             View All Toilet List
                         </Link>
                         <Link to="/Map" className="btn NewPost flex items-center text-left hover:text-foreground">
-                            <img src="/images/IconFound.png" alt="NewPostImg" className="h-10 sm:h-18 md:h-15 w-auto  mr-2" />
+                            <img src="/images/IconMap.png" alt="NewPostImg" className="h-10 sm:h-18 md:h-15 w-auto  mr-2" />
                             View toilets using the map
                         </Link>
                         <Link to="/RegistrationRestroom" className="btn NewPost flex items-center text-left hover:text-foreground">
