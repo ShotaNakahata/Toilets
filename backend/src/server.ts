@@ -23,6 +23,7 @@ dotenv.config({ path: path.resolve(__dirname, '../../', envFile) });
 console.log(`Loaded environment variables from ${envFile}`);
 
 const app: Application = express();
+app.set('trust proxy', true);
 const PORT = process.env.PORT || 4000;
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
@@ -50,8 +51,8 @@ app.use(session({
         collectionName: 'sessions'
     }),
     cookie: {
-        // secure: !isDevelopment,
-        secure: false,
+        secure: !isDevelopment,
+        // secure: false,
         httpOnly: true,
         maxAge: 1000 * 60 * 60 * 24 // クッキーの有効期限を1日に設定
     }
