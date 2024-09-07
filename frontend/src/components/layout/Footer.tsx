@@ -2,7 +2,7 @@ import React from 'react';
 
 const Footer: React.FC = () => {
     return (
-        <footer className="bg-background text-white py-2 sm:py-8">
+        <footer className="bg-background text-white py-2 sm:py-8 ">
             <div className="container mx-auto flex flex-col sm:flex-row justify-between items-center">
                 {/* ロゴ */}
                 <div className="mb-2 sm:mb-0">

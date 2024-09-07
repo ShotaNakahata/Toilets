@@ -1,4 +1,3 @@
-// frontend/src/features/Chart/RatingPieChart.tsx
 import React, { useState } from "react";
 import { PieChart, Pie, Cell, Legend } from "recharts"; 
 import { createPortal } from "react-dom";
@@ -45,7 +44,7 @@ const RatingPieChart: React.FC<{ data: RatingSummaryData[] }> = ({ data }) => {
 
     return (
         <div className="flex flex-col items-center justify-center p-4 h-full w-full relative">
-            <h2 className="flex text-2xl font-bold text-center ">Overall Ratings Summary</h2>
+            <h2 className="flex sm:text-2xl text-sm font-bold text-center">Overall Ratings Summary</h2>
             <div className="w-full h-full relative items-center flex justify-center">
                 <PieChart width={200} height={200}>
                     <Pie
@@ -64,7 +63,16 @@ const RatingPieChart: React.FC<{ data: RatingSummaryData[] }> = ({ data }) => {
                             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                         ))}
                     </Pie>
-                    <Legend />
+                    <Legend 
+                        wrapperStyle={{
+                            display: 'flex',
+                            justifyContent: 'center', // 中央に配置
+                            width: '100%',
+                            marginTop: '10px' // 円グラフの下に余白を追加
+                        }}
+                        align="center"
+                        verticalAlign="bottom"
+                    />
                 </PieChart>
 
                 {/* カスタムラベルをレンダリング */}

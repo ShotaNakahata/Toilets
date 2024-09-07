@@ -12,7 +12,7 @@ export const headerAnimation = {
 
 export const titlecolorAnimation = {
     initial: { color: "#FFFFFF" },
-    animate: { color: ["#FFFFFF", "#004CDF", "#FFFFFF"] },
+    animate: { color: ["#FFFFFF", "#004CDF", "#FFFFFF", "#004CDF"] },
     transition: {
         duration: 4, // アニメーション合計時間
         ease: "easeInOut",

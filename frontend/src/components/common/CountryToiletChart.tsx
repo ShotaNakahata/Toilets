@@ -42,7 +42,7 @@ const CountryToiletChart: React.FC<CountryToiletChartProps> = () => {
     };
 
     return (
-        <ChartContainer config={chartConfig} className="min-h-[300px] w-full flex items-center justify-center">
+        <ChartContainer config={chartConfig} className=" min-h-[300px] w-full flex items-center justify-center">
             <BarChart data={data}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="_id"  
