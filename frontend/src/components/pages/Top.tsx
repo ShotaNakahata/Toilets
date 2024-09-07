@@ -77,25 +77,26 @@ const Top: React.FC = () => {
 
             {/* リンクボタン - 横並びで中央揃え */}
             <div className="flex justify-center items-center pr-4 pb-20 m-9">
-                <div className="flex flex-row space-x-6 sm:space-x-10">
-                    <Link to="/FilterSearchToile" className="btn Search flex items-center text-left text-highlight hover:text-foreground text-base sm:text-lg md:text-xl lg:text-2xl">
-                        <img src="/images/IconSearch.png" alt="SearchImg" className="h-10 sm:h-18 md:h-15 w-auto mr-2" />
-                        View All Toilet List
-                    </Link>
-                    <Link to="/Map" className="btn NewPost flex items-center text-left text-highlight hover:text-foreground text-base sm:text-lg md:text-xl lg:text-2xl">
-                        <img src="/images/IconMap.png" alt="NewPostImg" className="h-10 sm:h-18 md:h-15 w-auto mr-2" />
-                        View toilets using the map
-                    </Link>
-                    <Link to="/RegistrationRestroom" className="btn NewPost flex items-center text-left text-highlight hover:text-foreground text-base sm:text-lg md:text-xl lg:text-2xl">
-                        <img src="/images/IconFound.png" alt="NewPostImg" className="h-10 sm:h-18 md:h-15 w-auto mr-2" />
-                        Register a New Toilet
-                    </Link>
-                    <a href="#dashboard" className="btn Rate flex items-center text-left text-highlight hover:text-foreground text-base sm:text-lg md:text-xl lg:text-2xl">
-                        <img src="/images/IconRate.png" alt="RateImg" className="h-10 sm:h-18 md:h-15 w-auto mr-2" />
-                        Check the Dashboard
-                    </a>
-                </div>
-            </div>
+    <div className="flex flex-col sm:flex-row space-y-6 sm:space-y-0 sm:space-x-10">
+        <Link to="/FilterSearchToile" className="btn Search flex items-center text-left text-highlight hover:text-foreground text-base sm:text-lg md:text-xl lg:text-2xl">
+            <img src="/images/IconSearch.png" alt="SearchImg" className="h-10 sm:h-18 md:h-15 w-auto mr-2" />
+            View All Toilet List
+        </Link>
+        <Link to="/Map" className="btn NewPost flex items-center text-left text-highlight hover:text-foreground text-base sm:text-lg md:text-xl lg:text-2xl">
+            <img src="/images/IconMap.png" alt="NewPostImg" className="h-10 sm:h-18 md:h-15 w-auto mr-2" />
+            View toilets using the map
+        </Link>
+        <Link to="/RegistrationRestroom" className="btn NewPost flex items-center text-left text-highlight hover:text-foreground text-base sm:text-lg md:text-xl lg:text-2xl">
+            <img src="/images/IconFound.png" alt="NewPostImg" className="h-10 sm:h-18 md:h-15 w-auto mr-2" />
+            Register a New Toilet
+        </Link>
+        <a href="#dashboard" className="btn Rate flex items-center text-left text-highlight hover:text-foreground text-base sm:text-lg md:text-xl lg:text-2xl">
+            <img src="/images/IconRate.png" alt="RateImg" className="h-10 sm:h-18 md:h-15 w-auto mr-2" />
+            Check the Dashboard
+        </a>
+    </div>
+</div>
+
         </div>
     );
 }

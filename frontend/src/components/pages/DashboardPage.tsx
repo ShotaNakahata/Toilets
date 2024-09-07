@@ -303,9 +303,6 @@ const DashboardPage: React.FC = () => {
                     </Card>
                 </div>
 
-
-
-
                 {/* 国別トイレ情報と円グラフ：モバイル用（縦並び）、パソコン用（左右に分割） */}
                 <div ref={chartContainerRef} className="flex flex-col sm:flex-row flex-grow gap-4 mt-6">
                     {/* 左側：国別トイレチャート */}
