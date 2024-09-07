@@ -113,7 +113,7 @@ const FilterSearchToile: React.FC = () => {
                                     onChange={toggleUniversalFilter}
                                     className="mr-2"
                                 />
-                                Only Universal
+                                Only accessible
                             </label>
                             <button 
                                 onClick={toggleModal} 

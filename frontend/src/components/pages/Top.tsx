@@ -53,15 +53,15 @@
 // frontend/src/components/pages/Top.tsx
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {motion} from "framer-motion";
+import { motion } from "framer-motion";
 import { titlecolorAnimation } from '../../config/motionConfig';
 
 const Top: React.FC = () => {
     return (
         <div className="bg-background text-white min-h-screen pt-20 font-baskerville flex flex-col justify-between">
             {/* メインタイトル */}
-            <motion.h1 
-                className="pt-7 text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl tracking-wide sm:tracking-widest font-bold mb-2 leading-snug sm:leading-normal text-center"
+            <motion.h1
+                className=" pt-7 text-5xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl tracking-wide sm:tracking-widest font-bold mb-2 leading-snug sm:leading-normal text-center"
                 initial={titlecolorAnimation.initial}
                 animate={titlecolorAnimation.animate}
                 transition={titlecolorAnimation.transition}
@@ -77,25 +77,25 @@ const Top: React.FC = () => {
 
             {/* リンクボタン - 横並びで中央揃え */}
             <div className="flex justify-center items-center pr-4 pb-20 m-9">
-    <div className="flex flex-col sm:flex-row space-y-6 sm:space-y-0 sm:space-x-10">
-        <Link to="/FilterSearchToile" className="btn Search flex items-center text-left text-highlight hover:text-foreground text-base sm:text-lg md:text-xl lg:text-2xl">
-            <img src="/images/IconSearch.png" alt="SearchImg" className="h-10 sm:h-18 md:h-15 w-auto mr-2" />
-            View All Toilet List
-        </Link>
-        <Link to="/Map" className="btn NewPost flex items-center text-left text-highlight hover:text-foreground text-base sm:text-lg md:text-xl lg:text-2xl">
-            <img src="/images/IconMap.png" alt="NewPostImg" className="h-10 sm:h-18 md:h-15 w-auto mr-2" />
-            View toilets using the map
-        </Link>
-        <Link to="/RegistrationRestroom" className="btn NewPost flex items-center text-left text-highlight hover:text-foreground text-base sm:text-lg md:text-xl lg:text-2xl">
-            <img src="/images/IconFound.png" alt="NewPostImg" className="h-10 sm:h-18 md:h-15 w-auto mr-2" />
-            Register a New Toilet
-        </Link>
-        <a href="#dashboard" className="btn Rate flex items-center text-left text-highlight hover:text-foreground text-base sm:text-lg md:text-xl lg:text-2xl">
-            <img src="/images/IconRate.png" alt="RateImg" className="h-10 sm:h-18 md:h-15 w-auto mr-2" />
-            Check the Dashboard
-        </a>
-    </div>
-</div>
+                <div className="flex flex-col sm:flex-row space-y-6 sm:space-y-0 sm:space-x-10 font-bold">
+                    <Link to="/FilterSearchToile" className="btn Search flex items-center text-left text-highlight hover:text-foreground text-base sm:text-lg md:text-xl lg:text-2xl">
+                        <img src="/images/IconSearch.png" alt="SearchImg" className="h-10 sm:h-18 md:h-15 w-auto mr-2" />
+                        View All Toilet List
+                    </Link>
+                    <Link to="/Map" className="btn NewPost flex items-center text-left text-highlight hover:text-foreground text-base sm:text-lg md:text-xl lg:text-2xl">
+                        <img src="/images/IconMap.png" alt="NewPostImg" className="h-10 sm:h-18 md:h-15 w-auto mr-2" />
+                        View toilets using the map
+                    </Link>
+                    <Link to="/RegistrationRestroom" className="btn NewPost flex items-center text-left text-highlight hover:text-foreground text-base sm:text-lg md:text-xl lg:text-2xl">
+                        <img src="/images/IconFound.png" alt="NewPostImg" className="h-10 sm:h-18 md:h-15 w-auto mr-2" />
+                        Register a New Toilet
+                    </Link>
+                    <a href="#dashboard" className="btn Rate flex items-center text-left text-highlight hover:text-foreground text-base sm:text-lg md:text-xl lg:text-2xl">
+                        <img src="/images/IconRate.png" alt="RateImg" className="h-10 sm:h-18 md:h-15 w-auto mr-2" />
+                        Check the Dashboard
+                    </a>
+                </div>
+            </div>
 
         </div>
     );

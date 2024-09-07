@@ -81,11 +81,11 @@ const ContactForm: React.FC = () => {
             <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
                 <DialogContent>
                     <DialogHeader>
-                        <DialogTitle className="text-2xl">{dialogTitle}</DialogTitle>
-                        <DialogDescription className="text-lg">{dialogMessage}</DialogDescription>
+                        <DialogTitle className="text-2xl text-white">{dialogTitle}</DialogTitle>
+                        <DialogDescription className="text-lg text-white">{dialogMessage}</DialogDescription>
                     </DialogHeader>
                     <DialogFooter>
-                        <Button onClick={() => setDialogOpen(false)} className="text-lg">Close</Button>
+                        <Button onClick={() => setDialogOpen(false)} className="text-lg text-white">Close</Button>
                     </DialogFooter>
                 </DialogContent>
             </Dialog>

@@ -47,6 +47,7 @@ const Header: React.FC = () => {
                         <Link className="hover:text-highlight leading-normal underline decoration-white active:scale-95 transition-transform duration-150 mb-2" to="/" onClick={() => setIsDrawerOpen(false)}>Home</Link>
                         <div className='text-3xl flex flex-col items-end leading-loose mt-5 mr-4'>
                             <Link className="hover:text-highlight underline decoration-white active:scale-95 transition-transform duration-150 mb-2" to="/map" onClick={() => setIsDrawerOpen(false)}>Map</Link>
+                            <Link className="hover:text-highlight underline decoration-white active:scale-95 transition-transform duration-150 mb-2" to="/FilterSearchToile" onClick={() => setIsDrawerOpen(false)}>All Toilet List</Link>
                             <Link className="hover:text-highlight underline decoration-white active:scale-95 transition-transform duration-150 mb-2" to="/contact" onClick={() => setIsDrawerOpen(false)}>Contact</Link>
                             <Link className="hover:text-highlight underline decoration-white active:scale-95 transition-transform duration-150 mb-2" to="/mypage" onClick={() => setIsDrawerOpen(false)}>MyPage</Link>
                             {user ? (

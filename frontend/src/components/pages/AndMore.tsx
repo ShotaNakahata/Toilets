@@ -21,10 +21,10 @@ const AndMore: React.FC = () => {
                     />
                     <div className="text-box w-full h-full flex flex-col justify-center">
                         <p className="text-white text-base sm:text-xl font-bold mb-2 sm:mb-4 overflow-hidden text-ellipsis">
-                            The best universal restroom
+                            The best accessible restroom
                         </p>
                         <p className="text-white text-sm sm:text-lg overflow-hidden text-ellipsis">
-                            You can view a list of highly rated universal restrooms here.
+                            You can view a list of highly rated accessible restrooms here.
                         </p>
                     </div>
                 </div>
