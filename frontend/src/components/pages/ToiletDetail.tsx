@@ -101,7 +101,7 @@ const ToiletDetail: React.FC = () => {
                     <h1 className='text-4xl text-white'>{toilet.name}</h1>
 
                     {/* ボタン要素✖️3を横並びで横長のデザインに変更し、smでのスタイルを調整 */}
-                    <div className="flex space-x-2 w-full sm:w-2/3"> {/* 親要素の幅を100%使用 */}
+                    <div className="flex space-x-2 w-full sm:w-2/3"> 
                         <button
                             onClick={() => navigate(-1)}
                             className="flex-1 border-2 border-white bg-background text-white rounded-full hover:bg-white hover:text-gray-800 transition-colors px-2 py-2 duration-300 text-sm sm:text-xs sm:px-4 sm:py-2">
@@ -109,11 +109,13 @@ const ToiletDetail: React.FC = () => {
                         </button>
 
                         {toilet.createdBy.toString() === user?._id && (
-                            <div className="flex-1 border-2 border-white bg-background text-white text-center rounded-full hover:bg-white hover:text-gray-800 transition-colors px-2 py-2 duration-300 text-sm sm:text-xs sm:px-4 sm:py-2">
+                            <div >
                                 <DeleteButton
                                     onConfirm={handleDelete}
                                     itemName="this toilet"
                                     buttonText="Delete Toilet"
+                                    className="flex-1 border-2 border-white bg-background text-white  rounded-full hover:bg-white hover:text-gray-800 transition-colors px-2 py-2 duration-300 text-sm sm:text-xs sm:px-4 sm:py-2"
+                                    
                                 />
                             </div>
                         )}

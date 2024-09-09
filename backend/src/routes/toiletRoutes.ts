@@ -92,14 +92,40 @@ router.post('/register', isAuthenticated, async (req: Request, res: Response) =>
 });
 
 // 全てのトイレ情報を取得するルート
+// router.get('/', async (req: Request, res: Response) => {
+//     try {
+//         const toilets = await Toilet.find();
+//         res.status(200).json(toilets);
+//     } catch (error) {
+//         res.status(500).send({ message: 'Failed to fetch toilets', error });
+//     }
+// });
 router.get('/', async (req: Request, res: Response) => {
     try {
-        const toilets = await Toilet.find();
-        res.status(200).json(toilets);
+        const { page = 1, limit = 10 } = req.query;
+        const pageNum = parseInt(page as string, 10);
+        const limitNum = parseInt(limit as string, 10);
+
+        const toilets = await Toilet.find()
+            .skip((pageNum - 1) * limitNum)
+            .limit(limitNum);
+
+        const totalToilets = await Toilet.countDocuments(); // トイレの総数を取得
+
+        res.status(200).json({ toilets, totalToilets });
     } catch (error) {
         res.status(500).send({ message: 'Failed to fetch toilets', error });
     }
 });
+
+
+
+
+
+
+
+
+
 
 
 //国別トイレ情報の取得

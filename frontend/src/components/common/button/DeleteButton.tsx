@@ -7,6 +7,7 @@ interface DeleteButtonProps {
     buttonText?: string;
     confirmText?: string;
     cancelText?: string;
+    className?: string;  // className を受け取るためのプロパティを追加
 }
 
 const DeleteButton: React.FC<DeleteButtonProps> = ({
@@ -15,6 +16,7 @@ const DeleteButton: React.FC<DeleteButtonProps> = ({
     buttonText = "Delete",
     confirmText = "Yes",
     cancelText = "No",
+    className,  // 受け取った className を使えるようにする
 }) => {
     const [isDialogOpen, setDialogOpen] = useState(false);
     const handleOpenDialog = () => setDialogOpen(true);
@@ -29,6 +31,7 @@ const DeleteButton: React.FC<DeleteButtonProps> = ({
         <>
             <button 
                 onClick={handleOpenDialog}
+                className={`w-full px-4 py-2 bg-background text-white rounded-full hover:bg-white hover:text-gray-800 transition-colors duration-300 ${className}`}  // className を適用
             >
                 {buttonText}
             </button>
@@ -46,4 +49,6 @@ const DeleteButton: React.FC<DeleteButtonProps> = ({
 };
 
 export default DeleteButton;
+
+
 
