@@ -33,3 +33,5 @@ dist-ssr
 
 # Storybook logs
 *storybook.log
+# Exclude backend/src/scripts from git
+/backend/src/scripts/
