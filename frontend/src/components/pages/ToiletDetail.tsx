@@ -126,7 +126,7 @@ const ToiletDetail: React.FC = () => {
                     <div className='text-3xl text-white leading-normal'>
                         <p>Rating: {toilet.rating}</p>
                         <p>Average Rating: {toilet.averageRating.toFixed(1)}</p>
-                        <p>Universal: {toilet.universal ? "Yes" : "No"}</p>
+                        <p>Accessible: {toilet.universal ? "Yes" : "No"}</p>
                         <p>Address: {toilet.address}</p>
                     </div>
                 </div>

@@ -91,9 +91,20 @@ router.post('/register', isAuthenticated, async (req: Request, res: Response) =>
     }
 });
 
+// すべてのトイレ情報を取得
 router.get('/', async (req: Request, res: Response) => {
     try {
-        const { page = 1, limit = 10 } = req.query;
+        const toilets = await Toilet.find(); // すべてのトイレを取得
+        res.status(200).json(toilets);
+    } catch (error) {
+        res.status(500).send({ message: 'Failed to fetch toilets', error });
+    }
+});
+
+//filterを行うことを前提のエンドポイント
+router.get('/filtered', async (req: Request, res: Response) => {
+    try {
+        const { page = 1, limit = 30 } = req.query;
         const pageNum = parseInt(page as string, 10);
         const limitNum = parseInt(limit as string, 10);
 
@@ -108,46 +119,6 @@ router.get('/', async (req: Request, res: Response) => {
         res.status(500).send({ message: 'Failed to fetch toilets', error });
     }
 });
-// router.get('/', async (req: Request, res: Response) => {
-//     try {
-//         const { page = 1, limit = 10, country, universal, topRated } = req.query;
-//         const pageNum = parseInt(page as string, 10);
-//         const limitNum = parseInt(limit as string, 10);
-
-//         const query: any = {};
-
-//         // 国フィルタが指定されている場合
-//         if (country && country !== 'All Country') {
-//             query.country = country;
-//         }
-
-//         // ユニバーサルトイレフィルタ
-//         if (universal === 'true') {
-//             query.universal = true;
-//         }
-
-//         // トイレ情報の検索クエリ
-//         let toilets = await Toilet.find(query)
-//             .skip((pageNum - 1) * limitNum)
-//             .limit(limitNum);
-
-//         // トップレートフィルタ
-//         if (topRated === 'true') {
-//             toilets = toilets.sort((a, b) => b.rating - a.rating);
-//         }
-
-//         const totalToilets = await Toilet.countDocuments(query); // フィルタに基づいた総トイレ数を取得
-
-//         res.status(200).json({ toilets, totalToilets });
-//     } catch (error) {
-//         res.status(500).send({ message: 'Failed to fetch toilets', error });
-//     }
-// });
-
-
-
-
-
 
 //国別トイレ情報の取得
 router.get("/country-summary", async (req: Request, res: Response) => {
@@ -291,6 +262,77 @@ router.delete("/:id", isAuthenticated, async (req: Request, response: Response) 
         response.status(500).send({ message: 'Failed to delete toilet', error });
     }
 });
+
+// bulk登録用のルートを追加
+router.post('/bulk-register', isAuthenticated, async (req: Request, res: Response) => {
+    const { toilets } = req.body;  // 複数のトイレ情報を受け取る
+    if (!Array.isArray(toilets) || toilets.length === 0) {
+        return res.status(400).send({ message: 'Invalid input data' });
+    }
+
+    try {
+        const createdToilets = [];
+
+        for (const toiletData of toilets) {
+            const { name, address, rating, universal, initialComment } = toiletData;
+
+            const geoData = await geocoder.geocode(address);
+            if (!geoData || geoData.length === 0) {
+                continue;  // 無効な住所がある場合はスキップ
+            }
+
+            const { latitude, longitude, country } = geoData[0];
+
+            const existingToilet = await Toilet.findOne({
+                lat: latitude,
+                lng: longitude,
+            });
+            if (existingToilet) {
+                continue;  // 既に登録されているトイレはスキップ
+            }
+
+            const user = await UserModel.findById(req.session.userId);
+            if (!user) {
+                return res.status(404).send({ message: 'User not found' });
+            }
+
+            // Mongooseが型推論できるようにnew Toiletを直接使用
+            const newToilet = new Toilet({
+                name,
+                address,
+                rating,
+                universal,
+                lat: latitude,
+                lng: longitude,
+                country,
+                totalRatingsCount: 1,
+                totalRatingScore: rating,
+                averageRating: rating,
+                createdBy: user._id
+            });
+
+            await newToilet.save();
+
+            if (initialComment) {
+                const newComment = new Comment({
+                    user: user.username,
+                    comment: initialComment,
+                    rating,
+                    toilet: newToilet._id
+                });
+                await newComment.save();
+            }
+
+            createdToilets.push(newToilet);
+        }
+
+        res.status(201).send({ message: `${createdToilets.length} toilets registered successfully`, createdToilets });
+
+    } catch (error) {
+        res.status(500).send({ message: 'Failed to bulk register toilets', error });
+    }
+});
+
 
 
 // //：dev環境only------------------------------
