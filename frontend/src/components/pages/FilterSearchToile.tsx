@@ -6,7 +6,7 @@ import FavoriteButton from "../common/FavoriteButton";
 import * as Checkbox from '@radix-ui/react-checkbox';
 import * as Label from '@radix-ui/react-label';
 import * as Dialog from '@radix-ui/react-dialog';
-import { CheckIcon } from '@heroicons/react/24/outline';  // Heroicons v2に対応
+import { CheckIcon } from '@heroicons/react/24/outline';  
 
 interface Toilet {
     _id: string;
@@ -108,11 +108,16 @@ const FilterSearchToile: React.FC = () => {
         <div className="bg-background min-h-screen pt-20">
             <div className="container-SearchToile mx-auto p-6">
                 <div className="SearchToile-wrapper bg-background p-6 rounded-lg shadow-md">
-                    <h1 className="text-6xl font-bold text-white mb-5">Restroom list</h1>
+                    <h1 className="text-6xl font-bold text-white mb-2">Restroom list</h1>
+                    <Link to="/" className="underline text-2xl  text-white bg-background hover:text-highlight 
+                    rounded-lg  transition-colors">
+                            Return to Home
+                        </Link>
                     
                     {/* PC用フィルター - 横並び */}
-                    <div className="hidden md:flex items-center space-x-4 text-xl  text-white">
+                    <div className="mt-5 hidden md:flex items-center space-x-4 text-xl  text-white">
                     <h3 className="">Filter Option: </h3>
+                    
                         <div>
                             <Label.Root className="text-white">
                                 Top Rated
@@ -141,7 +146,7 @@ const FilterSearchToile: React.FC = () => {
                     </div>
 
                     {/* モバイル用フィルターモーダル */}
-                    <div className="md:hidden">
+                    <div className="md:hidden mt-5 ">
                         <Dialog.Root>
                             <Dialog.Trigger className="bg-white text-background rounded-lg px-4 py-2">
                                 Filter Options
@@ -209,7 +214,7 @@ const FilterSearchToile: React.FC = () => {
                             ))}
                         </div>
                     )}
-                    {!hasMore && <p className="text-center text-gray-500 mt-4">No more toilets to load</p>}
+                    {!hasMore && <p className="text-center text-red-700 text-2xl font-bold  mt-4">No more toilets to load</p>}
                 </div>
             </div>
         </div>

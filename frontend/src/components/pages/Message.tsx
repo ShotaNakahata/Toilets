@@ -2,7 +2,7 @@ import React from 'react';
 
 const Message: React.FC = () => {
     return (
-        <div className="bg-background text-white pt-10 pb-3 sm:py-20">
+        <div className="bg-background text-white sm:pt-5 pb-3 sm:py-20">
             <div className="container mx-auto text-center px-4">
                 {/* メッセージヘッダー */}
                 <h2 className="text-1xl sm:text-4xl font-bold mb-4 sm:mb-8">
