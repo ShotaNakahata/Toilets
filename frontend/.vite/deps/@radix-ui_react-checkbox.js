@@ -1,11 +1,16 @@
 "use client";
 import {
-  Presence,
+  usePrevious,
+  useSize
+} from "./chunk-3D57A5YM.js";
+import {
+  Presence
+} from "./chunk-FTW5CP4E.js";
+import {
   composeEventHandlers,
   createContextScope,
-  useControllableState,
-  useLayoutEffect2
-} from "./chunk-DX4KA26J.js";
+  useControllableState
+} from "./chunk-L22DKSQ4.js";
 import {
   Primitive
 } from "./chunk-7JRKZPPX.js";
@@ -24,64 +29,12 @@ import {
 } from "./chunk-V4OQ3NZ2.js";
 
 // node_modules/@radix-ui/react-checkbox/dist/index.mjs
-var React3 = __toESM(require_react(), 1);
-
-// node_modules/@radix-ui/react-use-previous/dist/index.mjs
 var React = __toESM(require_react(), 1);
-function usePrevious(value) {
-  const ref = React.useRef({ value, previous: value });
-  return React.useMemo(() => {
-    if (ref.current.value !== value) {
-      ref.current.previous = ref.current.value;
-      ref.current.value = value;
-    }
-    return ref.current.previous;
-  }, [value]);
-}
-
-// node_modules/@radix-ui/react-use-size/dist/index.mjs
-var React2 = __toESM(require_react(), 1);
-function useSize(element) {
-  const [size, setSize] = React2.useState(void 0);
-  useLayoutEffect2(() => {
-    if (element) {
-      setSize({ width: element.offsetWidth, height: element.offsetHeight });
-      const resizeObserver = new ResizeObserver((entries) => {
-        if (!Array.isArray(entries)) {
-          return;
-        }
-        if (!entries.length) {
-          return;
-        }
-        const entry = entries[0];
-        let width;
-        let height;
-        if ("borderBoxSize" in entry) {
-          const borderSizeEntry = entry["borderBoxSize"];
-          const borderSize = Array.isArray(borderSizeEntry) ? borderSizeEntry[0] : borderSizeEntry;
-          width = borderSize["inlineSize"];
-          height = borderSize["blockSize"];
-        } else {
-          width = element.offsetWidth;
-          height = element.offsetHeight;
-        }
-        setSize({ width, height });
-      });
-      resizeObserver.observe(element, { box: "border-box" });
-      return () => resizeObserver.unobserve(element);
-    } else {
-      setSize(void 0);
-    }
-  }, [element]);
-  return size;
-}
-
-// node_modules/@radix-ui/react-checkbox/dist/index.mjs
 var import_jsx_runtime = __toESM(require_jsx_runtime(), 1);
 var CHECKBOX_NAME = "Checkbox";
 var [createCheckboxContext, createCheckboxScope] = createContextScope(CHECKBOX_NAME);
 var [CheckboxProvider, useCheckboxContext] = createCheckboxContext(CHECKBOX_NAME);
-var Checkbox = React3.forwardRef(
+var Checkbox = React.forwardRef(
   (props, forwardedRef) => {
     const {
       __scopeCheckbox,
@@ -94,17 +47,17 @@ var Checkbox = React3.forwardRef(
       onCheckedChange,
       ...checkboxProps
     } = props;
-    const [button, setButton] = React3.useState(null);
+    const [button, setButton] = React.useState(null);
     const composedRefs = useComposedRefs(forwardedRef, (node) => setButton(node));
-    const hasConsumerStoppedPropagationRef = React3.useRef(false);
+    const hasConsumerStoppedPropagationRef = React.useRef(false);
     const isFormControl = button ? Boolean(button.closest("form")) : true;
     const [checked = false, setChecked] = useControllableState({
       prop: checkedProp,
       defaultProp: defaultChecked,
       onChange: onCheckedChange
     });
-    const initialCheckedStateRef = React3.useRef(checked);
-    React3.useEffect(() => {
+    const initialCheckedStateRef = React.useRef(checked);
+    React.useEffect(() => {
       const form = button == null ? void 0 : button.form;
       if (form) {
         const reset = () => setChecked(initialCheckedStateRef.current);
@@ -156,7 +109,7 @@ var Checkbox = React3.forwardRef(
 );
 Checkbox.displayName = CHECKBOX_NAME;
 var INDICATOR_NAME = "CheckboxIndicator";
-var CheckboxIndicator = React3.forwardRef(
+var CheckboxIndicator = React.forwardRef(
   (props, forwardedRef) => {
     const { __scopeCheckbox, forceMount, ...indicatorProps } = props;
     const context = useCheckboxContext(INDICATOR_NAME, __scopeCheckbox);
@@ -175,10 +128,10 @@ var CheckboxIndicator = React3.forwardRef(
 CheckboxIndicator.displayName = INDICATOR_NAME;
 var BubbleInput = (props) => {
   const { control, checked, bubbles = true, ...inputProps } = props;
-  const ref = React3.useRef(null);
+  const ref = React.useRef(null);
   const prevChecked = usePrevious(checked);
   const controlSize = useSize(control);
-  React3.useEffect(() => {
+  React.useEffect(() => {
     const input = ref.current;
     const inputProto = window.HTMLInputElement.prototype;
     const descriptor = Object.getOwnPropertyDescriptor(inputProto, "checked");

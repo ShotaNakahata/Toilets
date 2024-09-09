@@ -91,15 +91,6 @@ router.post('/register', isAuthenticated, async (req: Request, res: Response) =>
     }
 });
 
-// 全てのトイレ情報を取得するルート
-// router.get('/', async (req: Request, res: Response) => {
-//     try {
-//         const toilets = await Toilet.find();
-//         res.status(200).json(toilets);
-//     } catch (error) {
-//         res.status(500).send({ message: 'Failed to fetch toilets', error });
-//     }
-// });
 router.get('/', async (req: Request, res: Response) => {
     try {
         const { page = 1, limit = 10 } = req.query;
@@ -117,11 +108,41 @@ router.get('/', async (req: Request, res: Response) => {
         res.status(500).send({ message: 'Failed to fetch toilets', error });
     }
 });
+// router.get('/', async (req: Request, res: Response) => {
+//     try {
+//         const { page = 1, limit = 10, country, universal, topRated } = req.query;
+//         const pageNum = parseInt(page as string, 10);
+//         const limitNum = parseInt(limit as string, 10);
 
+//         const query: any = {};
 
+//         // 国フィルタが指定されている場合
+//         if (country && country !== 'All Country') {
+//             query.country = country;
+//         }
 
+//         // ユニバーサルトイレフィルタ
+//         if (universal === 'true') {
+//             query.universal = true;
+//         }
 
+//         // トイレ情報の検索クエリ
+//         let toilets = await Toilet.find(query)
+//             .skip((pageNum - 1) * limitNum)
+//             .limit(limitNum);
 
+//         // トップレートフィルタ
+//         if (topRated === 'true') {
+//             toilets = toilets.sort((a, b) => b.rating - a.rating);
+//         }
+
+//         const totalToilets = await Toilet.countDocuments(query); // フィルタに基づいた総トイレ数を取得
+
+//         res.status(200).json({ toilets, totalToilets });
+//     } catch (error) {
+//         res.status(500).send({ message: 'Failed to fetch toilets', error });
+//     }
+// });
 
 
 
