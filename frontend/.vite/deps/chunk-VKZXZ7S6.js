@@ -5,10 +5,7 @@ import {
   FocusTrap,
   Portal,
   useModal
-} from "./chunk-LYAWBTMB.js";
-import {
-  require_react_dom
-} from "./chunk-ZZLBGYQN.js";
+} from "./chunk-MRQYDTNJ.js";
 import {
   areArraysEqual,
   extractEventHandlers,
@@ -18,6 +15,9 @@ import {
   useRootElementName,
   useSlotProps
 } from "./chunk-ECFQEO3L.js";
+import {
+  require_react_dom
+} from "./chunk-ZZLBGYQN.js";
 import {
   HTMLElementType,
   chainPropTypes,
@@ -10572,4 +10572,4 @@ export {
    * LICENSE file in the root directory of this source tree.
    *)
 */
-//# sourceMappingURL=chunk-MSG72YL7.js.map
+//# sourceMappingURL=chunk-VKZXZ7S6.js.map

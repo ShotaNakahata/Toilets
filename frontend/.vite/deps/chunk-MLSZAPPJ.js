@@ -1,18 +1,14 @@
 import {
-  getDialogTitleUtilityClass
+  dialogTitleClasses_default
 } from "./chunk-RQZC2JLI.js";
-import {
-  Typography_default
-} from "./chunk-LEWGFVRW.js";
-import {
-  DialogContext_default
-} from "./chunk-MOPZKHCL.js";
 import {
   styled_default,
   useDefaultProps
-} from "./chunk-T74OHSDF.js";
+} from "./chunk-FHGEBVXJ.js";
 import {
-  composeClasses
+  composeClasses,
+  generateUtilityClass,
+  generateUtilityClasses
 } from "./chunk-TDVMSAXG.js";
 import {
   _extends,
@@ -33,53 +29,78 @@ import {
   __toESM
 } from "./chunk-V4OQ3NZ2.js";
 
-// node_modules/@mui/material/DialogTitle/DialogTitle.js
+// node_modules/@mui/material/DialogContent/DialogContent.js
 init_extends();
 var React = __toESM(require_react());
 var import_prop_types = __toESM(require_prop_types());
+
+// node_modules/@mui/material/DialogContent/dialogContentClasses.js
+function getDialogContentUtilityClass(slot) {
+  return generateUtilityClass("MuiDialogContent", slot);
+}
+var dialogContentClasses = generateUtilityClasses("MuiDialogContent", ["root", "dividers"]);
+var dialogContentClasses_default = dialogContentClasses;
+
+// node_modules/@mui/material/DialogContent/DialogContent.js
 var import_jsx_runtime = __toESM(require_jsx_runtime());
-var _excluded = ["className", "id"];
+var _excluded = ["className", "dividers"];
 var useUtilityClasses = (ownerState) => {
   const {
-    classes
+    classes,
+    dividers
   } = ownerState;
   const slots = {
-    root: ["root"]
+    root: ["root", dividers && "dividers"]
   };
-  return composeClasses(slots, getDialogTitleUtilityClass, classes);
+  return composeClasses(slots, getDialogContentUtilityClass, classes);
 };
-var DialogTitleRoot = styled_default(Typography_default, {
-  name: "MuiDialogTitle",
+var DialogContentRoot = styled_default("div", {
+  name: "MuiDialogContent",
   slot: "Root",
-  overridesResolver: (props, styles) => styles.root
-})({
+  overridesResolver: (props, styles) => {
+    const {
+      ownerState
+    } = props;
+    return [styles.root, ownerState.dividers && styles.dividers];
+  }
+})(({
+  theme,
+  ownerState
+}) => _extends({
+  flex: "1 1 auto",
+  // Add iOS momentum scrolling for iOS < 13.0
+  WebkitOverflowScrolling: "touch",
+  overflowY: "auto",
+  padding: "20px 24px"
+}, ownerState.dividers ? {
   padding: "16px 24px",
-  flex: "0 0 auto"
-});
-var DialogTitle = React.forwardRef(function DialogTitle2(inProps, ref) {
+  borderTop: `1px solid ${(theme.vars || theme).palette.divider}`,
+  borderBottom: `1px solid ${(theme.vars || theme).palette.divider}`
+} : {
+  [`.${dialogTitleClasses_default.root} + &`]: {
+    paddingTop: 0
+  }
+}));
+var DialogContent = React.forwardRef(function DialogContent2(inProps, ref) {
   const props = useDefaultProps({
     props: inProps,
-    name: "MuiDialogTitle"
+    name: "MuiDialogContent"
   });
   const {
     className,
-    id: idProp
+    dividers = false
   } = props, other = _objectWithoutPropertiesLoose(props, _excluded);
-  const ownerState = props;
+  const ownerState = _extends({}, props, {
+    dividers
+  });
   const classes = useUtilityClasses(ownerState);
-  const {
-    titleId = idProp
-  } = React.useContext(DialogContext_default);
-  return (0, import_jsx_runtime.jsx)(DialogTitleRoot, _extends({
-    component: "h2",
+  return (0, import_jsx_runtime.jsx)(DialogContentRoot, _extends({
     className: clsx_default(classes.root, className),
     ownerState,
-    ref,
-    variant: "h6",
-    id: idProp != null ? idProp : titleId
+    ref
   }, other));
 });
-true ? DialogTitle.propTypes = {
+true ? DialogContent.propTypes = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐
   // │ These PropTypes are generated from the TypeScript type definitions. │
   // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
@@ -97,17 +118,20 @@ true ? DialogTitle.propTypes = {
    */
   className: import_prop_types.default.string,
   /**
-   * @ignore
+   * Display the top and bottom dividers.
+   * @default false
    */
-  id: import_prop_types.default.string,
+  dividers: import_prop_types.default.bool,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: import_prop_types.default.oneOfType([import_prop_types.default.arrayOf(import_prop_types.default.oneOfType([import_prop_types.default.func, import_prop_types.default.object, import_prop_types.default.bool])), import_prop_types.default.func, import_prop_types.default.object])
 } : void 0;
-var DialogTitle_default = DialogTitle;
+var DialogContent_default = DialogContent;
 
 export {
-  DialogTitle_default
+  getDialogContentUtilityClass,
+  dialogContentClasses_default,
+  DialogContent_default
 };
-//# sourceMappingURL=chunk-SGF6M275.js.map
+//# sourceMappingURL=chunk-MLSZAPPJ.js.map

@@ -1,5 +1,4 @@
 import {
-  Slot,
   useComposedRefs
 } from "./chunk-32CKJ62Y.js";
 import {
@@ -163,50 +162,12 @@ function useUncontrolledState({
   return uncontrolledState;
 }
 
-// node_modules/@radix-ui/react-primitive/dist/index.mjs
-var React5 = __toESM(require_react(), 1);
-var ReactDOM = __toESM(require_react_dom(), 1);
-var import_jsx_runtime2 = __toESM(require_jsx_runtime(), 1);
-var NODES = [
-  "a",
-  "button",
-  "div",
-  "form",
-  "h2",
-  "h3",
-  "img",
-  "input",
-  "label",
-  "li",
-  "nav",
-  "ol",
-  "p",
-  "span",
-  "svg",
-  "ul"
-];
-var Primitive = NODES.reduce((primitive, node) => {
-  const Node = React5.forwardRef((props, forwardedRef) => {
-    const { asChild, ...primitiveProps } = props;
-    const Comp = asChild ? Slot : node;
-    if (typeof window !== "undefined") {
-      window[Symbol.for("radix-ui")] = true;
-    }
-    return (0, import_jsx_runtime2.jsx)(Comp, { ...primitiveProps, ref: forwardedRef });
-  });
-  Node.displayName = `Primitive.${node}`;
-  return { ...primitive, [node]: Node };
-}, {});
-function dispatchDiscreteCustomEvent(target, event) {
-  if (target) ReactDOM.flushSync(() => target.dispatchEvent(event));
-}
-
 // node_modules/@radix-ui/react-presence/dist/index.mjs
 var React22 = __toESM(require_react(), 1);
-var ReactDOM2 = __toESM(require_react_dom(), 1);
-var React6 = __toESM(require_react(), 1);
+var ReactDOM = __toESM(require_react_dom(), 1);
+var React5 = __toESM(require_react(), 1);
 function useStateMachine(initialState, machine) {
-  return React6.useReducer((state, event) => {
+  return React5.useReducer((state, event) => {
     const nextState = machine[state][event];
     return nextState ?? state;
   }, initialState);
@@ -271,7 +232,7 @@ function usePresence(present) {
         const currentAnimationName = getAnimationName(stylesRef.current);
         const isCurrentAnimation = currentAnimationName.includes(event.animationName);
         if (event.target === node && isCurrentAnimation) {
-          ReactDOM2.flushSync(() => send("ANIMATION_END"));
+          ReactDOM.flushSync(() => send("ANIMATION_END"));
         }
       };
       const handleAnimationStart = (event) => {
@@ -324,8 +285,6 @@ export {
   useLayoutEffect2,
   useCallbackRef,
   useControllableState,
-  Primitive,
-  dispatchDiscreteCustomEvent,
   Presence
 };
-//# sourceMappingURL=chunk-2K3XDRAV.js.map
+//# sourceMappingURL=chunk-DX4KA26J.js.map

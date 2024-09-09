@@ -20,8 +20,8 @@ import {
   init_extends,
   require_prop_types
 } from "./chunk-SYK64CCQ.js";
-import "./chunk-WOXLFYKR.js";
 import "./chunk-KDVGFZWC.js";
+import "./chunk-WOXLFYKR.js";
 import {
   require_jsx_runtime
 } from "./chunk-JO3Y3TZY.js";
