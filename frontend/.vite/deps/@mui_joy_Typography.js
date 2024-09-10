@@ -5,7 +5,7 @@ import {
   styled_default,
   useSlot,
   useThemeProps
-} from "./chunk-L5RZXDLA.js";
+} from "./chunk-7VQEJV2N.js";
 import {
   isMuiElement
 } from "./chunk-HRL6TTFQ.js";

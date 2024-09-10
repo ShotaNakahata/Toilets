@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useMapState } from "../../context/MapStateContext";
 
-// const apiKey = 'AIzaSyC7RC-zjoKH6t747hf6PKsgt779F5LpXlY';
+
 const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY as string;
 
 const libraries: ('places' | 'drawing' | 'geometry' | 'visualization')[] = ['places'];

@@ -129,24 +129,24 @@ const RegistrationRestroom: React.FC<RegistrationRestroomProps> = ({ onNewToilet
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         required
-                        className="text-lg"
+                        className="text-lg text-white"
                     />
                 </div>
                 <div>
                     <label className="block text-lg font-medium text-white">Address:</label>
                     <Input
-                        type="text"
+                        type="text "
                         value={address}
                         onChange={(e) => setAddress(e.target.value)}
                         required
-                        className="text-lg"
+                        className="text-lg text-white"
                     />
                 </div>
                 <div>
                     <label className="block text-lg font-medium text-white">Rating:</label>
                     <StarRating rating={rating} setRating={setRating} />
                 </div>
-                <div className="flex items-center">
+                <div className="flex items-center ">
                     <input
                         type="checkbox"
                         checked={universal}
@@ -160,7 +160,7 @@ const RegistrationRestroom: React.FC<RegistrationRestroomProps> = ({ onNewToilet
                     <Textarea
                         value={initialComment}
                         onChange={(e) => setInitialComment(e.target.value)}
-                        className="text-lg"
+                        className="text-lg text-white"
                     />
                 </div>
                 <Button type="submit" className="text-lg p-3 text-white border-2 border-white hover:bg-white hover:text-gray-800">
