@@ -71,7 +71,7 @@ const Top: React.FC = () => {
 
             {/* 説明文 */}
             <div className='text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-center mt-2 sm:mt-10 px-4'>
-                <p className="mb-2">This website allows you to easily find nearby toilets and detailed information.</p>
+                <p className="mb-2">This website allows you to easily find nearby Restrooms and detailed information.</p>
                 <p className="mb-8">Accessible options are also available, making it convenient <br />for those who need special facilities.</p>
             </div>
 
@@ -80,15 +80,15 @@ const Top: React.FC = () => {
                 <div className="flex flex-col sm:flex-row space-y-6 sm:space-y-0 sm:space-x-10 font-bold">
                     <Link to="/FilterSearchToile" className="btn Search flex items-center text-left text-highlight hover:text-foreground text-base sm:text-lg md:text-xl lg:text-2xl">
                         <img src="/images/IconSearch.png" alt="SearchImg" className="h-10 sm:h-18 md:h-15 w-auto mr-2" />
-                        View All Toilet List
+                        View All Restroom List
                     </Link>
                     <Link to="/Map" className="btn NewPost flex items-center text-left text-highlight hover:text-foreground text-base sm:text-lg md:text-xl lg:text-2xl">
                         <img src="/images/IconMap.png" alt="NewPostImg" className="h-10 sm:h-18 md:h-15 w-auto mr-2" />
-                        View toilets using the map
+                        View Restroom Using The Map
                     </Link>
                     <Link to="/RegistrationRestroom" className="btn NewPost flex items-center text-left text-highlight hover:text-foreground text-base sm:text-lg md:text-xl lg:text-2xl">
                         <img src="/images/IconFound.png" alt="NewPostImg" className="h-10 sm:h-18 md:h-15 w-auto mr-2" />
-                        Register a New Toilet
+                        Register a New Restroom
                     </Link>
                     <a href="#dashboard" className="btn Rate flex items-center text-left text-highlight hover:text-foreground text-base sm:text-lg md:text-xl lg:text-2xl">
                         <img src="/images/IconRate.png" alt="RateImg" className="h-10 sm:h-18 md:h-15 w-auto mr-2" />
