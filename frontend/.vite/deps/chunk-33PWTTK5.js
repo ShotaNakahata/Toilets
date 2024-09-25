@@ -1,7 +1,11 @@
 import {
+  Typography_default
+} from "./chunk-EPDDBBS3.js";
+import {
+  rootShouldForwardProp_default,
   styled_default,
   useDefaultProps
-} from "./chunk-I4HWA2U3.js";
+} from "./chunk-NYNACTTM.js";
 import {
   composeClasses,
   generateUtilityClass,
@@ -26,73 +30,58 @@ import {
   __toESM
 } from "./chunk-V4OQ3NZ2.js";
 
-// node_modules/@mui/material/DialogActions/DialogActions.js
+// node_modules/@mui/material/DialogContentText/DialogContentText.js
 init_extends();
 var React = __toESM(require_react());
 var import_prop_types = __toESM(require_prop_types());
 
-// node_modules/@mui/material/DialogActions/dialogActionsClasses.js
-function getDialogActionsUtilityClass(slot) {
-  return generateUtilityClass("MuiDialogActions", slot);
+// node_modules/@mui/material/DialogContentText/dialogContentTextClasses.js
+function getDialogContentTextUtilityClass(slot) {
+  return generateUtilityClass("MuiDialogContentText", slot);
 }
-var dialogActionsClasses = generateUtilityClasses("MuiDialogActions", ["root", "spacing"]);
-var dialogActionsClasses_default = dialogActionsClasses;
+var dialogContentTextClasses = generateUtilityClasses("MuiDialogContentText", ["root"]);
+var dialogContentTextClasses_default = dialogContentTextClasses;
 
-// node_modules/@mui/material/DialogActions/DialogActions.js
+// node_modules/@mui/material/DialogContentText/DialogContentText.js
 var import_jsx_runtime = __toESM(require_jsx_runtime());
-var _excluded = ["className", "disableSpacing"];
+var _excluded = ["children", "className"];
 var useUtilityClasses = (ownerState) => {
   const {
-    classes,
-    disableSpacing
+    classes
   } = ownerState;
   const slots = {
-    root: ["root", !disableSpacing && "spacing"]
+    root: ["root"]
   };
-  return composeClasses(slots, getDialogActionsUtilityClass, classes);
+  const composedClasses = composeClasses(slots, getDialogContentTextUtilityClass, classes);
+  return _extends({}, classes, composedClasses);
 };
-var DialogActionsRoot = styled_default("div", {
-  name: "MuiDialogActions",
+var DialogContentTextRoot = styled_default(Typography_default, {
+  shouldForwardProp: (prop) => rootShouldForwardProp_default(prop) || prop === "classes",
+  name: "MuiDialogContentText",
   slot: "Root",
-  overridesResolver: (props, styles) => {
-    const {
-      ownerState
-    } = props;
-    return [styles.root, !ownerState.disableSpacing && styles.spacing];
-  }
-})(({
-  ownerState
-}) => _extends({
-  display: "flex",
-  alignItems: "center",
-  padding: 8,
-  justifyContent: "flex-end",
-  flex: "0 0 auto"
-}, !ownerState.disableSpacing && {
-  "& > :not(style) ~ :not(style)": {
-    marginLeft: 8
-  }
-}));
-var DialogActions = React.forwardRef(function DialogActions2(inProps, ref) {
+  overridesResolver: (props, styles) => styles.root
+})({});
+var DialogContentText = React.forwardRef(function DialogContentText2(inProps, ref) {
   const props = useDefaultProps({
     props: inProps,
-    name: "MuiDialogActions"
+    name: "MuiDialogContentText"
   });
   const {
-    className,
-    disableSpacing = false
-  } = props, other = _objectWithoutPropertiesLoose(props, _excluded);
-  const ownerState = _extends({}, props, {
-    disableSpacing
-  });
+    className
+  } = props, ownerState = _objectWithoutPropertiesLoose(props, _excluded);
   const classes = useUtilityClasses(ownerState);
-  return (0, import_jsx_runtime.jsx)(DialogActionsRoot, _extends({
-    className: clsx_default(classes.root, className),
+  return (0, import_jsx_runtime.jsx)(DialogContentTextRoot, _extends({
+    component: "p",
+    variant: "body1",
+    color: "text.secondary",
+    ref,
     ownerState,
-    ref
-  }, other));
+    className: clsx_default(classes.root, className)
+  }, props, {
+    classes
+  }));
 });
-true ? DialogActions.propTypes = {
+true ? DialogContentText.propTypes = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐
   // │ These PropTypes are generated from the TypeScript type definitions. │
   // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
@@ -110,20 +99,15 @@ true ? DialogActions.propTypes = {
    */
   className: import_prop_types.default.string,
   /**
-   * If `true`, the actions do not have additional margin.
-   * @default false
-   */
-  disableSpacing: import_prop_types.default.bool,
-  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: import_prop_types.default.oneOfType([import_prop_types.default.arrayOf(import_prop_types.default.oneOfType([import_prop_types.default.func, import_prop_types.default.object, import_prop_types.default.bool])), import_prop_types.default.func, import_prop_types.default.object])
 } : void 0;
-var DialogActions_default = DialogActions;
+var DialogContentText_default = DialogContentText;
 
 export {
-  getDialogActionsUtilityClass,
-  dialogActionsClasses_default,
-  DialogActions_default
+  getDialogContentTextUtilityClass,
+  dialogContentTextClasses_default,
+  DialogContentText_default
 };
-//# sourceMappingURL=chunk-BID6HHYQ.js.map
+//# sourceMappingURL=chunk-33PWTTK5.js.map

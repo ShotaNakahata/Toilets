@@ -4,7 +4,7 @@ import {
 import {
   styled_default,
   useDefaultProps
-} from "./chunk-I4HWA2U3.js";
+} from "./chunk-NYNACTTM.js";
 import {
   composeClasses,
   generateUtilityClass,
@@ -134,4 +134,4 @@ export {
   dialogContentClasses_default,
   DialogContent_default
 };
-//# sourceMappingURL=chunk-D27NAOXD.js.map
+//# sourceMappingURL=chunk-3XRF2EGB.js.map

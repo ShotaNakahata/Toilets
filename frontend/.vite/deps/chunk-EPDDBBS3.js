@@ -4,7 +4,7 @@ import {
 import {
   styled_default,
   useDefaultProps
-} from "./chunk-I4HWA2U3.js";
+} from "./chunk-NYNACTTM.js";
 import {
   composeClasses,
   extendSxProp,
@@ -229,4 +229,4 @@ export {
   typographyClasses_default,
   Typography_default
 };
-//# sourceMappingURL=chunk-SIJ2DI3X.js.map
+//# sourceMappingURL=chunk-EPDDBBS3.js.map

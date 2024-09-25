@@ -4,7 +4,7 @@ import {
   require_colorManipulator,
   styled_default,
   useDefaultProps
-} from "./chunk-I4HWA2U3.js";
+} from "./chunk-NYNACTTM.js";
 import {
   chainPropTypes,
   integerPropType_default,
@@ -223,4 +223,4 @@ export {
   paperClasses_default,
   Paper_default
 };
-//# sourceMappingURL=chunk-NSAABVN5.js.map
+//# sourceMappingURL=chunk-TXHGSR26.js.map

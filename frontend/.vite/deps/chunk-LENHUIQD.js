@@ -1,11 +1,11 @@
 import {
+  require_react_dom
+} from "./chunk-ZZLBGYQN.js";
+import {
   defaultTheme_default,
   extractEventHandlers,
   identifier_default
-} from "./chunk-7VQEJV2N.js";
-import {
-  require_react_dom
-} from "./chunk-ZZLBGYQN.js";
+} from "./chunk-L5RZXDLA.js";
 import {
   HTMLElementType,
   createChainedFunction,
@@ -35,11 +35,86 @@ import {
   __toESM
 } from "./chunk-V4OQ3NZ2.js";
 
-// node_modules/@mui/base/FocusTrap/FocusTrap.js
+// node_modules/@mui/base/Portal/Portal.js
 var React = __toESM(require_react());
+var ReactDOM = __toESM(require_react_dom());
 var import_prop_types = __toESM(require_prop_types());
 var import_jsx_runtime = __toESM(require_jsx_runtime());
+function getContainer(container) {
+  return typeof container === "function" ? container() : container;
+}
+var Portal = React.forwardRef(function Portal2(props, forwardedRef) {
+  const {
+    children,
+    container,
+    disablePortal = false
+  } = props;
+  const [mountNode, setMountNode] = React.useState(null);
+  const handleRef = useForkRef(React.isValidElement(children) ? children.ref : null, forwardedRef);
+  useEnhancedEffect_default(() => {
+    if (!disablePortal) {
+      setMountNode(getContainer(container) || document.body);
+    }
+  }, [container, disablePortal]);
+  useEnhancedEffect_default(() => {
+    if (mountNode && !disablePortal) {
+      setRef(forwardedRef, mountNode);
+      return () => {
+        setRef(forwardedRef, null);
+      };
+    }
+    return void 0;
+  }, [forwardedRef, mountNode, disablePortal]);
+  if (disablePortal) {
+    if (React.isValidElement(children)) {
+      const newProps = {
+        ref: handleRef
+      };
+      return React.cloneElement(children, newProps);
+    }
+    return (0, import_jsx_runtime.jsx)(React.Fragment, {
+      children
+    });
+  }
+  return (0, import_jsx_runtime.jsx)(React.Fragment, {
+    children: mountNode ? ReactDOM.createPortal(children, mountNode) : mountNode
+  });
+});
+true ? Portal.propTypes = {
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
+  /**
+   * The children to render into the `container`.
+   */
+  children: import_prop_types.default.node,
+  /**
+   * An HTML element or function that returns one.
+   * The `container` will have the portal children appended to it.
+   *
+   * You can also provide a callback, which is called in a React layout effect.
+   * This lets you set the container from a ref, and also makes server-side rendering possible.
+   *
+   * By default, it uses the body of the top-level document object,
+   * so it's simply `document.body` most of the time.
+   */
+  container: import_prop_types.default.oneOfType([HTMLElementType, import_prop_types.default.func]),
+  /**
+   * The `children` will be under the DOM hierarchy of the parent component.
+   * @default false
+   */
+  disablePortal: import_prop_types.default.bool
+} : void 0;
+if (true) {
+  Portal["propTypes"] = exactProp(Portal.propTypes);
+}
+
+// node_modules/@mui/base/FocusTrap/FocusTrap.js
+var React2 = __toESM(require_react());
+var import_prop_types2 = __toESM(require_prop_types());
 var import_jsx_runtime2 = __toESM(require_jsx_runtime());
+var import_jsx_runtime3 = __toESM(require_jsx_runtime());
 var candidatesSelector = ["input", "select", "textarea", "a[href]", "button", "[tabindex]", "audio[controls]", "video[controls]", '[contenteditable]:not([contenteditable="false"])'].join(",");
 function getTabIndex(node) {
   const tabindexAttr = parseInt(node.getAttribute("tabindex") || "", 10);
@@ -104,22 +179,22 @@ function FocusTrap(props) {
     isEnabled = defaultIsEnabled,
     open
   } = props;
-  const ignoreNextEnforceFocus = React.useRef(false);
-  const sentinelStart = React.useRef(null);
-  const sentinelEnd = React.useRef(null);
-  const nodeToRestore = React.useRef(null);
-  const reactFocusEventTarget = React.useRef(null);
-  const activated = React.useRef(false);
-  const rootRef = React.useRef(null);
+  const ignoreNextEnforceFocus = React2.useRef(false);
+  const sentinelStart = React2.useRef(null);
+  const sentinelEnd = React2.useRef(null);
+  const nodeToRestore = React2.useRef(null);
+  const reactFocusEventTarget = React2.useRef(null);
+  const activated = React2.useRef(false);
+  const rootRef = React2.useRef(null);
   const handleRef = useForkRef(children.ref, rootRef);
-  const lastKeydown = React.useRef(null);
-  React.useEffect(() => {
+  const lastKeydown = React2.useRef(null);
+  React2.useEffect(() => {
     if (!open || !rootRef.current) {
       return;
     }
     activated.current = !disableAutoFocus;
   }, [disableAutoFocus, open]);
-  React.useEffect(() => {
+  React2.useEffect(() => {
     if (!open || !rootRef.current) {
       return;
     }
@@ -145,7 +220,7 @@ function FocusTrap(props) {
       }
     };
   }, [open]);
-  React.useEffect(() => {
+  React2.useEffect(() => {
     if (!open || !rootRef.current) {
       return;
     }
@@ -235,16 +310,16 @@ function FocusTrap(props) {
     }
     activated.current = true;
   };
-  return (0, import_jsx_runtime2.jsxs)(React.Fragment, {
-    children: [(0, import_jsx_runtime.jsx)("div", {
+  return (0, import_jsx_runtime3.jsxs)(React2.Fragment, {
+    children: [(0, import_jsx_runtime2.jsx)("div", {
       tabIndex: open ? 0 : -1,
       onFocus: handleFocusSentinel,
       ref: sentinelStart,
       "data-testid": "sentinelStart"
-    }), React.cloneElement(children, {
+    }), React2.cloneElement(children, {
       ref: handleRef,
       onFocus
-    }), (0, import_jsx_runtime.jsx)("div", {
+    }), (0, import_jsx_runtime2.jsx)("div", {
       tabIndex: open ? 0 : -1,
       onFocus: handleFocusSentinel,
       ref: sentinelEnd,
@@ -270,7 +345,7 @@ true ? FocusTrap.propTypes = {
    * accessible to assistive technologies, like screen readers.
    * @default false
    */
-  disableAutoFocus: import_prop_types.default.bool,
+  disableAutoFocus: import_prop_types2.default.bool,
   /**
    * If `true`, the focus trap will not prevent focus from leaving the focus trap while open.
    *
@@ -278,19 +353,19 @@ true ? FocusTrap.propTypes = {
    * accessible to assistive technologies, like screen readers.
    * @default false
    */
-  disableEnforceFocus: import_prop_types.default.bool,
+  disableEnforceFocus: import_prop_types2.default.bool,
   /**
    * If `true`, the focus trap will not restore focus to previously focused element once
    * focus trap is hidden or unmounted.
    * @default false
    */
-  disableRestoreFocus: import_prop_types.default.bool,
+  disableRestoreFocus: import_prop_types2.default.bool,
   /**
    * Returns an array of ordered tabbable nodes (i.e. in tab order) within the root.
    * For instance, you can provide the "tabbable" npm dependency.
    * @param {HTMLElement} root
    */
-  getTabbable: import_prop_types.default.func,
+  getTabbable: import_prop_types2.default.func,
   /**
    * This prop extends the `open` prop.
    * It allows to toggle the open state without having to wait for a rerender when changing the `open` prop.
@@ -300,89 +375,14 @@ true ? FocusTrap.propTypes = {
    *   return true;
    * }
    */
-  isEnabled: import_prop_types.default.func,
+  isEnabled: import_prop_types2.default.func,
   /**
    * If `true`, focus is locked.
    */
-  open: import_prop_types.default.bool.isRequired
+  open: import_prop_types2.default.bool.isRequired
 } : void 0;
 if (true) {
   FocusTrap["propTypes"] = exactProp(FocusTrap.propTypes);
-}
-
-// node_modules/@mui/base/Portal/Portal.js
-var React2 = __toESM(require_react());
-var ReactDOM = __toESM(require_react_dom());
-var import_prop_types2 = __toESM(require_prop_types());
-var import_jsx_runtime3 = __toESM(require_jsx_runtime());
-function getContainer(container) {
-  return typeof container === "function" ? container() : container;
-}
-var Portal = React2.forwardRef(function Portal2(props, forwardedRef) {
-  const {
-    children,
-    container,
-    disablePortal = false
-  } = props;
-  const [mountNode, setMountNode] = React2.useState(null);
-  const handleRef = useForkRef(React2.isValidElement(children) ? children.ref : null, forwardedRef);
-  useEnhancedEffect_default(() => {
-    if (!disablePortal) {
-      setMountNode(getContainer(container) || document.body);
-    }
-  }, [container, disablePortal]);
-  useEnhancedEffect_default(() => {
-    if (mountNode && !disablePortal) {
-      setRef(forwardedRef, mountNode);
-      return () => {
-        setRef(forwardedRef, null);
-      };
-    }
-    return void 0;
-  }, [forwardedRef, mountNode, disablePortal]);
-  if (disablePortal) {
-    if (React2.isValidElement(children)) {
-      const newProps = {
-        ref: handleRef
-      };
-      return React2.cloneElement(children, newProps);
-    }
-    return (0, import_jsx_runtime3.jsx)(React2.Fragment, {
-      children
-    });
-  }
-  return (0, import_jsx_runtime3.jsx)(React2.Fragment, {
-    children: mountNode ? ReactDOM.createPortal(children, mountNode) : mountNode
-  });
-});
-true ? Portal.propTypes = {
-  // ┌────────────────────────────── Warning ──────────────────────────────┐
-  // │ These PropTypes are generated from the TypeScript type definitions. │
-  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
-  // └─────────────────────────────────────────────────────────────────────┘
-  /**
-   * The children to render into the `container`.
-   */
-  children: import_prop_types2.default.node,
-  /**
-   * An HTML element or function that returns one.
-   * The `container` will have the portal children appended to it.
-   *
-   * You can also provide a callback, which is called in a React layout effect.
-   * This lets you set the container from a ref, and also makes server-side rendering possible.
-   *
-   * By default, it uses the body of the top-level document object,
-   * so it's simply `document.body` most of the time.
-   */
-  container: import_prop_types2.default.oneOfType([HTMLElementType, import_prop_types2.default.func]),
-  /**
-   * The `children` will be under the DOM hierarchy of the parent component.
-   * @default false
-   */
-  disablePortal: import_prop_types2.default.bool
-} : void 0;
-if (true) {
-  Portal["propTypes"] = exactProp(Portal.propTypes);
 }
 
 // node_modules/@mui/base/unstable_useModal/useModal.js
@@ -766,8 +766,8 @@ var React5 = __toESM(require_react());
 var import_jsx_runtime5 = __toESM(require_jsx_runtime());
 
 export {
-  FocusTrap,
   Portal,
+  FocusTrap,
   useModal
 };
-//# sourceMappingURL=chunk-FSVH6YWD.js.map
+//# sourceMappingURL=chunk-LENHUIQD.js.map

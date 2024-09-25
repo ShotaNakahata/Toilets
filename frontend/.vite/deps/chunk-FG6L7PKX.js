@@ -1,15 +1,18 @@
 import {
   Typography_default
-} from "./chunk-SIJ2DI3X.js";
+} from "./chunk-EPDDBBS3.js";
 import {
-  rootShouldForwardProp_default,
+  DialogContext_default
+} from "./chunk-MOPZKHCL.js";
+import {
+  getDialogTitleUtilityClass
+} from "./chunk-O3MVKBQA.js";
+import {
   styled_default,
   useDefaultProps
-} from "./chunk-I4HWA2U3.js";
+} from "./chunk-NYNACTTM.js";
 import {
-  composeClasses,
-  generateUtilityClass,
-  generateUtilityClasses
+  composeClasses
 } from "./chunk-GTJD6U6S.js";
 import {
   _extends,
@@ -30,21 +33,12 @@ import {
   __toESM
 } from "./chunk-V4OQ3NZ2.js";
 
-// node_modules/@mui/material/DialogContentText/DialogContentText.js
+// node_modules/@mui/material/DialogTitle/DialogTitle.js
 init_extends();
 var React = __toESM(require_react());
 var import_prop_types = __toESM(require_prop_types());
-
-// node_modules/@mui/material/DialogContentText/dialogContentTextClasses.js
-function getDialogContentTextUtilityClass(slot) {
-  return generateUtilityClass("MuiDialogContentText", slot);
-}
-var dialogContentTextClasses = generateUtilityClasses("MuiDialogContentText", ["root"]);
-var dialogContentTextClasses_default = dialogContentTextClasses;
-
-// node_modules/@mui/material/DialogContentText/DialogContentText.js
 var import_jsx_runtime = __toESM(require_jsx_runtime());
-var _excluded = ["children", "className"];
+var _excluded = ["className", "id"];
 var useUtilityClasses = (ownerState) => {
   const {
     classes
@@ -52,36 +46,40 @@ var useUtilityClasses = (ownerState) => {
   const slots = {
     root: ["root"]
   };
-  const composedClasses = composeClasses(slots, getDialogContentTextUtilityClass, classes);
-  return _extends({}, classes, composedClasses);
+  return composeClasses(slots, getDialogTitleUtilityClass, classes);
 };
-var DialogContentTextRoot = styled_default(Typography_default, {
-  shouldForwardProp: (prop) => rootShouldForwardProp_default(prop) || prop === "classes",
-  name: "MuiDialogContentText",
+var DialogTitleRoot = styled_default(Typography_default, {
+  name: "MuiDialogTitle",
   slot: "Root",
   overridesResolver: (props, styles) => styles.root
-})({});
-var DialogContentText = React.forwardRef(function DialogContentText2(inProps, ref) {
+})({
+  padding: "16px 24px",
+  flex: "0 0 auto"
+});
+var DialogTitle = React.forwardRef(function DialogTitle2(inProps, ref) {
   const props = useDefaultProps({
     props: inProps,
-    name: "MuiDialogContentText"
+    name: "MuiDialogTitle"
   });
   const {
-    className
-  } = props, ownerState = _objectWithoutPropertiesLoose(props, _excluded);
+    className,
+    id: idProp
+  } = props, other = _objectWithoutPropertiesLoose(props, _excluded);
+  const ownerState = props;
   const classes = useUtilityClasses(ownerState);
-  return (0, import_jsx_runtime.jsx)(DialogContentTextRoot, _extends({
-    component: "p",
-    variant: "body1",
-    color: "text.secondary",
-    ref,
+  const {
+    titleId = idProp
+  } = React.useContext(DialogContext_default);
+  return (0, import_jsx_runtime.jsx)(DialogTitleRoot, _extends({
+    component: "h2",
+    className: clsx_default(classes.root, className),
     ownerState,
-    className: clsx_default(classes.root, className)
-  }, props, {
-    classes
-  }));
+    ref,
+    variant: "h6",
+    id: idProp != null ? idProp : titleId
+  }, other));
 });
-true ? DialogContentText.propTypes = {
+true ? DialogTitle.propTypes = {
   // ┌────────────────────────────── Warning ──────────────────────────────┐
   // │ These PropTypes are generated from the TypeScript type definitions. │
   // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
@@ -99,15 +97,17 @@ true ? DialogContentText.propTypes = {
    */
   className: import_prop_types.default.string,
   /**
+   * @ignore
+   */
+  id: import_prop_types.default.string,
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: import_prop_types.default.oneOfType([import_prop_types.default.arrayOf(import_prop_types.default.oneOfType([import_prop_types.default.func, import_prop_types.default.object, import_prop_types.default.bool])), import_prop_types.default.func, import_prop_types.default.object])
 } : void 0;
-var DialogContentText_default = DialogContentText;
+var DialogTitle_default = DialogTitle;
 
 export {
-  getDialogContentTextUtilityClass,
-  dialogContentTextClasses_default,
-  DialogContentText_default
+  DialogTitle_default
 };
-//# sourceMappingURL=chunk-V4VXZ34J.js.map
+//# sourceMappingURL=chunk-FG6L7PKX.js.map

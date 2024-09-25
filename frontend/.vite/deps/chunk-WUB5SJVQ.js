@@ -1,9 +1,12 @@
 import {
+  DialogContext_default
+} from "./chunk-MOPZKHCL.js";
+import {
   Paper_default,
   getTransitionProps,
   reflow,
   useTheme
-} from "./chunk-NSAABVN5.js";
+} from "./chunk-TXHGSR26.js";
 import {
   useForkRef_default
 } from "./chunk-FG4MTPQG.js";
@@ -11,15 +14,12 @@ import {
   Transition_default
 } from "./chunk-TG6JCKLM.js";
 import {
-  DialogContext_default
-} from "./chunk-MOPZKHCL.js";
-import {
   capitalize_default
 } from "./chunk-JI35BLUM.js";
 import {
   styled_default,
   useDefaultProps
-} from "./chunk-I4HWA2U3.js";
+} from "./chunk-NYNACTTM.js";
 import {
   require_react_dom
 } from "./chunk-ZZLBGYQN.js";
@@ -1906,4 +1906,4 @@ export {
   dialogClasses_default,
   Dialog_default
 };
-//# sourceMappingURL=chunk-RMNTEFS6.js.map
+//# sourceMappingURL=chunk-WUB5SJVQ.js.map

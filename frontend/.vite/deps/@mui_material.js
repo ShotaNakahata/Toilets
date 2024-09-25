@@ -1,8 +1,8 @@
 import {
-  DialogContent_default,
-  dialogContentClasses_default,
-  getDialogContentUtilityClass
-} from "./chunk-D27NAOXD.js";
+  DialogContentText_default,
+  dialogContentTextClasses_default,
+  getDialogContentTextUtilityClass
+} from "./chunk-33PWTTK5.js";
 import {
   ButtonBase_default,
   ButtonGroupButtonContext_default,
@@ -16,7 +16,12 @@ import {
   touchRippleClasses_default,
   useEventCallback_default as useEventCallback_default2,
   useIsFocusVisible_default
-} from "./chunk-XMBUFJA6.js";
+} from "./chunk-UACQVFJB.js";
+import {
+  DialogActions_default,
+  dialogActionsClasses_default,
+  getDialogActionsUtilityClass
+} from "./chunk-YOSUJXH7.js";
 import {
   Backdrop_default,
   Dialog_default,
@@ -31,7 +36,25 @@ import {
   getDialogUtilityClass,
   getModalUtilityClass,
   modalClasses_default
-} from "./chunk-RMNTEFS6.js";
+} from "./chunk-WUB5SJVQ.js";
+import {
+  DialogTitle_default
+} from "./chunk-FG6L7PKX.js";
+import {
+  Typography_default,
+  getTypographyUtilityClass,
+  typographyClasses_default
+} from "./chunk-EPDDBBS3.js";
+import "./chunk-MOPZKHCL.js";
+import {
+  DialogContent_default,
+  dialogContentClasses_default,
+  getDialogContentUtilityClass
+} from "./chunk-3XRF2EGB.js";
+import {
+  dialogTitleClasses_default,
+  getDialogTitleUtilityClass
+} from "./chunk-O3MVKBQA.js";
 import {
   ClickAwayListener,
   CssVarsProvider,
@@ -59,7 +82,7 @@ import {
   useThemeProps,
   withStyles,
   withTheme
-} from "./chunk-QVWD4VXI.js";
+} from "./chunk-SBKN2HFH.js";
 import {
   Paper_default,
   getOverlayAlpha_default,
@@ -68,36 +91,13 @@ import {
   paperClasses_default,
   reflow,
   useTheme
-} from "./chunk-NSAABVN5.js";
+} from "./chunk-TXHGSR26.js";
 import {
   useForkRef_default
 } from "./chunk-FG4MTPQG.js";
 import {
   Transition_default
 } from "./chunk-TG6JCKLM.js";
-import {
-  DialogActions_default,
-  dialogActionsClasses_default,
-  getDialogActionsUtilityClass
-} from "./chunk-BID6HHYQ.js";
-import {
-  DialogTitle_default
-} from "./chunk-B46X2NVW.js";
-import {
-  dialogTitleClasses_default,
-  getDialogTitleUtilityClass
-} from "./chunk-O3MVKBQA.js";
-import "./chunk-MOPZKHCL.js";
-import {
-  DialogContentText_default,
-  dialogContentTextClasses_default,
-  getDialogContentTextUtilityClass
-} from "./chunk-V4VXZ34J.js";
-import {
-  Typography_default,
-  getTypographyUtilityClass,
-  typographyClasses_default
-} from "./chunk-SIJ2DI3X.js";
 import {
   capitalize_default
 } from "./chunk-JI35BLUM.js";
@@ -123,7 +123,7 @@ import {
   slotShouldForwardProp_default,
   styled_default,
   useDefaultProps
-} from "./chunk-I4HWA2U3.js";
+} from "./chunk-NYNACTTM.js";
 import {
   createPopper
 } from "./chunk-TAM2IQJX.js";
