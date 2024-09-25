@@ -1,3 +1,4 @@
+// frontend/src/hooks/useAuth.ts
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
@@ -9,8 +10,8 @@ const useAuth = () => {
     const navigate = useNavigate();
 
     // 環境変数からAPIのURLを取得
-    // const apiUrl = import.meta.env.VITE_API_URL;
-    const apiUrl = 'http://localhost:4000/api';
+    const apiUrl = import.meta.env.VITE_API_URL;
+    // const apiUrl = 'http://localhost:4000/api';
     
     const handleLogin = async (email: string, password: string) => {
         try {
