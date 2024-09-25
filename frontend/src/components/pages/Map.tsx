@@ -90,10 +90,26 @@ const Map: React.FC = () => {
 
     return (
         <div className=" bg-background min-h-screen pt-20 sm:pt-28">
-            <div className="container mx-auto bg-background p-6 rounded-lg shadow-md text-white">
+
+            <div className=" container mx-auto bg-background p-6 rounded-lg shadow-md text-white">
                 <GoogleMapsLoader>
                     {isScriptLoaded && (
                         <>
+                            <div className='flex mb-4 justify-center items-center'>
+                                <h1 className='  text-4xl '>Map Page</h1>
+                            </div>
+                                <div className='mb-6 text-white text-lg space-y-2 flex '>
+                                    <div className=' border flex justify-center items-center'>
+                                    <p>• Use the map to visually find nearby restrooms.</p>
+                                    <p>• You can search for regions or facility names using the search bar.</p>
+                                    <p>• If you share your location, your position will be displayed with a black marker.</p>
+                                    <p>• Red markers represent general restrooms, while blue markers indicate accessible restrooms.</p>
+                                    <p>• Clicking on a marker shows basic restroom information,<br />  an option to add it to your favorites, and a button to view more details on the restroom's detail page.</p>
+                                    </div>
+                                </div>
+
+                            {/* Add explanation here */}
+
                             <MapComponent ref={mapRef} />
                             <MarkerManager map={mapRef.current} />
                         </>
@@ -105,3 +121,4 @@ const Map: React.FC = () => {
 };
 
 export default Map;
+
