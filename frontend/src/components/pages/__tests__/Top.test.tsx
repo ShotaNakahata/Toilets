@@ -25,4 +25,18 @@ describe("Top Page", () => {
         expect(firstParagraph).toBeInTheDocument()
         expect(secondParagraph).toBeInTheDocument()
     });
+
+    test('renders the navigation links',()=>{
+        // 各リンクが正しいURLに向いているかを確認
+        const viewAllLink = screen.getByText("View All Restroom List");
+        const mapLink = screen.getByText("View Restroom Using The Map");
+        const viewAllregisterLink = screen.getByText("Register a New Restroom");
+        const dashboardLink = screen.getByText("Check the Dashboard");
+
+        expect(viewAllLink.closest("a")).toHaveAttribute("href",'/FilterSearchToile');
+        expect(mapLink.closest("a")).toHaveAttribute("href",'/Map');
+        expect(viewAllregisterLink.closest("a")).toHaveAttribute("href",'/RegistrationRestroom');
+        expect(dashboardLink.closest("a")).toHaveAttribute("href",'#dashboard');
+        
+    });
 })
