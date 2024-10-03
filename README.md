@@ -61,10 +61,10 @@ A web application that allows users to efficiently search for nearby restrooms, 
 ## Our Mission
 ### Accessible Toilet
 
-We aim to provide a better restroom environment so that everyone can go out with peace of mind.
+I aim to provide a better restroom environment so that everyone can go out with peace of mind.
 
 This website is especially designed for those who need special facilities, such as people using wheelchairs, ostomates (those with an artificial stoma), or those with small children.
 
-We want to reduce the anxiety about finding restrooms during outings by making it easier to find restrooms equipped with various facilities.
+I want to reduce the anxiety about finding restrooms during outings by making it easier to find restrooms equipped with various facilities.
 
-We also welcome your comments and additional restroom information. Let’s work together to create a more comfortable restroom environment for everyone.
+I also welcome your comments and additional restroom information. Let’s work together to create a more comfortable restroom environment for everyone.
