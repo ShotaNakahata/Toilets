@@ -5,7 +5,6 @@ import Header from './components/layout/Header';
 import { UserProvider } from './context/UserContext';
 import { MapStateProvider, useMapState } from './context/MapStateContext';
 
-// .envファイルからAPIキーを取得
 const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
 
 const Home = React.lazy(() => import('./components/pages/Home'));
@@ -38,6 +37,18 @@ const MapComponent = React.lazy(() => import('./components/pages/Map'));
 const App: React.FC = () => {
   const location = useLocation();
 
+  useEffect(() => {
+    // Homeページがロードされた後、他のページを事前に読み込みます。
+    import('./components/pages/LoginPage');
+    import('./components/pages/CreateAccount');
+    import('./components/pages/FilterSearchToile');
+    import('./components/pages/RegistrationRestroomPage');
+    import('./components/pages/ToiletDetail');
+    import('./components/pages/MyPage');
+    import('./components/pages/ContactPage');
+    import('./components/pages/Map');
+  }, []);
+
   return (
     <UserProvider>
       <MapStateProvider>
@@ -67,3 +78,4 @@ const App: React.FC = () => {
 };
 
 export default App;
+
